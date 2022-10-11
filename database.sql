@@ -1,3 +1,5 @@
+--Create database named "seedling"
+
 -----------------------------USER TABLE-----------------------------
 
 

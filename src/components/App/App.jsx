@@ -35,7 +35,7 @@ function App() {
             <AboutPage />
           </Route>
 
-          <ProtectedRoute exactpath="/user">  {/* logged in shows UserPage else shows LoginPage*/}
+          <ProtectedRoute exact path="/user">  {/* logged in shows UserPage else shows LoginPage*/}
             <UserPage />
           </ProtectedRoute> 
 

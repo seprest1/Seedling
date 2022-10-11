@@ -8,16 +8,14 @@ import PlantKey from './AddPlants/PlantKey';
 function AddPlot(){
     return(
         <div className="add_plot_container">
-            {someCondition ? 
             <div className="add_shade">
                 <AddShade/>
                 <SunKey/>
             </div>
-            :
-            <div classNane="add_plants">
+            <div className="add_plants">
                 <PlantBed/>
                 <PlantKey/>
-            </div>}
+            </div>
         </div>
     )
 }
