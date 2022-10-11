@@ -1,14 +1,21 @@
 import React from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
+//components
+import LogOutButton from '../App/AllPages/LogOutButton/LogOutButton';
 
 function UserPage() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+
+  const sendToNext = () => {
+    history.push('/add_plot');
+  }
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
+      <button onClick={sendToNext}>Add New Plot!</button>
       <LogOutButton className="btn" />
     </div>
   );
