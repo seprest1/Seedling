@@ -8,21 +8,20 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 function PlantKey (){
     const dispatch = useDispatch();
-    const history = useHistory();
     useEffect(() => {
-        console.log('In dispatch FETCH_PLANTS');
         dispatch({type: 'FETCH_PLANTS'});
     }, []);
 
-    //send user back to edit shade
+    //go back to edit shade
+    const history = useHistory();
     const sendBack = () => {
         dispatch({ type: 'CLEAR_PLOT' });
         history.push('/add_shade');
     };
 
     //submit plot to DB
-    const month = useSelector(store => store.garden.month);
-    const plot = useSelector(store => store.garden.plot);
+    const month = useSelector(store => store.month);
+    const plot = useSelector(store => store.plot);
     const submitPlot = () => {
         console.log(month);
         const totalPlants = plot.filter(div => div.plant_id);
@@ -33,12 +32,12 @@ function PlantKey (){
                 month: month
             }); //trigger saga function to send plot to DB
             alert('Added Plot!');
-            history.push('/home'); //send user back to splash page
+            history.push('/home');
         };
     };
 
     //change colors of icons depending on plant
-    const plants = useSelector(store => store.garden.plants);
+    const plants = useSelector(store => store.plants);
     const plantOptions = plants.map(plant => plant.name);
     const plantColor = (plant) => {     
         switch(plant.id){               
@@ -62,6 +61,7 @@ function PlantKey (){
                 return null;
         }
     }
+    
 
     return(
         <div className="key_body">
@@ -94,3 +94,4 @@ function PlantKey (){
 }
 
 export default PlantKey;
+
