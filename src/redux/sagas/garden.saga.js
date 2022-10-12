@@ -1,9 +1,9 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* gardenSaga() {
-    yield takeLatest('FETCH_PLANTS', fetchPlants);
-    yield takeLatest('SEND_PLOT', addPlot);
+    yield takeEvery('FETCH_PLANTS', fetchPlants);
+    yield takeEvery('SEND_PLOT', addPlot);
   }
   
 function* fetchPlants(){

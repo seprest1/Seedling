@@ -2,8 +2,10 @@ import React, { useEffect } from 'react';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import './App.css';
 
 //components
+import Header from './AllPages/Header/Header';
 import Nav from './AllPages/Nav/Nav';
 import Footer from './AllPages/Footer/Footer';
 import AboutPage from '../AboutPage/AboutPage';
@@ -26,43 +28,44 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav />
+        <Header/>
+        <Nav/>
         <Switch>
         
           <Redirect exact from="/" to="/home" />     {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
 
           <Route exact path="/about">
-            <AboutPage />
+            <AboutPage/>
           </Route>
 
           <ProtectedRoute exact path="/user">  {/* logged in shows UserPage else shows LoginPage*/}
-            <UserPage />
+            <UserPage/>
           </ProtectedRoute> 
 
           <ProtectedRoute exact path="/info">
-            <InfoPage />
+            <InfoPage/>
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/add_plot">
-            <AddPlot />
+            <AddPlot/>
           </ProtectedRoute>
 
           <Route exact path="/login"> {/* if user isn't logged in, redirect to login page*/}
-            {user.id ? <Redirect to="/user" />
+            {user.id ? <Redirect to="/user"/>
               :
-              <LoginPage />}
+              <LoginPage/>}
           </Route>
 
           <Route exact path="/registration"> {/* if user is already logged in, redirect to user page*/}
-            {user.id ? <Redirect to="/user" />
+            {user.id ? <Redirect to="/user"/>
               :
-              <RegisterPage />}
+              <RegisterPage/>}
           </Route>
 
           <Route exact path="/home">
-            {user.id ? <Redirect to="/user" />
+            {user.id ? <Redirect to="/user"/>
               :
-              <LandingPage />}
+              <LandingPage/>}
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
@@ -71,7 +74,7 @@ function App() {
           </Route>
 
         </Switch>
-        <Footer />
+        <Footer/>
       </div>
     </Router>
   );

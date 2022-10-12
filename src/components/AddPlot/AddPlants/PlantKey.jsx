@@ -9,14 +9,15 @@ import Autocomplete from '@mui/material/Autocomplete';
 function PlantKey (){
     const dispatch = useDispatch();
     useEffect(() => {
+        console.log('In dispatch FETCH_PLANTS');
         dispatch({type: 'FETCH_PLANTS'});
     }, []);
 
-    const plants = useSelector(store => store.plants);
+    const plants = useSelector(store => store.garden.plants);
 
     //submit plot to DB
-    const month = useSelector(store => store.month);
-    const plot = useSelector(store => store.plot);
+    const month = useSelector(store => store.garden.month);
+    const plot = useSelector(store => store.garden.plot);
     const submitPlot = () => {
         console.log(month);
         const totalPlants = plot.filter(div => div.plant_id);

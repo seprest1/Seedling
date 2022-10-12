@@ -24,7 +24,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('garden', gardenRouter);
+app.use('/garden', gardenRouter);
 
 // Serve static files
 app.use(express.static('build'));

@@ -61,11 +61,12 @@ const month = (state = 'Month', action) => {
     };
 };
 
-
-export default combineReducers({
+const garden = combineReducers({
     plants,
     sunKey,
     plantKey,
     plot,
     month
   });
+
+export default garden;

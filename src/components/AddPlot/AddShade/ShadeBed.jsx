@@ -3,8 +3,8 @@ import { useState } from 'react';
 
 function ShadeBed(){
   //calls shade selected
-  const sun = useSelector(store => store.sunKey);
-  const plot = useSelector(store => store.plot);
+  const sun = useSelector(store => store.garden.sunKey);
+  const plot = useSelector(store => store.garden.plot);
 
   //set shade value for that specific div
   const dispatch = useDispatch();

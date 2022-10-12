@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function PlantBed(){
     
-    const plot = useSelector(store => store.plot);
-    const plant = useSelector(store => store.plantKey);
-    const month = useSelector(store => store.month);
+    const plot = useSelector(store => store.garden.plot);
+    const plant = useSelector(store => store.garden.plantKey);
+    const month = useSelector(store => store.garden.month);
     console.log('Plant picked:', plant);
 
     //set and send plant values for plot reducer
