@@ -14,7 +14,7 @@ function PlantKey (){
         if (month === 'Month'){     //makes sure that month is set
             alert('Set month for your plot!');
         }
-        else if (shadedDivTotal.length === 80){    //determines if all plots have been assigned shade values               
+        else if (shadedDivTotal.length === 48){    //determines if all plots have been assigned shade values               
                 console.log('Sending plot to adding plants section:', plot);  
                 history.push('/add_plants');
         };

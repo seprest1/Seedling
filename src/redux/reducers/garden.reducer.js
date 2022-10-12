@@ -28,7 +28,7 @@ const plantKey = (state = {}, action) => {
 };
 
 //creates an array with location already set                                
-const initialPlot = [...Array(80)].map((div, i) => ({location: i, plant_id: null, shade: null, subvariety: null, name: null}));
+const initialPlot = [...Array(48)].map((div, i) => ({location: i, plant_id: null, shade: null, subvariety: null, name: null}));
 
 const plot = (state = initialPlot, action) => {
     switch(action.type) {
@@ -60,6 +60,15 @@ const month = (state = 'Month', action) => {
             return state;
     };
 };
+
+// const subvariety = (state = '', action) => {
+//     switch(action.type){
+//         case 'SET_SUBVARIETY':
+//             return action.payload;
+//         default:
+//             return state;
+//     };
+// }
 
 const garden = combineReducers({
     plants,

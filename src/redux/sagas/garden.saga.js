@@ -32,5 +32,4 @@ function* addPlot(action){
     };
 };
 
-
 export default gardenSaga;
