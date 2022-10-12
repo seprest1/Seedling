@@ -20,16 +20,17 @@ function PlantKey (){
     };
 
     //submit plot to DB
-    const month = useSelector(store => store.month);
-    const plot = useSelector(store => store.plot);
+    const user = useSelector(store => store.user.id);
+    const month = useSelector(store => store.garden.month);
+    const plot = useSelector(store => store.garden.plot);
     const submitPlot = () => {
+        console.log(user);
         console.log(month);
         const totalPlants = plot.filter(div => div.plant_id);
-        if (totalPlants.length === 35){     //only if all plants have been assigned
+        if (totalPlants.length === 80){     //only if all plants have been assigned
             dispatch({ 
                 type: 'SEND_PLOT', 
-                payload: plot,
-                month: month
+                payload: {plot, month, user}
             }); //trigger saga function to send plot to DB
             alert('Added Plot!');
             history.push('/home');
@@ -37,7 +38,7 @@ function PlantKey (){
     };
 
     //change colors of icons depending on plant
-    const plants = useSelector(store => store.plants);
+    const plants = useSelector(store => store.garden.plants);
     const plantOptions = plants.map(plant => plant.name);
     const plantColor = (plant) => {     
         switch(plant.id){               

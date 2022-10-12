@@ -18,19 +18,18 @@ router.get('/plants', (req, res) => {
 //posts plot to DB
 router.post('/add_plot', (req, res) => {
   console.log(req.body);
-  const hardCodedUserId = 12345;
   const month = req.body.month;
+  const user = req.body.user;
 
   const createPlot = `
       INSERT INTO plot (user_id, month)
         VALUES ($1, $2)
           RETURNING id;`;
 
-  pool.query(createPlot, [hardCodedUserId, month])
+  pool.query(createPlot, [user, month])
       .then(result => {
         const plotId = result.rows[0].id; 
         const plot = req.body.plot;
-        console.log(plotId);
 
         const createDiv = `
             INSERT INTO div (plot_id, plant_id, location, shade, name)

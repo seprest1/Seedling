@@ -69,7 +69,7 @@ function PlantBed(){
                 <div key={i}   
                     className={`garden_bed ${changeBackground(div)}`}                    
                     onMouseOver={() => setDiv(div)}> 
-                        <span className="plant_name">{div.name}  </span>
+                        {/* <span className="plant_name">{div.name}  </span> */}
                         {div.name && <div className={`icon ${plantColor(div)}`}></div>}
                 </div>))} 
         </div>
