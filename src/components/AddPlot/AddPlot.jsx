@@ -1,23 +1,18 @@
 import { useState } from 'react';
 //components
-import AddShade from './AddShade/ShadeBed';
-import SunKey from './AddShade/SunKey';
-import PlantBed from './AddPlants/PlantBed';
-import PlantKey from './AddPlants/PlantKey';
+import AddPlants from './AddPlants/AddPlants';
+import AddShade from './AddPlants/AddPlants';
+
 
 function AddPlot(){
+    const [displayPlants, setDisplayPlants] = useState(false);
+
     return(
         <div className="add_plot_container">
-            {someCondition ? 
-            <div className="add_shade">
+            {displayPlants === false ?
                 <AddShade/>
-                <SunKey/>
-            </div>
-            :
-            <div classNane="add_plants">
-                <PlantBed/>
-                <PlantKey/>
-            </div>}
+                :
+                <AddPlants/>}
         </div>
     )
 }
