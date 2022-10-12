@@ -17,7 +17,7 @@ function PlantKey (){
     const history = useHistory();
     const sendBack = () => {
         dispatch({ type: 'CLEAR_PLOT' });
-        history.push('/add_shade');
+        history.push('/newplot/shade');
     };
 
     //submit plot to DB

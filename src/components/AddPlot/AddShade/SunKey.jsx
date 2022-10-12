@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import * as React from 'react';
 
 function PlantKey (){
     const dispatch = useDispatch();
@@ -16,7 +15,7 @@ function PlantKey (){
         }
         else if (shadedDivTotal.length === 48){    //determines if all plots have been assigned shade values               
                 console.log('Sending plot to adding plants section:', plot);  
-                history.push('/add_plants');
+                history.push('/newplot/plants');
         };
     };
     

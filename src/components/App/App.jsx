@@ -14,6 +14,7 @@ import UserPage from '../UserPage/UserPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LandingPage/LoginPage/LoginPage';
 import RegisterPage from '../LandingPage/RegisterPage/RegisterPage';
+import PlantForm from '../AddPlot/PlantForm/PlantForm';
 import AddShade from '../AddPlot/AddShade/AddShade';
 import AddPlants from '../AddPlot/AddPlants/AddPlants';
 
@@ -47,11 +48,15 @@ function App() {
             <InfoPage/>
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/add_shade">
+          <ProtectedRoute exact path="/newplot/form">
+            <PlantForm/>
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/newplot/shade">
             <AddShade/>
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/add_plants">
+          <ProtectedRoute exact path="/newplot/plants">
             <AddPlants/>
           </ProtectedRoute>
 
