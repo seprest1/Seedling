@@ -1,3 +1,4 @@
+import '../AddPlot.css';
 //components
 import ShadeBed from './ShadeBed';
 import SunKey from './SunKey';

@@ -8,12 +8,17 @@ import Autocomplete from '@mui/material/Autocomplete';
 
 function PlantKey (){
     const dispatch = useDispatch();
+    const history = useHistory();
     useEffect(() => {
         console.log('In dispatch FETCH_PLANTS');
         dispatch({type: 'FETCH_PLANTS'});
     }, []);
 
-    const plants = useSelector(store => store.garden.plants);
+    //send user back to edit shade
+    const sendBack = () => {
+        dispatch({ type: 'CLEAR_PLOT' });
+        history.push('/add_shade');
+    };
 
     //submit plot to DB
     const month = useSelector(store => store.garden.month);
@@ -28,12 +33,15 @@ function PlantKey (){
                 month: month
             }); //trigger saga function to send plot to DB
             alert('Added Plot!');
-            sendHome();
+            history.push('/home'); //send user back to splash page
         };
     };
 
-    const plantColor = (plant) => {     //change colors of icons depending on plant
-        switch(plant.id){               //will have to find better way of accomplishing this
+    //change colors of icons depending on plant
+    const plants = useSelector(store => store.garden.plants);
+    const plantOptions = plants.map(plant => plant.name);
+    const plantColor = (plant) => {     
+        switch(plant.id){               
             case 6:
             case 8:
             case 9:
@@ -53,12 +61,6 @@ function PlantKey (){
             default:
                 return null;
         }
-    }
-
-    const plantOptions = plants.map(plant => plant.name);
-
-    const sendBack = () => {
-        //tbd
     }
 
     return(
