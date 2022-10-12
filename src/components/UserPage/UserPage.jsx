@@ -8,8 +8,9 @@ import LogOutButton from '../App/AllPages/LogOutButton/LogOutButton';
 function UserPage() {
   const user = useSelector((store) => store.user);
 
+  const history = useHistory();
   const sendToNext = () => {
-    history.push('/add_plot');
+    history.push('/add_shade');
   }
   return (
     <div className="container">

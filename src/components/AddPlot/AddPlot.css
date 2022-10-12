@@ -35,8 +35,8 @@
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(8, 1fr);
   grid-gap: 0.1rem;
   padding: 0.9rem;
 }
@@ -259,12 +259,16 @@
   background-color: #344e41;
 }
 
-.green{
+.light_green{
   background-color: #88ac80;
 }
 
+.dark_green{
+  background-color: #14452d;
+}
+
 .purple{
-  background-color: #6e5ab6;
+  background-color: #493150;
 }
 
 .orange{
@@ -272,7 +276,7 @@
 }
 
 .red{
-  background-color: #be643c;
+  background-color: #be433c;
 }
 
 .white{

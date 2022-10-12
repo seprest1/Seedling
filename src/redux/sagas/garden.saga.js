@@ -19,18 +19,17 @@ function* fetchPlants(){
 
 function* addPlot(action){
     try{
-        console.log('Plot being added', action.payload, action.month);
+        console.log('Plot being added', action.payload);
         const plot = yield axios({
             method: 'POST',
             url: '/garden/add_plot', 
-            data: {plot: action.payload, month: action.month}
+            data: action.payload
         });
-        yield PUT({ type: 'CLEAR_PLOT' });
+        yield put({ type: 'CLEAR_PLOT' });
     }
     catch(error){
         console.log('addPlot failed,', error);
     };
 };
-
 
 export default gardenSaga;
