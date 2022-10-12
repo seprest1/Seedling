@@ -28,7 +28,7 @@ const plantKey = (state = {}, action) => {
 };
 
 //creates an array with location already set                                
-const initialPlot = [...Array(35)].map((div, i) => ({location: i, plant_id: null, shade: null, subvariety: null, name: null}));
+const initialPlot = [...Array(80)].map((div, i) => ({location: i, plant_id: null, shade: null, subvariety: null, name: null}));
 
 const plot = (state = initialPlot, action) => {
     switch(action.type) {
@@ -66,7 +66,7 @@ const garden = combineReducers({
     sunKey,
     plantKey,
     plot,
-    month
+    month,
   });
 
 export default garden;

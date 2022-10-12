@@ -34,7 +34,7 @@ function ShadeBed(){
 
   //allows user to edit Month, then dispatch value
   const [showMonth, setShowMonth] = useState(true);
-  const month = useSelector(store => store.month);
+  const month = useSelector(store => store.garden.month);
   const setMonth = (month) => {
     dispatch({ type: 'SET_MONTH', payload: month});
     setShowMonth(!showMonth);

@@ -9,15 +9,19 @@ import Autocomplete from '@mui/material/Autocomplete';
 function PlantKey (){
     const dispatch = useDispatch();
     useEffect(() => {
-        console.log('In dispatch FETCH_PLANTS');
         dispatch({type: 'FETCH_PLANTS'});
     }, []);
 
-    const plants = useSelector(store => store.garden.plants);
+    //go back to edit shade
+    const history = useHistory();
+    const sendBack = () => {
+        dispatch({ type: 'CLEAR_PLOT' });
+        history.push('/add_shade');
+    };
 
     //submit plot to DB
-    const month = useSelector(store => store.garden.month);
-    const plot = useSelector(store => store.garden.plot);
+    const month = useSelector(store => store.month);
+    const plot = useSelector(store => store.plot);
     const submitPlot = () => {
         console.log(month);
         const totalPlants = plot.filter(div => div.plant_id);
@@ -28,12 +32,15 @@ function PlantKey (){
                 month: month
             }); //trigger saga function to send plot to DB
             alert('Added Plot!');
-            sendHome();
+            history.push('/home');
         };
     };
 
-    const plantColor = (plant) => {     //change colors of icons depending on plant
-        switch(plant.id){               //will have to find better way of accomplishing this
+    //change colors of icons depending on plant
+    const plants = useSelector(store => store.plants);
+    const plantOptions = plants.map(plant => plant.name);
+    const plantColor = (plant) => {     
+        switch(plant.id){               
             case 6:
             case 8:
             case 9:
@@ -54,12 +61,7 @@ function PlantKey (){
                 return null;
         }
     }
-
-    const plantOptions = plants.map(plant => plant.name);
-
-    const sendBack = () => {
-        //tbd
-    }
+    
 
     return(
         <div className="key_body">
@@ -92,3 +94,4 @@ function PlantKey (){
 }
 
 export default PlantKey;
+

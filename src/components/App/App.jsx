@@ -14,7 +14,8 @@ import UserPage from '../UserPage/UserPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LandingPage/LoginPage/LoginPage';
 import RegisterPage from '../LandingPage/RegisterPage/RegisterPage';
-import AddPlot from '../AddPlot/AddPlot';
+import AddShade from '../AddPlot/AddShade/AddShade';
+import AddPlants from '../AddPlot/AddPlants/AddPlants';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div className="body">
         <Header/>
         <Nav/>
         <Switch>
@@ -46,8 +47,12 @@ function App() {
             <InfoPage/>
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/add_plot">
-            <AddPlot/>
+          <ProtectedRoute exact path="/add_shade">
+            <AddShade/>
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/add_plants">
+            <AddPlants/>
           </ProtectedRoute>
 
           <Route exact path="/login"> {/* if user isn't logged in, redirect to login page*/}
