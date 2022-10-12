@@ -1,0 +1,292 @@
+.add_plot_body{
+  margin: 0;
+  grid-area: body;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+}
+
+.bed_container{
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.plot_display{
+  height: 75vh;
+  width: 60%;
+  margin: 2rem;
+  justify-self: flex-end;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 6rem 1fr;
+  grid-template-areas: 
+    "month"
+    "plot";
+}
+
+.shade_bed{
+  grid-area: plot;
+  background-color: rgb(221, 218, 218, 0.5);
+  text-align: center;
+  font-size: 3rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 0.1rem;
+  padding: 0.9rem;
+}
+
+.plant_bed{
+  grid-area: plot;
+  background-color: rgb(221, 218, 218, 0.5);
+  text-align: center;
+  font-size: 10px;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  
+}
+
+.month{
+  grid-area: month;
+  width: 100%;
+  font-size: x-large;
+  background-color: rgb(219, 211, 211, 0.60);
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 0.1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "h3 button";
+}
+
+.month_h3{
+  grid-area: h3;
+  margin-left: 10%;
+}
+
+.month_select{
+  grid-area: h3;
+  margin-left: 10%;
+  background-color: transparent;
+  border: 0.1rem solid rgb(211, 205, 205, 0.7);
+  font-family: 'Inter Tight', sans-serif !important;
+  font-size: x-large;
+  height: 50%;
+  margin: 1.5rem;
+}
+
+.garden_bed{
+  border: 0.1rem solid rgb(63, 49, 32, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: xx-large;
+  border-radius: 0.3rem;
+  box-shadow: 0.1rem 0.1rem 0.1rem rgba(85, 91, 85, 0.3);
+}
+
+.key_container{
+  margin: 0;
+  height: 100%;
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.key_body{
+  height: 75vh;
+  width: 50%;
+  margin: 2rem;
+  background-color: rgb(221, 218, 218, 0.5);;
+  border-radius: 1rem;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 6rem 1fr 0.2fr 0.1fr;
+  grid-template-areas: 
+    "h2"
+    "list"
+    "input"
+    "buttons";
+}
+
+.key_h2 {
+  grid-area: h2;
+  margin: 0;
+  padding: 1rem;
+  background-color:  rgb(219, 211, 211, 0.60);
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list, .shade_list{
+  grid-area: list;
+  margin: 0;
+  padding: 1rem;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  letter-spacing: 0.1rem;
+}
+
+.shade_list > li {
+  padding: 5%;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 0.5fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 
+    "icon name ";
+}
+
+.plant_li{
+  padding-top: 1rem;
+  display: grid;
+  margin: 0;
+  max-height: 3rem;
+  grid-template-columns: 0.3fr 1fr 0.2fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: 
+    "icon name plantbutton"
+    "icon sunlight sunlight";
+}
+
+.name{
+  grid-area: name;
+  font-size: medium;
+}
+
+.sunlight, .subvariety_input{
+  grid-area: sunlight;
+  font-size: small;
+  font-style: italic;
+  margin-left: 1rem;
+}
+
+.subvariety_input{
+  width: 6rem;
+}
+
+.buttons{
+  grid-area: buttons;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.button {
+  margin: 1rem;
+  background-color:rgb(219, 211, 211, 0.30);
+  width: 5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  font-family: 'Inter Tight', sans-serif;
+  border: none;
+}
+
+.button:hover{
+  background-color: rgb(219, 211, 211, 0.50);
+}
+
+.month_button{
+  grid-area: button;
+  font-size: x-large;
+  transform: scale(-1, 1);
+  width: 2rem;
+  height: 2rem;
+}
+
+.edit_plant_button{
+  grid-area: plantbutton;
+  font-size: x-large;
+  transform: scale(-1, 1);
+  width: 2rem;
+  height: 2rem;
+  margin: 0;
+  opacity: 70%;
+}
+
+.exit_edit_plant{
+  grid-area: plantbutton;
+  font-size: medium;
+  width: 2rem;
+  height: 2rem;
+  margin: 0;
+}
+
+.hide_button {
+  opacity: 0%;
+}
+
+.icon{
+  grid-area: icon;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 2rem;
+  margin-right: 1rem;
+  justify-self: flex-end;
+}
+
+.plant_icon{
+  grid-area: icon;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 2rem;
+}
+
+.shade_bed > .garden_bed{
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+}
+
+.plant_name{
+  margin: 0.3rem;
+}
+
+.plant_input{
+  grid-area: input;
+}
+
+.green1{
+  background-color: #a3b18a;
+}
+
+.green2{
+  background-color: #578162;
+}
+
+.green3{
+  background-color: #344e41;
+}
+
+.green{
+  background-color: #88ac80;
+}
+
+.purple{
+  background-color: #6e5ab6;
+}
+
+.orange{
+  background-color: #cf814a;
+}
+
+.red{
+  background-color: #be643c;
+}
+
+.white{
+  background-color: rgb(228, 220, 209);
+}

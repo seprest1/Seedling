@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import './AddPlot.css';
 //components
+import AddShade from './AddShade/AddShade';
 import AddPlants from './AddPlants/AddPlants';
-import AddShade from './AddPlants/AddPlants';
+
 
 
 function AddPlot(){
@@ -9,10 +11,7 @@ function AddPlot(){
 
     return(
         <div className="add_plot_container">
-            {displayPlants === false ?
                 <AddShade/>
-                :
-                <AddPlants/>}
         </div>
     )
 }
