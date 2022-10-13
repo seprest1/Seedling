@@ -1,19 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 //components
 import KeyItem from './KeyItem';
-//MUI
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 
 function PlantKey (){
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch({type: 'FETCH_PLANTS'});
-    }, []);
-
     //go back to edit shade
+    const dispatch = useDispatch();
     const history = useHistory();
     const sendBack = () => {
         dispatch({ type: 'CLEAR_PLOT' });
@@ -38,23 +30,13 @@ function PlantKey (){
         };
     };
 
-    const plants = useSelector(store => store.garden.plants);
-    const plantOptions = plants.map(plant => plant.name);
-
     return(
-        <div className="key_body">
-            <h2 className="key_h2">Key:</h2>
-            <ul className="list">   
-                {plants.map((plant, i) =>  
-                    <KeyItem key={i} plant={plant}/>
-                )}
+        <div className="right_body">
+            <div className="right_header">
+                <h3 className="right_title">Key:</h3>
+            </div>
+            <ul className="plant_list">   
             </ul>
-            <Autocomplete
-                disablePortal
-                options={plantOptions}
-                className="plant_input"
-                renderInput={(params) => <TextField {...params} label="Add Plant" />}
-                />
             <div className="buttons">
                 <button onClick={sendBack} className="button">Back</button>
                 <button onClick={submitPlot} className="button">Submit</button> 

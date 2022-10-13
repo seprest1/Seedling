@@ -1,34 +1,53 @@
 .add_plot_body{
   margin: 0;
   grid-area: body;
+  height: 90%;
   width: 100vw;
   display: flex;
   flex-direction: row;
 }
 
-.bed_container{
+/* --------- LEFT SECTION --------- */
+.left_display{
   margin: 0;
   height: 100%;
-  width: 100%;
+  width: 55%;
   display: flex;
   justify-content: flex-end;
 }
 
-.plot_display{
+.left_body{
   height: 75vh;
-  width: 60%;
+  width: 70%;
   margin: 2rem;
   justify-self: flex-end;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 6rem 1fr;
+  grid-template-rows: 17% 1fr;
   grid-template-areas: 
-    "month"
-    "plot";
+    "title"
+    "body";
 }
 
+.left_header{
+  grid-area: title;
+  width: 100%;
+  background-color: rgb(219, 211, 211, 0.60);
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  display: flex;
+}
+
+.left_title{
+  grid-area: title;
+  align-self: center;
+  margin: 0 10% 0 10%;
+  font-size: 4vh;
+}
+
+
 .shade_bed, .plant_bed{
-  grid-area: plot;
+  grid-area: body;
   background-color: rgb(221, 218, 218, 0.5);
   text-align: center;
   font-size: 3rem;
@@ -41,36 +60,179 @@
   padding: 0.9rem;
 }
 
-.month{
-  grid-area: month;
-  width: 100%;
-  font-size: x-large;
+/* --------- PLANT ITEM / SOW CHART --------- */
+.available_plant_container{
+  grid-area: body;
+  background-color: rgb(221, 218, 218, 0.5);
+  overflow: scroll;
+  text-align: center;
+  font-size: 3rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.available_plant_list{
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  grid-gap: 0.5rem;
+}
+
+.available_plant{
+  height: 50vh;
   background-color: rgb(219, 211, 211, 0.60);
-  border-top-left-radius: 1rem;
-  border-top-right-radius: 1rem;
+  border-radius: 0.4rem;
+  margin: 1rem;
   display: grid;
-  grid-template-columns: 1fr 0.1fr;
+  grid-template-columns: auto;
+  grid-template-rows: 0.2fr 1fr;
+  grid-template-areas:
+    "a_plant_header"
+    "a_plant_body";
+}
+
+.a_plant_header{
+  grid-area: a_plant_header;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(169, 163, 163, 0.6);
+  border-radius: 0.5rem 0.5rem 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.a_plant_body{
+  grid-area: a_plant_body;
+  max-height: 100%;
+  display: grid;
+  grid-template-columns: 0.8fr, 1fr;
   grid-template-rows: auto;
-  grid-template-areas: "h3 button";
+  grid-template-areas:
+    "image info";
 }
 
-.month_h3{
-  grid-area: h3;
-  margin-left: 10%;
-}
-
-.month_select{
-  grid-area: h3;
-  margin-left: 10%;
-  background-color: transparent;
-  border: 0.1rem solid rgb(211, 205, 205, 0.7);
-  font-family: 'Inter Tight', sans-serif !important;
+.a_plant_name{
+  width: 30%;
+  align-self: center;
   font-size: x-large;
-  height: 50%;
-  margin: 1.5rem;
+  text-align: center;
 }
 
-.garden_bed{
+.a_plant_image_section{
+  grid-area: image;
+  max-height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.a_plant_image{
+  height: 90%;
+  width: 90%;
+  border-radius: 1rem;
+  align-self: center;
+}
+
+.a_plant_info{
+  grid-area: info;
+  display: grid;
+  height: 100%;
+  grid-template-columns: auto;
+  grid-template-rows: 1fr 0.5fr;
+  grid-template-areas:
+    "details"
+    "chart";
+}
+
+.a_plant_details{
+  grid-area: details;
+  height: 80%;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  grid-gap: 5%;
+}
+
+.a_plant_subname{
+  font-size: small;
+  font-style: italic;
+  align-self: flex-start;
+  padding: 3% 10%;
+  margin: 0;
+}
+
+.a_plant_fact{
+  font-size: xx-small;
+  align-self: flex-start;
+  padding-left: 10%;
+  margin: 0;
+}
+
+.sowing_chart{
+  grid-area: chart;
+  margin: 3%;
+  background-color: rgba(244, 235, 235, 0.4);
+  border-radius: 1rem;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 0.2fr 1fr 0.3fr;
+  grid-template-areas: 
+    "chart_title"
+    "chart_data"
+    "chart_months";
+}
+
+.sowing_header{
+  grid-area: chart_title;
+}
+
+.sowing_title{
+  font-size: x-small;
+  margin: 0.2rem;
+}
+
+.sowing_bars{
+  grid-area: chart_data;
+  max-width: 80%;
+  padding: 2%;
+  justify-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  grid-gap: 0.5rem;
+}
+
+.sowing_data{
+  background-color: rgba(200, 21, 21, 0.5);
+  width: 7%;
+  height: 100%;
+  border-radius: 0.3rem 0.3rem 0 0;
+  color: transparent;
+}
+
+.sowing_months{
+  grid-area: chart_months;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.sowing_month{
+  font-size: 15%;
+  padding: 1px 5px;
+}
+
+
+/* --------------------------------- */
+
+.plot_div{
   border: 0.1rem solid rgb(63, 49, 32, 0.1);
   display: flex;
   flex-direction: column;
@@ -81,34 +243,35 @@
   box-shadow: 0.1rem 0.1rem 0.1rem rgba(85, 91, 85, 0.3);
 }
 
-.key_container{
+/* --------- RIGHT SECTION --------- */
+
+.right_display{
   margin: 0;
   height: 100%;
-  width: 80%;
+  width: 40%;
   display: flex;
   justify-content: flex-start;
 }
 
-.key_body{
+.right_body{
   height: 75vh;
-  width: 50%;
+  min-width: 60%;
   margin: 2rem;
   background-color: rgb(221, 218, 218, 0.5);;
   border-radius: 1rem;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 6rem 1fr 0.2fr 0.1fr;
+  grid-template-rows: 17% 1fr 0.1fr;
   grid-template-areas: 
-    "h2"
+    "header"
     "list"
-    "input"
     "buttons";
 }
 
-.key_h2 {
-  grid-area: h2;
+.right_header {
+  grid-area: header;
   margin: 0;
-  padding: 1rem;
+  padding: 0 0.5rem 0 0.5rem;
   background-color:  rgb(219, 211, 211, 0.60);
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
@@ -117,7 +280,12 @@
   align-items: center;
 }
 
-.list, .shade_list{
+.right_title{
+  font-size: 4vh;
+}
+
+/*--------------SAME----------------*/
+.plant_list{
   grid-area: list;
   margin: 0;
   padding: 1rem;
@@ -127,6 +295,18 @@
   overflow: scroll;
   letter-spacing: 0.1rem;
 }
+
+.shade_list{
+  grid-area: list;
+  margin: 0;
+  padding: 1rem;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  letter-spacing: 0.1rem;
+}
+/*-----------------------------------*/
 
 .shade_list > li {
   padding: 5%;
@@ -138,33 +318,7 @@
     "icon name ";
 }
 
-.plant_li{
-  padding-top: 1rem;
-  display: grid;
-  margin: 0;
-  max-height: 3rem;
-  grid-template-columns: 0.3fr 1fr 0.2fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas: 
-    "icon name plantbutton"
-    "icon sunlight sunlight";
-}
-
-.name{
-  grid-area: name;
-  font-size: medium;
-}
-
-.sunlight, .subvariety_input{
-  grid-area: sunlight;
-  font-size: small;
-  font-style: italic;
-  margin-left: 1rem;
-}
-
-.subvariety_input{
-  width: 6rem;
-}
+/* --------- BUTTONS --------- */
 
 .buttons{
   grid-area: buttons;
@@ -183,39 +337,27 @@
   border: none;
 }
 
-.button:hover{
-  background-color: rgb(219, 211, 211, 0.50);
+.icon_button{
+  font-size: large;
+  margin: 1rem;
+  background-color:rgb(219, 211, 211, 0.30);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.5rem;
+  font-family: 'Inter Tight', sans-serif;
+  border: none;
+  opacity: 80%;
 }
 
-.month_button{
-  grid-area: button;
-  font-size: x-large;
+.edit {
   transform: scale(-1, 1);
-  width: 2rem;
-  height: 2rem;
 }
 
-.edit_plant_button{
-  grid-area: plantbutton;
-  font-size: x-large;
-  transform: scale(-1, 1);
-  width: 2rem;
-  height: 2rem;
-  margin: 0;
-  opacity: 70%;
+.button:hover, .icon_button:hover{
+  background-color: rgb(219, 211, 211, 0.75);
 }
 
-.exit_edit_plant{
-  grid-area: plantbutton;
-  font-size: medium;
-  width: 2rem;
-  height: 2rem;
-  margin: 0;
-}
-
-.hide_button {
-  opacity: 0%;
-}
+/* --------- ICONS --------- */
 
 .icon{
   grid-area: icon;
@@ -233,19 +375,7 @@
   border-radius: 2rem;
 }
 
-.shade_bed > .garden_bed{
-  font-size: 1rem;
-  letter-spacing: 0.1rem;
-}
-
-.plant_name{
-  margin: 0.3rem;
-  font-size: xx-small;
-}
-
-.plant_input{
-  grid-area: input;
-}
+/* --------- COLORS --------- */
 
 .green1{
   background-color: #a3b18a;
@@ -281,4 +411,46 @@
 
 .white{
   background-color: rgb(228, 220, 209);
+}
+
+/* --------- BAR HEIGHTS --------- */
+
+.per10{
+  height: 10%;
+}
+
+.per20{
+  height: 20%;
+}
+
+.per30{
+  height: 30%;
+}
+
+.per40{
+  height: 40%;
+}
+
+.per50{
+  height: 50%;
+}
+
+.per60{
+  height: 60%;
+}
+
+.per70{
+  height: 70%;
+}
+
+.per80{
+  height: 80%;
+}
+
+.per90{
+  height: 90%;
+}
+
+.per100{
+  height: 100%;
 }

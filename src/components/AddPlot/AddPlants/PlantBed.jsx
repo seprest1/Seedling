@@ -60,14 +60,14 @@ function PlantBed(){
   }
 
     return(
-      <div className="plot_display">
-        <div className="month">
-            <h3 className="month_h3">{month}</h3> 
+      <div className="left_body">
+        <div className="left_header">
+            <h3 className="left_title">Plant</h3> 
         </div>
         <div className="shade_bed">
         {plot.map((div, i) => (  /* creates 24 divs, index = 0 */
                 <div key={i}   
-                    className={`garden_bed ${changeBackground(div)}`}                    
+                    className={`plot_div ${changeBackground(div)}`}                    
                     onMouseOver={() => setDiv(div)}> 
                         {/* <span className="plant_name">{div.name}  </span> */}
                         {div.name && <div className={`icon ${plantColor(div)}`}></div>}

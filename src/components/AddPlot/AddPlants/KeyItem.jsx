@@ -5,7 +5,7 @@ function KeyItem({plant}){
 
     return(
         <li 
-            className="plant_li"
+            className="plant_list"
             // onMouseOver={() => setHideButton(!hideButton)} /*toggles edit button*/
             onClick={() => dispatch({type: 'SET_PLANT_TYPE', payload: plant})}>
             <div 

@@ -6,10 +6,10 @@ import SunKey from './SunKey';
 function AddShade () {
     return(
         <div className="add_plot_body">
-            <div className="bed_container">
+            <div className="left_display">
                 <ShadeBed/>
             </div>
-            <div className="key_container">
+            <div className="right_display">
                 <SunKey/>
             </div>
         </div>

@@ -6,10 +6,10 @@ import PlantKey from './PlantKey';
 function AddPlants(){
     return(
         <div className="add_plot_body">
-            <div className="bed_container">
+            <div className="left_display">
                 <PlantBed/>
             </div>
-            <div className="key_container">
+            <div className="right_display">
                 <PlantKey/>
             </div>
         </div>
