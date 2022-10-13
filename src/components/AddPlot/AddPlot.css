@@ -84,7 +84,7 @@
 }
 
 .available_plant{
-  height: 50vh;
+  height: 100vh;
   background-color: rgb(219, 211, 211, 0.60);
   border-radius: 0.4rem;
   margin: 1rem;
@@ -132,26 +132,19 @@
 }
 
 .a_plant_image{
-  height: 90%;
   width: 90%;
+  min-width: 10rem;
   border-radius: 1rem;
-  align-self: center;
+  align-self: stretch;
 }
 
 .a_plant_info{
   grid-area: info;
-  display: grid;
-  height: 100%;
-  grid-template-columns: auto;
-  grid-template-rows: 1fr 0.5fr;
-  grid-template-areas:
-    "details"
-    "chart";
+  display: flex;
+  flex-direction: column;
 }
 
 .a_plant_details{
-  grid-area: details;
-  height: 80%;
   align-self: center;
   display: flex;
   flex-direction: column;
@@ -170,7 +163,7 @@
 .a_plant_fact{
   font-size: xx-small;
   align-self: flex-start;
-  padding-left: 10%;
+  padding: 0% 10%;
   margin: 0;
 }
 
@@ -193,7 +186,7 @@
 }
 
 .sowing_title{
-  font-size: x-small;
+  font-size: 20%;
   margin: 0.2rem;
 }
 
@@ -210,7 +203,7 @@
 }
 
 .sowing_data{
-  background-color: rgba(200, 21, 21, 0.5);
+  background-color: rgba(49, 165, 28, 0.5);
   width: 7%;
   height: 100%;
   border-radius: 0.3rem 0.3rem 0 0;
