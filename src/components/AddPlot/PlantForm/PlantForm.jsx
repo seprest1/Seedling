@@ -1,19 +1,21 @@
 import '../AddPlot.css';
 //components
-import PlantBed from './PlantBed';
-import PlantKey from './PlantKey';
+import AvailablePlants from './AvailablePlants';
+import PlantList from './PlantList';
 
-function AddPlants(){
+function SelectPlants () {
     return(
         <div className="add_plot_body">
             <div className="left_display">
-                <PlantBed/>
+                <AvailablePlants/>
             </div>
             <div className="right_display">
-                <PlantKey/>
+                <PlantList/>
             </div>
         </div>
     )
 }
 
-export default AddPlants
+export default SelectPlants;
+
+

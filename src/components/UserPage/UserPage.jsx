@@ -10,7 +10,7 @@ function UserPage() {
 
   const history = useHistory();
   const sendToNext = () => {
-    history.push('/add_shade');
+    history.push('/newplot/form');
   }
   return (
     <div className="container">

@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import * as React from 'react';
 
 function PlantKey (){
     const dispatch = useDispatch();
@@ -11,19 +10,17 @@ function PlantKey (){
    
     const sendToNext = () => {
         const shadedDivTotal = plot.filter(div => div.shade);  
-        if (month === 'Month'){     //makes sure that month is set
-            alert('Set month for your plot!');
-        }
-        else if (shadedDivTotal.length === 48){    //determines if all plots have been assigned shade values               
-                console.log('Sending plot to adding plants section:', plot);  
-                history.push('/add_plants');
+        if (shadedDivTotal.length === 48){    //determines if all plots have been assigned shade values               
+            console.log('Sending plot to adding plants section:', plot);  
+            history.push('/newplot/plants');
         };
     };
-    
 
     return(
-        <div className="key_body">
-            <h2 className="key_h2">Key:</h2>
+        <div className="right_body">
+             <div className="right_header">
+                <h3 className="right_title">Key:</h3>
+            </div>
             <ul className="shade_list"> 
                 <li>
                         <div 
@@ -49,7 +46,8 @@ function PlantKey (){
                 </li>
             </ul>
             <div className="buttons">
-                <button onClick={sendToNext} >Next</button>
+                <button onClick={() => history.push('/newplot/form')} className="button">Back</button>
+                <button onClick={sendToNext} className="button">Next</button>
             </div>
         </div>
     )
