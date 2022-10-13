@@ -4,7 +4,9 @@ const pool = require('../modules/pool')
 
 //gets plants from DB
 router.get('/plants', (req, res) => {
-  const queryText = `SELECT * FROM plant ORDER BY sunlight;`;
+  const queryText = `
+    SELECT * FROM plant
+	    JOIN growing_season ON growing_season.plant_id = plant.id;`;
   pool.query(queryText)
       .then(result => {
         res.send(result.rows);

@@ -408,6 +408,10 @@
 
 /* --------- BAR HEIGHTS --------- */
 
+.per0{
+  height: 4%;
+}
+
 .per10{
   height: 10%;
 }

@@ -1,5 +1,4 @@
 import MonthChart from "./MonthChart";
-import { useDispatch, useSelector } from 'react-redux';
 //MUI
 
 function PlantItem({plant}){
