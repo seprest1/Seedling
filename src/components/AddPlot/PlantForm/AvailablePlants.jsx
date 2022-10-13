@@ -5,14 +5,12 @@ import PlantItem from './PlantItem';
 
 function AvailablePlants(){
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch({type: 'FETCH_PLANTS'});
-    }, []);
-
-    
     const month = useSelector(store => store.garden.month);
     const plants = useSelector(store => store.garden.plants);
-
+    useEffect(() => {
+        dispatch({type: 'FETCH_PLANTS'});
+        console.log(plants);
+    }, []);
 
     return(
           <div className="left_body">

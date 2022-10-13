@@ -11,16 +11,15 @@ function PlantItem({plant}){
             </div>
             <div className="a_plant_body">
                 <div className="a_plant_image_section">
-                    <img src="https://img.freepik.com/premium-vector/bright-red-tomatoes-ingredients-healthy-cooking_68708-2007.jpg?w=2000"
+                    <img src={`${plant.image}`}
                         className="a_plant_image"/>
                 </div>
                 <div className="a_plant_info">
                     <div className="a_plant_details">
-                        <p className="a_plant_subname">{plant.sunlight}</p>
-                        <p className="a_plant_fact">Here's some information about the plant</p>
-                        <p className="a_plant_fact">Here's some information about the plant</p>
-                        <p className="a_plant_fact">Here's some information about the plant</p>
-                        <p className="a_plant_fact">Here's some information about the plant</p>
+                        <p className="a_plant_subname">{plant.scientific_name} - {plant.sunlight}</p>
+                        <p className="a_plant_fact">{plant.description}</p>
+                        <p className="a_plant_fact">{plant.sowing}</p>
+                        <p className="a_plant_fact">{plant.row_spacing}</p>
                     </div>
                     <MonthChart plant={plant}/>
                 </div>
