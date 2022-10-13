@@ -7,7 +7,8 @@ function PlantItem({plant}){
         <li className="available_plant">
             <div className="a_plant_header">
                 <span className="a_plant_name">{plant.name}</span>
-                <button className="icon_button edit">✎</button>
+                <span className="subvariety"></span>
+                <button className="icon_button edit a_edit">✎</button>
             </div>
             <div className="a_plant_body">
                 <div className="a_plant_image_section">
