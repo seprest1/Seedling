@@ -19,7 +19,7 @@ const selectedPlants = (state = [], action) => {
             return state.map((plant, i) => i === action.payload.index ? 
                                 {...plant, subvariety: action.payload.subvariety} 
                                 : plant);
-        case 'CLEAR_PLANTS':
+        case 'CLEAR_EVERYTHING':
             return [];
         default: 
             return state;
@@ -30,7 +30,7 @@ const month = (state = 'Month', action) => {
     switch(action.type){
         case 'SET_MONTH':
             return action.payload;
-        case 'CLEAR_MONTH':
+        case 'CLEAR_EVERYTHING':
             return 'Month';
         default:
             return state;
@@ -56,6 +56,8 @@ const plot = (state = initialPlot, action) => {
                     : oldDiv);  
         case 'CLEAR_PLOT':
             return initialPlot; 
+        case 'CLEAR_EVERYTHING':
+            return initialPlot;
         default: 
             return state;
     };
