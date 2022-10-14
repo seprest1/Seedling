@@ -9,11 +9,7 @@ function KeyItem({plant, i}){
             <div className={`selected_plant_icon plant_icon ${plant.color}`}></div>
             <div className="selected_plant_names">
                 <span className="selected_plant_name">{plant.name}</span>
-                <span className="selected_plant_subvariety">Subvariety</span>
-            </div>
-            <div className="selected_plant_buttons">
-                <button className="selected_button edit">✎</button>
-                <button className="selected_button edit" onClick={() => dispatch({type: 'REMOVE_PLANT', payload: i})}>⨉</button>
+                <span className="selected_plant_subvariety">{plant.subvariety}</span>
             </div>
         </li>
     )

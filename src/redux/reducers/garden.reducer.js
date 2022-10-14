@@ -64,10 +64,14 @@ const month = (state = 'Month', action) => {
 const selectedPlants = (state = [], action) => {
     switch(action.type){
         case 'ADD_PLANT':
-            return [{plant: action.payload.id, name: action.payload.name, sunlight: action.payload.sunlight, color: action.payload.color}, ...state];
+            return [{plant: action.payload.id, name: action.payload.name, sunlight: action.payload.sunlight, color: action.payload.color, subvariety: 'Add Subvariety'}, ...state];
         case 'REMOVE_PLANT':
             const copyOfState = state;
             return copyOfState.filter((plant, i) => i !== action.payload);
+        case 'SET_SUBVARIETY':
+            return state.map((plant, i) => i === action.payload.index ? 
+                                {...plant, subvariety: action.payload.subvariety} 
+                                : plant);
         default: 
             return state;
     };

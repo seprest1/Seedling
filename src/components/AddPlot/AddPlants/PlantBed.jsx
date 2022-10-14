@@ -9,15 +9,20 @@ function PlantBed(){
     //set and send plant values for plot reducer
     const dispatch = useDispatch();
     const setDiv = (div) => {
-      console.log(div.shade);
       if (div.shade === plant.sunlight){    //prevents user from planting in the wrong shade zone
-        const divToSend = {location: div.location, plant_id: plant.id, name: plant.name, color:plant.color};
+        const divToSend = {
+            location: div.location, 
+            plant_id: plant.id, 
+            name: plant.name, 
+            color:plant.color,
+            subvariety: plant.subvariety};
         console.log(divToSend);
-          dispatch({
-            type: 'SET_PLANT',
-            payload: divToSend,
-          });
-        };
+
+        dispatch({
+          type: 'SET_PLANT',
+          payload: divToSend,
+        });
+      };
     };
 
     //change background of plot to match shade value (except in brown)
@@ -66,7 +71,7 @@ function PlantBed(){
         <div className="shade_bed">
         {plot.map((div, i) => (  /* creates 24 divs, index = 0 */
                 <div key={i}   
-                    className={`plot_div ${changeBackground(div)}`}                    
+                    className={`plot_div ${plant.color}`}                    
                     onMouseOver={() => setDiv(div)}> 
                         {div.name && <div className={`plant_icon ${div.color}`}></div>}
                 </div>))} 
