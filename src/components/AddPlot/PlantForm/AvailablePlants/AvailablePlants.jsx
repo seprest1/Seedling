@@ -9,7 +9,6 @@ function AvailablePlants(){
     const plants = useSelector(store => store.garden.plants);
     useEffect(() => {
         dispatch({type: 'FETCH_PLANTS'});
-        console.log(plants);
     }, []);
 
     return(

@@ -61,14 +61,17 @@ const month = (state = 'Month', action) => {
     };
 };
 
-// const subvariety = (state = '', action) => {
-//     switch(action.type){
-//         case 'SET_SUBVARIETY':
-//             return action.payload;
-//         default:
-//             return state;
-//     };
-// }
+const selectedPlants = (state = [], action) => {
+    switch(action.type){
+        case 'ADD_PLANT':
+            return [{plant: action.payload.id, name: action.payload.name, color: action.payload.color}, ...state];
+        case 'REMOVE_PLANT':
+            const copyOfState = state;
+            return copyOfState.filter((plant, i) => i !== action.payload);
+        default: 
+            return state;
+    };
+};
 
 const garden = combineReducers({
     plants,
@@ -76,6 +79,7 @@ const garden = combineReducers({
     plantKey,
     plot,
     month,
+    selectedPlants,
   });
 
 export default garden;

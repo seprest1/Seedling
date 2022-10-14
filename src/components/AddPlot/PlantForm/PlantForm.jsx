@@ -1,7 +1,7 @@
-import '../AddPlot.css';
+import './PlantForm.css';
 //components
-import AvailablePlants from './AvailablePlants';
-import PlantList from './PlantList';
+import AvailablePlants from './AvailablePlants/AvailablePlants';
+import PlantList from './PlantList/PlantList';
 
 function SelectPlants () {
     return(

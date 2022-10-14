@@ -1,14 +1,26 @@
+import { useDispatch } from 'react-redux';
+//components
 import MonthChart from "./MonthChart";
-//MUI
 
 function PlantItem({plant}){
+    const dispatch = useDispatch();
+    const addPlant = () => {
+        dispatch({
+            type: 'ADD_PLANT',
+            payload: {
+                id: plant.id,
+                name: plant.name,
+                color: plant.color
+            }
+        });
+    };
 
     return(
         <li className="available_plant">
             <div className="a_plant_header">
                 <span className="a_plant_name">{plant.name}</span>
                 <span className="subvariety"></span>
-                <button className="icon_button edit a_edit">✎</button>
+                <button className="icon_button edit a_edit" onClick={addPlant}>+</button>
             </div>
             <div className="a_plant_body">
                 <div className="a_plant_image_section">
@@ -30,3 +42,4 @@ function PlantItem({plant}){
 }
 
 export default PlantItem;
+//✎
