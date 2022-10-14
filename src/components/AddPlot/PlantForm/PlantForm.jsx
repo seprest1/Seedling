@@ -1,11 +1,12 @@
 import './PlantForm.css';
+import '../../App.css';
 //components
 import AvailablePlants from './AvailablePlants/AvailablePlants';
 import PlantList from './PlantList/PlantList';
 
 function SelectPlants () {
     return(
-        <div className="add_plot_body">
+        <div className="app_body">
             <div className="left_display">
                 <AvailablePlants/>
             </div>

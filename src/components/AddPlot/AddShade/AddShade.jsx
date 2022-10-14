@@ -1,11 +1,11 @@
-import '../AddPlot.css';
+import '../../App.css';
 //components
 import ShadeBed from './ShadeBed';
 import SunKey from './SunKey';
 
 function AddShade () {
     return(
-        <div className="add_plot_body">
+        <div className="app_body">
             <div className="left_display">
                 <ShadeBed/>
             </div>
