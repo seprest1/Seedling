@@ -10,6 +10,7 @@ function PlantItem({plant}){
             payload: {
                 id: plant.id,
                 name: plant.name,
+                sunlight: plant.sunlight,
                 color: plant.color
             }
         });

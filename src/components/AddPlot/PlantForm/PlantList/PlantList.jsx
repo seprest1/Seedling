@@ -6,7 +6,17 @@ import PlantListHeader from './PlantListHeader';
 function SelectedPlants(){
     const history = useHistory();
     const dispatch = useDispatch();
+    const month = useSelector(store => store.garden.month);
     const selectedPlants = useSelector(store => store.garden.selectedPlants);
+
+    const sendToNext = () => {
+        if (month === 'Month'){     //makes sure that month is set
+            alert('Set month for your plot!');
+        }
+        else{             
+            history.push('/newplot/shade');
+        };
+    };
 
 
     return(
@@ -28,7 +38,7 @@ function SelectedPlants(){
                 )}
             </ul>
             <div className="buttons">
-                <button onClick={() =>  history.push('/newplot/shade')} className="button">Next</button>
+                <button onClick={sendToNext} className="button">Next</button>
             </div>
         </div>
     )

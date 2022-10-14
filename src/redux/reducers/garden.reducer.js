@@ -28,7 +28,7 @@ const plantKey = (state = {}, action) => {
 };
 
 //creates an array with location already set                                
-const initialPlot = [...Array(48)].map((div, i) => ({location: i, plant_id: null, shade: null, subvariety: null, name: null}));
+const initialPlot = [...Array(48)].map((div, i) => ({location: i, plant_id: null, shade: null, subvariety: null, name: null, color: null}));
 
 const plot = (state = initialPlot, action) => {
     switch(action.type) {
@@ -64,7 +64,7 @@ const month = (state = 'Month', action) => {
 const selectedPlants = (state = [], action) => {
     switch(action.type){
         case 'ADD_PLANT':
-            return [{plant: action.payload.id, name: action.payload.name, color: action.payload.color}, ...state];
+            return [{plant: action.payload.id, name: action.payload.name, sunlight: action.payload.sunlight, color: action.payload.color}, ...state];
         case 'REMOVE_PLANT':
             const copyOfState = state;
             return copyOfState.filter((plant, i) => i !== action.payload);

@@ -4,7 +4,6 @@ function ShadeBed(){
   //calls shade selected
   const shade = useSelector(store => store.garden.sunKey);
   const plot = useSelector(store => store.garden.plot);
-  const month = useSelector(store => store.garden.month);
 
   //set shade value for that specific div
   const dispatch = useDispatch();
@@ -35,7 +34,7 @@ function ShadeBed(){
     return(
         <div className="left_body">
           <div className="left_header">
-            <h3 className="left_title">Shade</h3> 
+            <h3 className="left_title">Add Shade</h3> 
           </div>
           <div className="shade_bed">
               {plot.map((div, i) => (  /* creates 24 divs, index = 0 */

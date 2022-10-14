@@ -4,7 +4,6 @@ function PlantBed(){
     
     const plot = useSelector(store => store.garden.plot);
     const plant = useSelector(store => store.garden.plantKey);
-    const month = useSelector(store => store.garden.month);
     console.log('Plant picked:', plant);
 
     //set and send plant values for plot reducer
@@ -12,7 +11,7 @@ function PlantBed(){
     const setDiv = (div) => {
       console.log(div.shade);
       if (div.shade === plant.sunlight){    //prevents user from planting in the wrong shade zone
-        const divToSend = {location: div.location, plant_id: plant.id, name: plant.name};
+        const divToSend = {location: div.location, plant_id: plant.id, name: plant.name, color:plant.color};
         console.log(divToSend);
           dispatch({
             type: 'SET_PLANT',
@@ -62,15 +61,14 @@ function PlantBed(){
     return(
       <div className="left_body">
         <div className="left_header">
-            <h3 className="left_title">Plant</h3> 
+            <h3 className="left_title">Add Plants</h3> 
         </div>
         <div className="shade_bed">
         {plot.map((div, i) => (  /* creates 24 divs, index = 0 */
                 <div key={i}   
                     className={`plot_div ${changeBackground(div)}`}                    
                     onMouseOver={() => setDiv(div)}> 
-                        {/* <span className="plant_name">{div.name}  </span> */}
-                        {div.name && <div className={`icon ${plantColor(div)}`}></div>}
+                        {div.name && <div className={`plant_icon ${div.color}`}></div>}
                 </div>))} 
         </div>
       </div>
