@@ -34,10 +34,10 @@ router.post('/add_plot', (req, res) => {
         const plot = req.body.plot;
 
         const createDiv = `
-            INSERT INTO div (plot_id, plant_id, location, shade, name)
-              VALUES ($1, $2, $3, $4, $5);`
+            INSERT INTO div (plot_id, plant_id, location, shade, name, subvariety)
+              VALUES ($1, $2, $3, $4, $5, $6);`
         for (div of plot){      
-          pool.query(createDiv, [plotId, div.plant_id, div.location, div.shade, div.name])
+          pool.query(createDiv, [plotId, div.plant_id, div.location, div.shade, div.name, div.subvariety]);
         }
         res.sendStatus(201);
       })

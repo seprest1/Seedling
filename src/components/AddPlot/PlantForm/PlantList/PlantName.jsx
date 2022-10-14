@@ -1,14 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 function PlantName({plant, i}){
-
-    // useEffect(() => {
-    //     dispatch({
-    //         type: 'FETCH_STUDENT_TO_EDIT',
-    //         payload: params.id
-    //     })
-    // }, [params.id]); 
 
     const dispatch = useDispatch();
    
@@ -35,7 +28,7 @@ function PlantName({plant, i}){
             <div className="selected_plant_names">
                 <span className="selected_plant_name">{plant.name}</span>
                 {showSubvarietyInput === true ? 
-                    <span className="selected_plant_subvariety">{plant.subvariety}</span>
+                    <span className="selected_plant_subvariety">{plant.subvariety ? plant.subvariety : 'Add Subvariety'}</span>
                     :
                     <input type="text" className="selected_plant_subvariety"
                             value={subvarietyInput}

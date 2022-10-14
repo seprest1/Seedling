@@ -14,7 +14,7 @@ function PlantBed(){
             location: div.location, 
             plant_id: plant.id, 
             name: plant.name, 
-            color:plant.color,
+            color: plant.color,
             subvariety: plant.subvariety};
         console.log(divToSend);
 
@@ -22,6 +22,7 @@ function PlantBed(){
           type: 'SET_PLANT',
           payload: divToSend,
         });
+        
       };
     };
 
@@ -71,9 +72,9 @@ function PlantBed(){
         <div className="shade_bed">
         {plot.map((div, i) => (  /* creates 24 divs, index = 0 */
                 <div key={i}   
-                    className={`plot_div ${plant.color}`}                    
+                    className={`plot_div ${changeBackground(div)}`}                    
                     onMouseOver={() => setDiv(div)}> 
-                        {div.name && <div className={`plant_icon ${div.color}`}></div>}
+                        {div.name && <div className={`plant_icon ${plantColor(div)}`}></div>}
                 </div>))} 
         </div>
       </div>
