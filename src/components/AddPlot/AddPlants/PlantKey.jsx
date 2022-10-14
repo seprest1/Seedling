@@ -16,15 +16,15 @@ function PlantKey (){
     const user = useSelector(store => store.user.id);
     const month = useSelector(store => store.garden.month);
     const plot = useSelector(store => store.garden.plot);
+    const plants = useSelector(store => store.garden.selectedPlants);
     const submitPlot = () => {
-        console.log(user);
-        console.log(month);
         const totalPlants = plot.filter(div => div.plant_id);
         if (totalPlants.length === 48){     //only if all plants have been assigned
             dispatch({ 
                 type: 'SEND_PLOT', 
                 payload: {plot, month, user}
             }); //trigger saga function to send plot to DB
+            dispatch({ type: 'CLEAR_EVERYTHING' }); //clears all local state
             alert('Added Plot!');
             history.push('/home');
         };
@@ -33,9 +33,10 @@ function PlantKey (){
     return(
         <div className="right_body">
             <div className="right_header">
-                <h3 className="right_title">Key:</h3>
+                <h3 className="right_title">{month}</h3>
             </div>
-            <ul className="plant_list">   
+            <ul className="plant_list"> 
+                {plants.map((plant, i) => <KeyItem plant={plant} i={i} key={i}/>)}  
             </ul>
             <div className="buttons">
                 <button onClick={sendBack} className="button">Back</button>

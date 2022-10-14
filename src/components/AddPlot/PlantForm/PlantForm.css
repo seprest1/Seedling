@@ -1,0 +1,274 @@
+/* --------- PLANT ITEM --------- */
+.available_plant_container{
+    grid-area: body;
+    background-color: rgb(221, 218, 218, 0.5);
+    overflow: scroll;
+    text-align: center;
+    font-size: 3rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .available_plant_list{
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    grid-gap: 0.5rem;
+  }
+  
+  .available_plant{
+    height: 100vh;
+    background-color: rgb(219, 211, 211, 0.60);
+    border-radius: 0.4rem;
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 0.2fr 1fr;
+    grid-template-areas:
+      "a_plant_header"
+      "a_plant_body";
+  }
+  
+  .a_plant_header{
+    grid-area: a_plant_header;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(169, 163, 163, 0.6);
+    border-radius: 0.5rem 0.5rem 0 0;
+    display: grid;
+    grid-template-columns: 1fr 0.1fr;
+    grid-template-rows: 1fr 0.5fr;
+    grid-template-areas: 
+      "a_name a_edit_button"
+      "a_subvariety a_subvariety";
+  }
+  
+  .a_plant_name{
+    grid-area: a_name;
+    width: 30%;
+    align-self: center;
+    font-size: 60%;
+    text-align: center;
+    padding: 0 5%;
+  }
+  
+  .a_edit{
+    grid-area: a_edit_button;
+  }
+  
+  .subvariety{
+    grid-area: a_subvariety;
+    margin: 0;
+  }
+  
+  .a_plant_body{
+    grid-area: a_plant_body;
+    max-height: 100%;
+    display: grid;
+    grid-template-columns: 0.8fr, 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "image info";
+  }
+  
+  .a_plant_image_section{
+    grid-area: image;
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 10% 0;
+  }
+  
+  .a_plant_image{
+    width: 90%;
+    min-width: 10rem;
+    border-radius: 1rem;
+    align-self: stretch;
+  }
+  
+  .a_plant_info{
+    grid-area: info;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .a_plant_details{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    grid-gap: 5%;
+  }
+  
+  .a_plant_subname{
+    font-size: small;
+    font-style: italic;
+    align-self: flex-start;
+    padding: 3% 7%;
+    margin: 0;
+  }
+  
+  .a_plant_fact{
+    font-size: xx-small;
+    align-self: flex-start;
+    padding: 1% 7%;
+    margin: 0;
+    text-align: justify;
+  }
+
+  /* --------- SOW CHART --------- */
+  
+  .sowing_chart{
+    grid-area: chart;
+    margin: 3%;
+    background-color: rgba(244, 235, 235, 0.4);
+    border-radius: 1rem;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 0.2fr 1fr 0.3fr;
+    grid-template-areas: 
+      "chart_title"
+      "chart_data"
+      "chart_months";
+  }
+  
+  .sowing_header{
+    grid-area: chart_title;
+  }
+  
+  .sowing_title{
+    font-size: 20%;
+    margin: 0.2rem;
+  }
+  
+  .sowing_bars{
+    grid-area: chart_data;
+    max-width: 80%;
+    padding: 2%;
+    justify-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    grid-gap: 0.5rem;
+  }
+  
+  .sowing_data{
+    background-color: rgba(87, 118, 14, 0.5);
+    width: 7%;
+    height: 100%;
+    border-radius: 0.3rem 0.3rem 0 0;
+    color: transparent;
+  }
+  
+  .sowing_months{
+    grid-area: chart_months;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  
+  .sowing_month{
+    font-size: 15%;
+    padding: 1px 4px;
+  }
+
+  /* ----------SELECTED PLANT---------- */
+
+.selected_plant{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 3% 0;
+  }
+  
+  .selected_plant_icon{
+    grid-area: selected_icon;
+    margin: 0;
+  }
+  
+  .selected_plant_names{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .selected_plant_name{
+    font-size: x-large;
+  }
+  
+  .selected_plant_subvariety{
+    font-style: italic;
+    font-size: small;
+    padding-left: 1rem;
+  }
+  
+  .selected_plant_buttons{
+    grid-area: selected_buttons;
+    justify-self: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  
+  .selected_button{
+    font-size: large;
+    background-color:rgb(219, 211, 211, 0.30);
+    width: 2rem;
+    height: 2rem;
+    margin: 0.2rem;
+    border-radius: 0.5rem;
+    font-family: 'Inter Tight', sans-serif;
+    border: none;
+    opacity: 80%;
+    align-self: center;
+  }
+  
+  .month_select{
+    grid-area: header;
+    margin-left: 10%;
+    background-color: transparent;
+    border: 0.1rem solid rgb(211, 205, 205, 0.7);
+    font-family: 'Inter Tight', sans-serif !important;
+    font-size: x-large;
+    height: 50%;
+  }
+
+  .month_option{
+    background-color: red;
+  }
+
+  /* --------- BAR HEIGHTS --------- */
+
+    .per0{
+        height: 4%;
+    }
+  
+    .per50{
+        height: 50%;
+    }
+    
+    .per60{
+        height: 60%;
+    }
+    
+    .per70{
+        height: 70%;
+    }
+    
+    .per80{
+        height: 80%;
+    }
+    
+    .per90{
+        height: 90%;
+    }
+    
+    .per100{
+        height: 100%;
+    }

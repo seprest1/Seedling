@@ -19,7 +19,7 @@ function PlantKey (){
     return(
         <div className="right_body">
              <div className="right_header">
-                <h3 className="right_title">Key:</h3>
+                <h3 className="right_title">{month}</h3>
             </div>
             <ul className="shade_list"> 
                 <li>
