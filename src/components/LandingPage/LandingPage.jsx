@@ -37,12 +37,12 @@ function LandingPage() {
                 <div className="register_prompt">
                       <img src="https://images.pexels.com/photos/5624254/pexels-photo-5624254.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" className="register_image"/>
                       <p>New to Seedling?</p>
-                      <button className="prompt_button" onClick={() => history.push('/login')}>Make an account here</button>
+                      <button className="prompt_button" onClick={() => history.push('/login')}>Make Account</button>
                 </div>
                 <div className="info_prompt">
                       <img src="https://images.pexels.com/photos/7728883/pexels-photo-7728883.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" className="register_image"/>
                       <p>Curious about our start?</p>
-                      <button className="prompt_button" onClick={() => history.push('/about')}>More about us</button>
+                      <button className="prompt_button" onClick={() => history.push('/about')}>Learn More</button>
                 </div>
               </div>
           </div>
