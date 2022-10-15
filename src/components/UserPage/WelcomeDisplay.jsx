@@ -1,7 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux';
 import { useHistory } from 'react-router-dom';
 //components
-import LogOutButton from '../App/AllPages/LogOutButton/LogOutButton';
 import PlotDisplay from './PlotDisplay';
 
 function WelcomeDisplay(){
@@ -21,7 +20,7 @@ function WelcomeDisplay(){
             </div>
             <div className="user_body">
                 <button onClick={sendToNext} className="button">Add New Plot!</button>
-                <LogOutButton className="button" />
+                <button className="button" onClick={dispatch({ type: 'LOG_OUT' })}>log out</button>
                 <PlotDisplay/>
             </div>
         </div>

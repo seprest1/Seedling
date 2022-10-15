@@ -1,6 +1,5 @@
 import './LandingPage.css';
-import { ParallaxBanner, ParallaxBannerLayer } from 'react-scroll-parallax';
-import { useParallax } from 'react-scroll-parallax';
+import { ParallaxBanner } from 'react-scroll-parallax';
 
 function ParalaxBanner(){
     const background = {
@@ -15,6 +14,7 @@ function ParalaxBanner(){
         image:
           'Images/middleground.png',
         speed: -20,
+        scale: [1, 1.1, 'easeOutCubic'],
         shouldAlwaysCompleteAnimation: true,
       };
     
