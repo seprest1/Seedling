@@ -1,25 +1,42 @@
 import { useHistory } from 'react-router-dom';
-
-// CUSTOM COMPONENTS
-import RegisterForm from './RegisterForm/RegisterForm';
+import './LandingPage.css';
+//components
+import ParalaxBanner from './ParalaxBanner';
 
 function LandingPage() {
   const history = useHistory();
-
   const onLogin = (event) => {
     history.push('/login');
   };
 
+
   return (
-    <div className="container">
-      <h2>Welcome</h2>
-      <RegisterForm />
-      <h4>Already a Member?</h4>
-      <button className="btn btn_sizeSm" onClick={onLogin}>
-        Login
-      </button>
+    <div className="landing_body">
+      <div className="welcome_nav"/>
+      <ParalaxBanner/>
     </div>
   );
 }
 
 export default LandingPage;
+
+  {/* <div className="welcome_nav">
+            <div className="logo">seedling.</div>
+            <button className="sign_in_button" onClick={onLogin}>sign in</button>
+          </div> */}
+
+   {/* <div className="paralax_bottom">
+        <h2 className="welcome_subtitle">Ready to play in the dirt?</h2>
+        <div className="welcome_prompts">
+            <div className="register_prompt">
+              <img src="https://images.pexels.com/photos/5624254/pexels-photo-5624254.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" className="register_image"/>
+              <p>New to Seedling?</p>
+              <p>Make an account here.</p>
+            </div>
+            <div className="info_prompt">
+              <img src="https://images.pexels.com/photos/7728883/pexels-photo-7728883.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" className="register_image"/>
+              <p>Curious about Seedling?</p>
+              <p>More about us.</p>
+            </div>
+        </div>
+      </div> */}

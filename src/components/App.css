@@ -1,22 +1,22 @@
-.app_body{
+/* .app_body{
   margin: 0;
   grid-area: body;
   height: 90%;
   width: 100vw;
   display: flex;
   flex-direction: row;
-}
+} */
 
 /* --------- LEFT SECTION --------- */
-.left_display{
+/* .left_display{
   margin: 0;
   height: 100%;
-  width: 55%;
+  width: 100%;
   display: flex;
-  justify-content: flex-end;
-}
+  justify-content: stretch;
+} */
 
-.left_body{
+/* .left_body{
   height: 70vh;
   width: 70%;
   margin: 2rem;
@@ -44,9 +44,9 @@
   align-self: center;
   margin: 0 10% 0 10%;
   font-size: 4vh;
-}
+} */
 
-
+/* 
 .shade_bed, .plant_bed{
   grid-area: body;
   background-color: rgb(221, 218, 218, 0.5);
@@ -69,11 +69,11 @@
   align-items: center;
   border-radius: 0.3rem;
   box-shadow: 0.1rem 0.1rem 0.1rem rgba(85, 91, 85, 0.3);
-}
+} */
 
 /* --------- RIGHT SECTION --------- */
 
-.right_display{
+/* .right_display{
   margin: 0;
   height: 100%;
   width: 40%;
@@ -94,13 +94,13 @@
     "header"
     "list"
     "buttons";
-}
-
+} */
+/* 
 .right_header {
   grid-area: header;
   margin: 0;
   padding: 0 0.5rem 0 0.5rem;
-  background-color:  rgb(219, 211, 211, 0.60);
+  background-image: url(https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/AN_images/tomatoes-1296x728-feature.jpg?w=1155&h=1528);
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   display: flex;
@@ -111,10 +111,10 @@
 
 .right_title{
   font-size: 4vh;
-}
+} */
 
 /*--------------SAME----------------*/
-.plant_list{
+/* .plant_list{
   grid-area: list;
   margin: 0;
   padding: 5% 7%;
@@ -134,9 +134,9 @@
   flex-direction: column;
   overflow: scroll;
   letter-spacing: 0.1rem;
-}
+} */
 /*-----------------------------------*/
-
+/* 
 .shade_list > li {
   padding: 5%;
   display: grid;
@@ -145,11 +145,11 @@
   grid-template-rows: auto;
   grid-template-areas: 
     "icon name ";
-}
+} */
 
 /* --------- BUTTONS --------- */
 
-.buttons{
+/* .buttons{
   grid-area: buttons;
   width: 100%;
   display: flex;
@@ -184,11 +184,11 @@
 
 .button:hover, .icon_button:hover{
   background-color: rgb(219, 211, 211, 0.75);
-}
+} */
 
 /* --------- ICONS --------- */
 
-.icon{
+/* .icon{
   grid-area: icon;
   height: 2rem;
   width: 2rem;
@@ -203,19 +203,19 @@
   width: 2rem;
   border-radius: 2rem;
   margin: 0.5rem;
-}
+} */
 
 /* --------- COLORS --------- */
-
+/* 
 .green1{
   background-color: #a3b18a;
 }
 
 .green2{
   background-color: #578162;
-}
+} */
 
-.green3{
+/* .green3{
   background-color: #344e41;
 }
 
@@ -242,4 +242,4 @@
 .white{
   background-color: rgb(228, 220, 209);
 }
-
+ */

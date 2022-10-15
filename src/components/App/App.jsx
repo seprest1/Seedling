@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { ParallaxProvider } from 'react-scroll-parallax';
 import './App.css';
 
 //components
@@ -19,19 +20,19 @@ import AddShade from '../AddPlot/AddShade/AddShade';
 import AddPlants from '../AddPlot/AddPlants/AddPlants';
 
 function App() {
+  
   const dispatch = useDispatch();
-
   const user = useSelector(store => store.user);
-
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
   return (
+    <ParallaxProvider>
     <Router>
       <div className="body">
-        <Header/>
-        <Nav/>
+        {/* <Header/>
+        <Nav/> */}
         <Switch>
         
           <Redirect exact from="/" to="/home" />     {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -84,9 +85,10 @@ function App() {
           </Route>
 
         </Switch>
-        <Footer/>
+        {/* <Footer/> */}
       </div>
     </Router>
+    </ParallaxProvider>
   );
 }
 
