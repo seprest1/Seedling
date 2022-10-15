@@ -4,6 +4,7 @@ import axios from 'axios';
 function* gardenSaga() {
     yield takeEvery('FETCH_PLANTS', fetchPlants);
     yield takeEvery('SEND_PLOT', addPlot);
+    yield takeEvery('FETCH_PLOT', fetchPlot);
   }
   
 function* fetchPlants(){
@@ -31,5 +32,28 @@ function* addPlot(action){
         console.log('addPlot failed,', error);
     };
 };
+
+function* fetchPlot(action){
+    try{
+        const userId = action.payload;
+        const userPlot = yield axios.get(`/garden/${userId}/plot/`);
+        const response = userPlot.data;
+
+        const plot = response.map(obj => ({ //Pulls only needed values from DB
+            plant_id: obj.plant_id, 
+            location: obj.location, 
+            name: obj.name, 
+            subvariety: obj.subvariety, 
+            shade: obj.shade}));
+        const plotId = response[0].plot_id; //TO BE USED LATER?
+
+        yield put({ type: 'SET_PLOT', payload: plot });
+        yield put({ type: 'SET_MONTH', payload: response[0].month });
+
+    }               
+    catch(error){
+        console.log('fetchPlot failed', error);
+    };
+}
 
 export default gardenSaga;
