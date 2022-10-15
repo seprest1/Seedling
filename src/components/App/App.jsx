@@ -6,9 +6,7 @@ import { ParallaxProvider } from 'react-scroll-parallax';
 import './App.css';
 
 //components
-import Header from './AllPages/Header/Header';
-import Nav from './AllPages/Nav/Nav';
-import Footer from './AllPages/Footer/Footer';
+import Nav from './AllPages/Nav';
 import AboutPage from '../AboutPage/AboutPage';
 import InfoPage from '../InfoPage/InfoPage';
 import UserPage from '../UserPage/UserPage';
@@ -31,8 +29,7 @@ function App() {
     <ParallaxProvider>
     <Router>
       <div className="body">
-        {/* <Header/>
-        <Nav/> */}
+        <Nav/>
         <Switch>
         
           <Redirect exact from="/" to="/home" />     {/* Visiting localhost:3000 will redirect to localhost:3000/home */}

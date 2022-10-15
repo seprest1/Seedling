@@ -1,5 +1,5 @@
 .landing_body{
-    height: 700vh;
+    height: 300vh;
     margin: 0;
     padding: 0;
     background-color: rgb(218, 222, 218);
@@ -15,14 +15,6 @@
     align-items: flex-end;
 }
 
-.welcome_nav{
-    height: 3rem;
-    background-color:#DC343B;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-}
-
 .welcome_title{
     font-size: 10rem;
     color: whitesmoke;
@@ -31,25 +23,43 @@
     margin-top: 15rem;
 }
 
+.landing_bottom{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
-.sign_in_button{
-    width: 6rem;
-    height: 2.5rem;
-    margin: 1rem;
-    border-radius: 0.25rem;
-    background-color:#DC343B;
-    border: 0.1rem solid #DC343B;
-    box-shadow: 0.1rem 0.1rem 0.1rem rgb(126, 125, 125);
-    color: whitesmoke;
-    letter-spacing: 0.1rem;
+.welcome_subtitle{
+    margin: 5rem 3rem 1rem;
+    font-size: 4rem;
+    font-family: 'Times Roman', serif;
+    text-align: end;
+    color:rgb(66, 39, 39, .9);
+    font-style: italic;
+}
+
+.landing_blurb{
+    margin: 0 20%;
+    justify-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.blurb{
+    width: 100%;
+    margin: 1rem 2rem;
+    font-family: 'Times Roman', serif;
+    text-align: justify;
+    color:rgb(66, 39, 39);
 }
 
 .logo{
-    height: 9rem;
+    height: 9.5rem;
     width: 9.5rem;
     border-radius: 5rem;
     margin: 1rem;
-    background-color: #DC343B;
+    background-color: #e38a2b;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,7 +68,52 @@
     font-size: 2rem;
 }
 
+.break{
+    height: 1px;
+    width: 70%;
+    margin: 5% 15%;
+    background-color:rgba(26, 9, 9, 0.9);
+}
+
+.prompts{
+    height: 85vh;
+    background-color: rgba(26, 9, 9, 0.9);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.register_prompt, .info_prompt{
+    height: 60%;
+    width: 25%;
+    background-color: rgb(218, 222, 218, 0.05);
+    border: 0.01rem solid rgb(139, 137, 137, 0.2);
+    border-radius: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Inter Tight', sans-serif;
+    color: whitesmoke;
+    font-weight: 100;
+    font-style: italic;
+    text-align: center;
+}
+
 .register_image{
-    width: 10rem;
-    height: 10rem;
+    width: 100%;
+    height: 80%;
+    border-radius: 0.3rem 0.3rem 0 0;
 } 
+
+.prompt_button{
+    height: 15%;
+    background-color: rgb(218, 214, 214, 0.2);
+    border: 0.01rem solid rgb(139, 137, 137, 0.4);
+    border-radius: 0.1rem;
+    color: whitesmoke;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 100;
+    margin: 0 25% 5%;
+    justify-self: center;
+}

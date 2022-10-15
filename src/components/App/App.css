@@ -4,58 +4,59 @@ body{
   background-color: #332122;
 }
 
-/* body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100vw;
-    font-family: 'Inter Tight', sans-serif; 
-    background-color: whitesmoke;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.3fr 0.1fr 1fr 0.2fr;
-    grid-template-areas: 
-      "header"
-      "nav"
-      "body"
-      "footer";
-  }
-  
-  .header{ 
-    grid-area: header;
-    width: 100vw;
-    height: 10vh;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(205, 192, 192, 0.25);
-  }
+.nav{
+  height: 3rem;
+  background-color:#DC343B;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
 
-  .nav{
-    grid-area: nav;
-    height: 3vh;
-    background-color:rgb(205, 192, 192, 0.50);
-    text-align: end;
-    padding-right: 3rem;
-    font-size: small;
-  }
+.nav_link, .nav_link:visited, .nav_button{
+  display: flex;
+  height: 100%;
+  width: 6rem;
+  align-items: center;
+  justify-content: center;
+  color: whitesmoke;
+  font-family: 'Inter Tight', sans-serif; 
+  font-size: 0.8rem;
+  text-align: center;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
+}
 
-  .navLink{
-    margin: 0.2rem;
-    margin-left: 2rem;
-    padding: 0.9rem;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    outline: 0;
-  }
+.nav_link:hover, .nav_button{
+  background-color: #ff443381;
+}
 
-  .navLink:hover {
-    background-color: rgb(205, 192, 192, 0.75);
-  }
+.nav_link:active{
+  background-color: #FF4433;
+}
 
-  footer{
-    grid-area: footer;
-    margin: 0;
-  } */
+.nav_button{
+  background-color: transparent;
+  border: none;
+}
+
+.footer{
+  height: 20vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.footer_section{
+  margin: 5% 5%;
+}
+
+.footer_text{
+  margin: 0;
+  font-family: 'Times Roman', serif;
+  font-size: 0.8rem;
+  text-align: center;
+}
