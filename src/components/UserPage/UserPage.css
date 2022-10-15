@@ -1,0 +1,106 @@
+.user_body{
+    margin: 0;
+    grid-area: body;
+    height: 90%;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  /* --------- LEFT SECTION --------- */
+  .user_welcome_display{
+    margin: 0;
+    height: 100%;
+    width: 70%;
+  }
+  
+  .user_welcome{
+    height: 70vh;
+    margin: 2rem;
+    background-color: rgb(221, 218, 218, 0.5);;
+    border-radius: 1rem;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* --------- RIGHT SECTION --------- */
+  
+  .user_plot_display{
+    margin: 0;
+    height: 100%;
+    width: 35%;
+  }
+  
+  .user_plots{
+    height: 70vh;
+    margin: 2rem;
+    background-color: rgb(221, 218, 218, 0.5);;
+    border-radius: 1rem;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .display_bed{
+    height: 50vh;
+    text-align: center;
+    font-size: 3rem;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-gap: 0.1rem;
+    padding: 0.9rem;
+  }
+
+  .display_div{
+    border: 0.1rem solid rgb(63, 49, 32, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.3rem;
+    box-shadow: 0.1rem 0.1rem 0.1rem rgba(85, 91, 85, 0.3);
+  }
+  
+  .change_plot_buttons{
+    height: 5vh;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .display_button{
+    font-size: x-large;
+    margin: 0;
+    background-color:rgb(219, 211, 211, 0.30);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    font-family: 'Inter Tight', sans-serif;
+    border: none;
+    opacity: 80%;
+  }
+
+  /* -------------- BOTH ------------ */
+
+  .user_header{
+    margin: 0;
+    height: 10vh;
+    width: 100%;
+    background-color:  rgb(219, 211, 211, 0.60);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .user_title{
+    font-size: 4vh;
+  }

@@ -46,4 +46,23 @@ router.post('/add_plot', (req, res) => {
       });
 });
 
+//gets plot from DB
+router.get('/:id/plot', (req, res) => {
+  const userId = req.params.id;
+  const queryText = `
+    SELECT div.*, plot.month FROM div
+      JOIN plot on plot.id = div.plot_id
+      WHERE plot.month = trim(to_char(current_date, 'Month')) 
+        AND plot.user_id = $1;`;
+
+  pool.query(queryText, [userId])
+      .then(result => {
+        res.send(result.rows);
+      })
+      .catch(error => {
+        console.log('ERROR in GET plants:', error);
+        res.sendStatus(500);
+      });
+});
+
 module.exports = router;

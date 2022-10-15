@@ -1,11 +1,11 @@
-import '../AddPlot.css';
+import '../../App.css';
 //components
 import PlantBed from './PlantBed';
 import PlantKey from './PlantKey';
 
 function AddPlants(){
     return(
-        <div className="add_plot_body">
+        <div className="app_body">
             <div className="left_display">
                 <PlantBed/>
             </div>

@@ -38,7 +38,13 @@ const month = (state = 'Month', action) => {
 };
 
 //creates an array with location already set                                
-const initialPlot = [...Array(48)].map((div, i) => ({location: i, plant_id: null, shade: null, subvariety: null, name: null, color: null}));
+const initialPlot = [...Array(48)].map((div, i) => 
+       ({   plant_id: null, 
+            location: i, 
+            name: null, 
+            subvariety: null, 
+            shade: null,  
+            color: null     }));
 const plot = (state = initialPlot, action) => {
     switch(action.type) {
         case 'SET_SHADE': 
@@ -53,7 +59,9 @@ const plot = (state = initialPlot, action) => {
             const plantDiv = action.payload;    //maps through plot and changes only plant ID & plant name
             return state.map(oldDiv => oldDiv.location === plantDiv.location ? 
                     {...oldDiv, plant_id: plantDiv.plant_id, name: plantDiv.name, subvariety: plantDiv.subvariety} 
-                    : oldDiv);  
+                    : oldDiv);
+        case 'SET_PLOT':
+            return action.payload;  
         case 'CLEAR_PLOT':
             return initialPlot; 
         case 'CLEAR_EVERYTHING':

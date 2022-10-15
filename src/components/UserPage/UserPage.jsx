@@ -1,26 +1,21 @@
-import React from 'react';
-import {useSelector} from 'react-redux';
-import { useHistory } from 'react-router-dom';
-
+import '../App.css';
+import './UserPage.css';
 //components
-import LogOutButton from '../App/AllPages/LogOutButton/LogOutButton';
+import PlotDisplay from './PlotDisplay';
+import WelcomeDisplay from './WelcomeDisplay';
 
 function UserPage() {
-  const user = useSelector((store) => store.user);
 
-  const history = useHistory();
-  const sendToNext = () => {
-    history.push('/newplot/form');
-  }
   return (
-    <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <button onClick={sendToNext}>Add New Plot!</button>
-      <LogOutButton className="btn" />
+    <div className="user_body">
+      <div className="user_welcome_display">
+        <WelcomeDisplay/>
+      </div>
+      <div className="user_plot_display">
+        <PlotDisplay/>
+      </div>
     </div>
   );
 }
 
-// this allows us to use <App /> in index.js
 export default UserPage;
