@@ -14,7 +14,7 @@ function PlotDisplay(){
 
   const history = useHistory();
   const sendToNext = () => {
-    history.push('/newplot/form');
+    history.push('/newplot/shade');
     dispatch({ type: 'CLEAR_EVERYTHING' });
   }  
 

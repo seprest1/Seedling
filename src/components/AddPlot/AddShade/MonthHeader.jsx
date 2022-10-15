@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
-function PlantListHeader(){
+function MonthHeader(){
     const dispatch = useDispatch();
 
     const [showMonth, setShowMonth] = useState(true);
@@ -14,12 +14,12 @@ function PlantListHeader(){
     return(
         <>
         {showMonth === true ?    //conditionally render header, when clicking edit-mode
-            <div className="right_header">
-                <h3 className="right_title">{month}</h3> 
-                <button className="selected_button edit" onClick={() => setShowMonth(!showMonth)}>✎</button>
+            <div className="left_header">
+                <h3 className="left_title">{month}</h3> 
+                <button className="selected_button month_button edit" onClick={() => setShowMonth(!showMonth)}>✎</button>
             </div>
                 : 
-            <div className="right_header">
+            <div className="left_header">
                 <select className="month_select"
                     onChange={(e) => setMonth(e.target.value)}>
                     <option value="January" className="month_option">January</option>
@@ -35,10 +35,10 @@ function PlantListHeader(){
                     <option value="November" className="month_option">November</option>
                     <option value="December" className="month_option">December</option>
                 </select>
-                <button className="icon_button edit" onClick={() => setShowMonth(!showMonth)}>⨉</button>
+                <button className="icon_button month_button" onClick={() => setShowMonth(!showMonth)}>⨉</button>
             </div>}
         </>
     )
 }
 
-export default PlantListHeader;
+export default MonthHeader;

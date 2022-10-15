@@ -52,7 +52,6 @@
 .display_bed{
     height: 75%;
     text-align: center;
-    font-size: 3rem;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(8, 1fr);

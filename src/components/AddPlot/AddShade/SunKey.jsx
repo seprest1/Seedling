@@ -10,16 +10,24 @@ function PlantKey (){
    
     const sendToNext = () => {
         const shadedDivTotal = plot.filter(div => div.shade);  
-        if (shadedDivTotal.length === 48){    //determines if all plots have been assigned shade values               
+        if (month === 'Month'){     //makes sure that month is set before moving on
+            alert('Set month for your plot!');
+        }
+        else if (shadedDivTotal.length === 48){    //determines if all plots have been assigned shade values               
             console.log('Sending plot to adding plants section:', plot);  
-            history.push('/newplot/plants');
+            history.push('/newplot/form');
         };
+    };
+
+    const goBackToUser = () => {
+        dispatch({ type: 'CLEAR_EVERYTHING' });
+        history.push('/user');
     };
 
     return(
         <div className="right_body">
              <div className="right_header">
-                <h3 className="right_title">{month}</h3>
+                <h3 className="right_title">Add Shade</h3>
             </div>
             <ul className="shade_list"> 
                 <li>
@@ -46,7 +54,7 @@ function PlantKey (){
                 </li>
             </ul>
             <div className="buttons">
-                <button onClick={() => history.push('/newplot/form')} className="button">Back</button>
+                <button onClick={goBackToUser} className="button">Back</button>
                 <button onClick={sendToNext} className="button">Next</button>
             </div>
         </div>

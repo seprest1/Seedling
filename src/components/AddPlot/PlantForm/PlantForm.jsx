@@ -1,5 +1,4 @@
 import './PlantForm.css';
-import '../../App.css';
 //components
 import AvailablePlants from './AvailablePlants/AvailablePlants';
 import PlantList from './PlantList/PlantList';

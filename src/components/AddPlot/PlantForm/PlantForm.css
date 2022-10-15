@@ -229,20 +229,6 @@
     align-self: center;
   }
   
-  .month_select{
-    grid-area: header;
-    margin-left: 10%;
-    background-color: transparent;
-    border: 0.1rem solid rgb(211, 205, 205, 0.7);
-    font-family: 'Inter Tight', sans-serif !important;
-    font-size: x-large;
-    height: 50%;
-  }
-
-  .month_option{
-    background-color: red;
-  }
-
   /* --------- BAR HEIGHTS --------- */
 
     .per0{
