@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
+//components
+import MonthHeader from './MonthHeader';
 
 function ShadeBed(){
   //calls shade selected
   const shade = useSelector(store => store.garden.sunKey);
   const plot = useSelector(store => store.garden.plot);
-
+  
   //set shade value for that specific div
   const dispatch = useDispatch();
   const setDiv = (location) => {
@@ -33,9 +35,7 @@ function ShadeBed(){
 
     return(
         <div className="left_body">
-          <div className="left_header">
-            <h3 className="left_title">Add Shade</h3> 
-          </div>
+          <MonthHeader/>
           <div className="shade_bed">
               {plot.map((div, i) => (  /* creates 24 divs, index = 0 */
               <div key={i}   

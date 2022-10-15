@@ -1,27 +1,15 @@
-import {useDispatch, useSelector} from 'react-redux';
-import { useHistory } from 'react-router-dom';
-//components
-import PlotDisplay from './PlotDisplay';
+import { useSelector } from 'react-redux';
+
 
 function WelcomeDisplay(){
     const user = useSelector((store) => store.user);
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const sendToNext = () => {
-      history.push('/newplot/form');
-      dispatch({ type: 'CLEAR_EVERYTHING' });
-    }  
+
     return(
         <div className="user_welcome">
-            <div className="user_hero"></div>
-            <div className="a"></div>
-            <div className="b">
+            <div className="user_header">
                 <h3 className="user_title">Welcome, {user.username}!</h3>
             </div>
-            <div className="user_body">
-                <button onClick={sendToNext} className="button">Add New Plot!</button>
-                <button className="button" onClick={dispatch({ type: 'LOG_OUT' })}>log out</button>
-                <PlotDisplay/>
+            <div className="user_welcome_body">
             </div>
         </div>
     )

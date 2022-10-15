@@ -1,54 +1,57 @@
-/* .user_body{
+.user_body{
     margin: 0;
     grid-area: body;
-    height: 90%;
+    height: 95vh;
     width: 100vw;
+    background-image: url(https://images.pexels.com/photos/7728882/pexels-photo-7728882.jpeg);
+    background-position: fixed;
+    background-size: cover;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-  } */
-  
-  /* --------- LEFT SECTION --------- */
-  /* .user_welcome_display{
+  }
+
+  .user_welcome_display{
     margin: 0;
-    height: 100%;
-    width: 70%;
+    height: 95vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
   }
   
+  /* --------- LEFT SECTION --------- */
+  
   .user_welcome{
-    height: 70vh;
+    height: 85vh;
+    width: 60%;
     margin: 2rem;
-    background-color: rgb(221, 218, 218, 0.5);;
-    border-radius: 1rem;
+    background-color: rgb(221, 218, 218, 0.3);;
+    border-radius: 0.5rem;
     justify-self: center;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-   */
+
   /* --------- RIGHT SECTION --------- */
   
-  /* .user_plot_display{
-    margin: 0;
-    height: 100%;
-    width: 35%;
-  }
-  
-  .user_plots{
-    height: 70vh;
+  .user_plot_display{
+    height: 85vh;
+    width: 30%;
     margin: 2rem;
-    background-color: rgb(221, 218, 218, 0.5);;
-    border-radius: 1rem;
+    background-color: rgb(221, 218, 218, 0.3);
+    border-radius: 0.5rem;
     justify-self: center;
     display: flex;
     flex-direction: column;
-  } */
+  }
 
-  /* .display_bed{
-    height: 50vh;
+.display_bed{
+    height: 75%;
     text-align: center;
-    font-size: 3rem;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(8, 1fr);
@@ -65,13 +68,13 @@
     border-radius: 0.3rem;
     box-shadow: 0.1rem 0.1rem 0.1rem rgba(85, 91, 85, 0.3);
   }
-   */
-  /* .change_plot_buttons{
+
+.change_plot_buttons{
     height: 5vh;
     margin: 0;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
 
   .display_button{
@@ -80,21 +83,20 @@
     background-color:rgb(219, 211, 211, 0.30);
     width: 2rem;
     height: 2rem;
+    border: 0.01rem solid rgb(139, 137, 137, 0.4);
     border-radius: 0.5rem;
     font-family: 'Inter Tight', sans-serif;
-    border: none;
     opacity: 80%;
-  } */
+  } 
 
   /* -------------- BOTH ------------ */
 
-  /* .user_header{
+.user_header{
     margin: 0;
     height: 10vh;
     width: 100%;
     background-color:  rgb(219, 211, 211, 0.60);
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
+    border-radius: 0.5rem 0.5rem 0 0;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -103,29 +105,17 @@
   
   .user_title{
     font-size: 4vh;
-  } */
+    font-weight: 300;
+  } 
 
-
-  .body{
-    margin: 0;
-    padding: 0;
-    background-color: salmon;
+  .new_plot_info{
+    width: 100%;
+    font-size: 2.5vh;
+    font-weight: 300;
+    text-align: justify;
   }
 
-  .user_welcome{
-    background-color: pink;
-    height: 700vh;
-  }
-
-  .a{
-    background-image: url(https://images.pexels.com/photos/7728882/pexels-photo-7728882.jpeg);
-    background-position: fixed;
-    background-size: cover;
-    background-color: green;
-    height: 100vh;
-  }
-
-  .b{
-    background-color: red;
-    height: 100vh;
+  .display_bed_empty{
+    height: 70%;
+    margin: 1.5rem 2rem;
   }

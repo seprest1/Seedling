@@ -1,4 +1,4 @@
-import '../../App.css';
+import '../AddPlot.css';
 //components
 import PlantBed from './PlantBed';
 import PlantKey from './PlantKey';
