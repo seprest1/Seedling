@@ -1,4 +1,4 @@
-.user_body{
+/* .user_body{
     margin: 0;
     grid-area: body;
     height: 90%;
@@ -7,10 +7,10 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-  }
+  } */
   
   /* --------- LEFT SECTION --------- */
-  .user_welcome_display{
+  /* .user_welcome_display{
     margin: 0;
     height: 100%;
     width: 70%;
@@ -26,10 +26,10 @@
     flex-direction: column;
     align-items: center;
   }
-  
+   */
   /* --------- RIGHT SECTION --------- */
   
-  .user_plot_display{
+  /* .user_plot_display{
     margin: 0;
     height: 100%;
     width: 35%;
@@ -43,9 +43,9 @@
     justify-self: center;
     display: flex;
     flex-direction: column;
-  }
+  } */
 
-  .display_bed{
+  /* .display_bed{
     height: 50vh;
     text-align: center;
     font-size: 3rem;
@@ -65,8 +65,8 @@
     border-radius: 0.3rem;
     box-shadow: 0.1rem 0.1rem 0.1rem rgba(85, 91, 85, 0.3);
   }
-  
-  .change_plot_buttons{
+   */
+  /* .change_plot_buttons{
     height: 5vh;
     margin: 0;
     display: flex;
@@ -84,11 +84,11 @@
     font-family: 'Inter Tight', sans-serif;
     border: none;
     opacity: 80%;
-  }
+  } */
 
   /* -------------- BOTH ------------ */
 
-  .user_header{
+  /* .user_header{
     margin: 0;
     height: 10vh;
     width: 100%;
@@ -103,4 +103,29 @@
   
   .user_title{
     font-size: 4vh;
+  } */
+
+
+  .body{
+    margin: 0;
+    padding: 0;
+    background-color: salmon;
+  }
+
+  .user_welcome{
+    background-color: pink;
+    height: 700vh;
+  }
+
+  .a{
+    background-image: url(https://images.pexels.com/photos/7728882/pexels-photo-7728882.jpeg);
+    background-position: fixed;
+    background-size: cover;
+    background-color: green;
+    height: 100vh;
+  }
+
+  .b{
+    background-color: red;
+    height: 100vh;
   }

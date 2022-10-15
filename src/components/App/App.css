@@ -1,4 +1,10 @@
-body {
+body{
+  margin: 0;
+  padding: 0;
+  background-color: #332122;
+}
+
+/* body {
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -18,7 +24,7 @@ body {
   .header{ 
     grid-area: header;
     width: 100vw;
-    height: 15vh;
+    height: 10vh;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -28,10 +34,11 @@ body {
 
   .nav{
     grid-area: nav;
-    height: 6vh;
+    height: 3vh;
     background-color:rgb(205, 192, 192, 0.50);
     text-align: end;
     padding-right: 3rem;
+    font-size: small;
   }
 
   .navLink{
@@ -51,4 +58,4 @@ body {
   footer{
     grid-area: footer;
     margin: 0;
-  }
+  } */

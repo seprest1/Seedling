@@ -1,0 +1,103 @@
+.landing_body{
+    height: 700vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(218, 222, 218);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter Tight', sans-serif;;
+}
+
+.paralax{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.welcome_nav{
+    height: 3rem;
+    background-color:#DC343B;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.welcome_title{
+    font-size: 10rem;
+    color: whitesmoke;
+    text-align: center;
+    font-family: 'Times Roman', serif;
+    margin-top: 20rem;
+}
+
+/* 
+.paralax_top{
+    background-color: red;
+    height: 500px;
+    width: 500px;
+} */
+
+/* .paralax_top{
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    perspective: 3rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas: 
+        "welcome_nav"
+        "welcome_header";
+}
+
+.welcome_nav{
+    grid-area: welcome_nav;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.sign_in_button{
+    width: 6rem;
+    height: 2.5rem;
+    margin: 1rem;
+    border-radius: 0.25rem;
+    background-color:#DC343B;
+    border: 0.1rem solid #DC343B;
+    box-shadow: 0.1rem 0.1rem 0.1rem rgb(126, 125, 125);
+    color: whitesmoke;
+    letter-spacing: 0.1rem;
+}
+
+.logo{
+    height: 9rem;
+    width: 9.5rem;
+    border-radius: 5rem;
+    margin: 1rem;
+    background-color: #DC343B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    letter-spacing: 0.1rem;
+    font-size: 2rem;
+}
+*/
+/*
+.paralax_bottom{
+    height: 150vh;
+    background-color: #332122;
+    position: relative;
+}
+
+.welcome_subtitle{
+    font-size: 6rem;
+    color: whitesmoke;
+    font-family: 'Times Roman', serif;
+}
+
+.register_image{
+    width: 10rem;
+    height: 10rem;
+} */
