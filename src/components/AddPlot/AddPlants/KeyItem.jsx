@@ -10,7 +10,9 @@ function KeyItem({plant, i}){
             <div className="selected_plant_names">
                 <span className="selected_plant_name">{plant.name}</span>
                 <span className="selected_plant_subvariety">{plant.subvariety}</span>
-                <span>{plant.sunlight}</span>
+                <div className="selected_plant_buttons">
+                    <span>SUN</span>
+                </div>
             </div>
         </li>
     )

@@ -8,15 +8,14 @@ function PlantKey (){
     const dispatch = useDispatch();
     const history = useHistory();
     const sendBack = () => {
-        dispatch({ type: 'CLEAR_PLOT' });
-        history.push('/newplot/shade');
+        history.push('/newplot/form');
     };
 
     //submit plot to DB
     const user = useSelector(store => store.user.id);
-    const month = useSelector(store => store.garden.month);
     const plot = useSelector(store => store.garden.plot);
     const plants = useSelector(store => store.garden.selectedPlants);
+    const month = useSelector(store => store.garden.month);
     const submitPlot = () => {
         const totalPlants = plot.filter(div => div.plant_id);
         if (totalPlants.length === 48){     //only if all plants have been assigned
@@ -33,7 +32,7 @@ function PlantKey (){
     return(
         <div className="right_body">
             <div className="right_header">
-                <h3 className="right_title">{month}</h3>
+                <h3 className="right_title">Add Plants</h3>
             </div>
             <ul className="plant_list"> 
                 {plants.map((plant, i) => <KeyItem plant={plant} i={i} key={i}/>)}  

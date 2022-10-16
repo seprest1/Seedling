@@ -14,7 +14,7 @@ function AvailablePlants(){
     return(
           <div className="left_body">
             <div className="left_header">
-                <h3 className="left_title">Add Plants</h3>
+                <h3 className="left_title">{month}</h3>
             </div>
             <div className="available_plant_container">
                 <ul className="available_plant_list">
