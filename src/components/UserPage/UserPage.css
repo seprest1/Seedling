@@ -28,12 +28,34 @@
     height: 85vh;
     width: 60%;
     margin: 2rem;
-    background-color: rgb(221, 218, 218, 0.3);;
+    background-color: rgb(221, 218, 218, 0.3);
     border-radius: 0.5rem;
     justify-self: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .user_welcome_body{
+    height: 85%;
+    width: 90%;
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 2rem;
+  }
+
+  .widget_container{
+    background-color: rgb(221, 218, 218, 0.9);
+    border-radius: 0.5rem;
+    width: 45%;
+    height: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   /* --------- RIGHT SECTION --------- */
