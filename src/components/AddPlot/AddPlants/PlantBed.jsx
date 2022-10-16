@@ -4,6 +4,7 @@ function PlantBed(){
     
     const plot = useSelector(store => store.garden.plot);
     const plant = useSelector(store => store.garden.plantKey);
+    const month = useSelector(store => store.garden.month);
     console.log('Plant picked:', plant);
 
     //set and send plant values for plot reducer
@@ -67,7 +68,7 @@ function PlantBed(){
     return(
       <div className="left_body">
         <div className="left_header">
-            <h3 className="left_title">Add Plants</h3> 
+            <h3 className="left_title">{month}</h3> 
         </div>
         <div className="shade_bed">
         {plot.map((div, i) => (  /* creates 24 divs, index = 0 */

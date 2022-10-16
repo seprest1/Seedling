@@ -3,13 +3,15 @@
   grid-area: body;
   height: 95vh;
   width: 100vw;
-  background-image: url(https://images.pexels.com/photos/7728882/pexels-photo-7728882.jpeg);
-  background-position: fixed;
+  background-color: #14452d;
+  background-image: url(https://images.pexels.com/photos/4198143/pexels-photo-4198143.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);
   background-size: cover;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  font-family: 'Inter Tight', sans-serif;
+  color: rgb(63, 49, 32);
 }
 
 /* --------- LEFT SECTION --------- */
@@ -18,7 +20,6 @@
   height: 100%;
   width: 50%;
   display: flex;
-  justify-content: stretch;
 }
 
 .left_body{

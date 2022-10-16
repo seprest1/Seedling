@@ -24,13 +24,13 @@ function PlantName({plant, i}){
 
     return(
         <li className="selected_plant">
-            <div className={`selected_plant_icon plant_icon ${plant.color}`}></div>
+            <div className={`selected_plant_icon ${plant.color}`}></div>
             <div className="selected_plant_names">
                 <span className="selected_plant_name">{plant.name}</span>
                 {showSubvarietyInput === true ? 
                     <span className="selected_plant_subvariety">{plant.subvariety ? plant.subvariety : 'Add Subvariety'}</span>
                     :
-                    <input type="text" className="selected_plant_subvariety"
+                    <input type="text" className="selected_plant_input"
                             value={subvarietyInput}
                             onChange={(e) => setSubvarietyInput(e.target.value)}/>}
             </div>
@@ -41,7 +41,7 @@ function PlantName({plant, i}){
             </div>
             :
             <div className="selected_plant_buttons">
-                <button className="selected_button edit" onClick={(i) => addSubvariety(i)}>✓</button>
+                <button className="selected_edit_button" onClick={(i) => addSubvariety(i)}>✓</button>
             </div>}
         </li>
     )

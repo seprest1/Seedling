@@ -9,6 +9,7 @@
     border-bottom-right-radius: 1rem;
     display: flex;
     flex-direction: row;
+    color: rgb(63, 49, 32);
   }
   
   .available_plant_list{
@@ -22,91 +23,59 @@
   }
   
   .available_plant{
-    height: 100vh;
-    background-color: rgb(219, 211, 211, 0.60);
+    background-color: rgb(219, 211, 211, 0.8);
     border-radius: 0.4rem;
     margin: 1rem;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 0.2fr 1fr;
-    grid-template-areas:
-      "a_plant_header"
-      "a_plant_body";
+    display: flex;
+    flex-direction: column;
   }
   
   .a_plant_header{
-    grid-area: a_plant_header;
-    height: 100%;
-    width: 100%;
     background-color: rgba(169, 163, 163, 0.6);
     border-radius: 0.5rem 0.5rem 0 0;
-    display: grid;
-    grid-template-columns: 1fr 0.1fr;
-    grid-template-rows: 1fr 0.5fr;
-    grid-template-areas: 
-      "a_name a_edit_button"
-      "a_subvariety a_subvariety";
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
   }
   
   .a_plant_name{
-    grid-area: a_name;
     width: 30%;
-    align-self: center;
     font-size: 60%;
-    text-align: center;
-    padding: 0 5%;
+    font-weight: bold;
   }
-  
-  .a_edit{
-    grid-area: a_edit_button;
-  }
-  
-  .subvariety{
-    grid-area: a_subvariety;
-    margin: 0;
-  }
-  
+
   .a_plant_body{
-    grid-area: a_plant_body;
-    max-height: 100%;
-    display: grid;
-    grid-template-columns: 0.8fr, 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-      "image info";
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
   
   .a_plant_image_section{
-    grid-area: image;
-    max-height: 100%;
     display: flex;
     justify-content: center;
-    padding: 10% 0;
   }
   
   .a_plant_image{
-    width: 90%;
-    min-width: 10rem;
-    border-radius: 1rem;
-    align-self: stretch;
+    width: 15rem;
+    border-bottom-left-radius: 0.3rem;
+    object-fit: cover;
   }
   
   .a_plant_info{
-    grid-area: info;
     display: flex;
     flex-direction: column;
+    align-items: stretch;
   }
   
   .a_plant_details{
-    align-self: center;
     display: flex;
     flex-direction: column;
     text-align: left;
-    grid-gap: 5%;
   }
   
   .a_plant_subname{
-    font-size: small;
+    font-size: 1rem;
     font-style: italic;
     align-self: flex-start;
     padding: 3% 7%;
@@ -114,7 +83,7 @@
   }
   
   .a_plant_fact{
-    font-size: xx-small;
+    font-size: 0.75rem;
     align-self: flex-start;
     padding: 1% 7%;
     margin: 0;
@@ -155,12 +124,12 @@
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
-    grid-gap: 0.5rem;
+    grid-gap: 0.6rem;
   }
   
   .sowing_data{
-    background-color: rgba(87, 118, 14, 0.5);
-    width: 7%;
+    background-color: #dc343ad2;
+    width: 5%;
     height: 100%;
     border-radius: 0.3rem 0.3rem 0 0;
     color: transparent;
@@ -182,24 +151,33 @@
 
 .selected_plant{
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     padding: 3% 0;
+    display: grid;
+    grid-template-columns: 3fr 9fr 0.1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "selected_icon selected_names selected_buttons";
   }
   
   .selected_plant_icon{
     grid-area: selected_icon;
-    margin: 0;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 2rem;
+    margin: 0.5rem;
   }
   
   .selected_plant_names{
+    grid-area: selected_names;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    grid-gap: 20%;
   }
   
   .selected_plant_name{
     font-size: x-large;
+    justify-self: flex-start;
   }
   
   .selected_plant_subvariety{
@@ -207,26 +185,40 @@
     font-size: small;
     padding-left: 1rem;
   }
+
+  .selected_plant_input{
+    border: 1px solid black;
+    background-color: transparent;
+    width: 70%;
+  }
+
+  .selected_plant_input:focus{
+    outline: none !important;
+  }
   
   .selected_plant_buttons{
     grid-area: selected_buttons;
-    justify-self: flex-end;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
   }
   
-  .selected_button{
+  .selected_button, .selected_edit_button{
+    justify-self: flex-end;
     font-size: large;
     background-color:rgb(219, 211, 211, 0.30);
     width: 2rem;
     height: 2rem;
     margin: 0.2rem;
     border-radius: 0.5rem;
-    font-family: 'Inter Tight', sans-serif;
     border: none;
     opacity: 80%;
     align-self: center;
+  }
+
+  .selected_edit_button{
+    margin-right: 20%;
+    width: 3rem;
   }
   
   /* --------- BAR HEIGHTS --------- */
