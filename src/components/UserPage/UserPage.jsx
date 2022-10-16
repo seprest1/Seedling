@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 //components
 import WelcomeDisplay from './WelcomeDisplay';
-import PlotDisplay from './PlotDisplay';
+import PlotDisplay from './PlotDisplay/PlotDisplay';
 
 function UserPage() {
 
