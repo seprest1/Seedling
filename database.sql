@@ -11,11 +11,6 @@ CREATE TABLE "user" (
     "hardiness" VARCHAR (80),
     "zipcode" INT
 );
-
-
-INSERT INTO "user" ("username", "password")
-	VALUES ('beet_root','pass123'), ('bees_knees', '123456'), ('green_thumb', 'fakepassword');
-
 		
 -----------------------------PLOT TABLE-----------------------------	
 
@@ -28,10 +23,6 @@ CREATE TABLE "plot" (
 	"time created" DATE DEFAULT CURRENT_DATE,
 	"time updated" DATE DEFAULT CURRENT_DATE
 );
-
-
-INSERT INTO "plot" ("user_id", "month")
-	VALUES (1, 'October'), (2, 'November'), (3, 'December');
 
 --------------------------VEGGIE TABLE-----------------------------
 
@@ -89,19 +80,9 @@ CREATE TABLE "div" (
 	"location" INT, --refers to placement on a 4x6 grid
 	"shade" VARCHAR (150) DEFAULT 'Full Sun', --refers to user-set shade
 	"name" VARCHAR (150),
-	"subvariety" VARCHAR (150) 
+	"subvariety" VARCHAR (150),
+	"color" VARCHAR (150)
 );
-
-INSERT INTO "div" ("plot_id", "plant_id", "location")
-	VALUES
-		(1, 1, 1), (1, 1, 2), (1, 1, 3), (1, 1, 4), 		--row 1
-		(1, 2, 5), (1, 2, 6), (1, 2, 7), (1, 2, 8), 		--row 2
-		(1, 3, 9), (1, 3, 10), (1, 4, 11), (1, 4, 12), 		--row 3
-		(1, 3, 13), (1, 3, 14), (1, 5, 15), (1, 5, 16), 	--row 4
-		(1, 6, 17), (1, 6, 18), (1, 6, 19), (1, 6, 20), 	--row 5
-		(1, 7, 21), (1, 7, 22), (1, 7, 23), (1, 7, 24);		--row 6
-
-
 
 ------------------------COMPANION TABLE-----------------------------
 
@@ -149,7 +130,16 @@ INSERT INTO "growing_season" ( "plant_id", "march", "april", "may", "june", "jul
 	(12, 70, 90, 70, 0, 0, 70, 90, 70); --CAULIFLOWER
 	
 
-   
+
+
+	
+	
+	
+	
+
+
+
+
 
 
 	
