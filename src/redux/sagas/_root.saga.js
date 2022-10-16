@@ -3,6 +3,7 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import gardenSaga from './garden.saga';
+import weatherSaga from './weather.saga';
 
 export default function* rootSaga() {
   yield all([
@@ -10,5 +11,6 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     gardenSaga(),
+    weatherSaga(),
   ]);
 }
