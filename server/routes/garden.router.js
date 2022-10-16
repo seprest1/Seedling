@@ -34,10 +34,10 @@ router.post('/add_plot', (req, res) => {
         const plot = req.body.plot;
 
         const createDiv = `
-            INSERT INTO div (plot_id, plant_id, location, shade, name, subvariety)
-              VALUES ($1, $2, $3, $4, $5, $6);`
+            INSERT INTO div (plot_id, plant_id, location, shade, name, subvariety, color)
+              VALUES ($1, $2, $3, $4, $5, $6, $7);`
         for (div of plot){      
-          pool.query(createDiv, [plotId, div.plant_id, div.location, div.shade, div.name, div.subvariety]);
+          pool.query(createDiv, [plotId, div.plant_id, div.location, div.shade, div.name, div.subvariety, div.color]);
         }
         res.sendStatus(201);
       })
@@ -49,10 +49,12 @@ router.post('/add_plot', (req, res) => {
 //gets plot from DB
 router.get('/:id/plot', (req, res) => {
   const userId = req.params.id;
+
+  /////////////////////////HARDCODED FOR THE TIME BEING///////////////////////////
   const queryText = `
     SELECT div.*, plot.month FROM div
       JOIN plot on plot.id = div.plot_id
-      WHERE plot.month = trim(to_char(current_date, 'Month')) 
+      WHERE plot.month = 'March'
         AND plot.user_id = $1;`;
 
   pool.query(queryText, [userId])

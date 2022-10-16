@@ -35,7 +35,7 @@ function PlantKey (){
                 <h3 className="right_title">Add Plants</h3>
             </div>
             <ul className="plant_list"> 
-                {plants.map((plant, i) => <KeyItem plant={plant} i={i} key={i}/>)}  
+                {plants.map((plant, i) => <KeyItem plant={plant} key={i}/>)}  
             </ul>
             <div className="buttons">
                 <button onClick={sendBack} className="button">Back</button>

@@ -58,7 +58,7 @@ const plot = (state = initialPlot, action) => {
             console.log(state);        
             const plantDiv = action.payload;    //maps through plot and changes only plant ID & plant name
             return state.map(oldDiv => oldDiv.location === plantDiv.location ? 
-                    {...oldDiv, plant_id: plantDiv.plant_id, name: plantDiv.name, subvariety: plantDiv.subvariety} 
+                    {...oldDiv, plant_id: plantDiv.plant_id, name: plantDiv.name, subvariety: plantDiv.subvariety, color: plantDiv.color} 
                     : oldDiv);
         case 'SET_PLOT':
             return action.payload;  

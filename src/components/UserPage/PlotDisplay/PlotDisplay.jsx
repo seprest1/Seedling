@@ -39,7 +39,7 @@ function PlotDisplay(){
         case 8:
         case 9:
         case 10:
-            return 'green';
+            return 'light_green';
         case 2:
         case 3:
             return 'purple';

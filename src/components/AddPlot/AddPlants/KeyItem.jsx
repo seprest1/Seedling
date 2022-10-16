@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-function KeyItem({plant, i}){
+function KeyItem({plant}){
     const dispatch = useDispatch();
     
     return(
