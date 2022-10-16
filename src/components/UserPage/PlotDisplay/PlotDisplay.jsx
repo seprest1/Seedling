@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+//components
+import FindMonth from './FindMonth';
 
 function PlotDisplay(){
   const dispatch = useDispatch();
