@@ -19,6 +19,9 @@ const selectedPlants = (state = [], action) => {
             return state.map((plant, i) => i === action.payload.index ? 
                                 {...plant, subvariety: action.payload.subvariety} 
                                 : plant);
+        case 'SET_SELECTED_PLANTS':
+            if (state = []){
+                return action.payload;}
         case 'CLEAR_EVERYTHING':
             return [];
         default: 

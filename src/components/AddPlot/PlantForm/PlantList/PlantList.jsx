@@ -15,7 +15,7 @@ function SelectedPlants(){
             </div>
             <ul className="plant_list"> 
                 {selectedPlants.map((plant, i) => 
-                    <PlantName plant={plant} key={i}/>)}
+                    <PlantName plant={plant} key={i} i={i}/>)}
             </ul>
             <div className="buttons">
                 <button onClick={() => history.push('/newplot/shade')} className="button">Back</button>

@@ -1,7 +1,12 @@
+import { useSelector, useDispatch } from 'react-redux';
+//components
 import PlantBed from '../../AddPlot/AddPlants/PlantBed';
 import EditKey from './EditKey';
 
 function EditPlot(){
+    const user = useSelector(store => store.user);
+    const plot = useSelector(store => store.plot);
+
    return(
     <div className="app_body">
         <div className="left_display">

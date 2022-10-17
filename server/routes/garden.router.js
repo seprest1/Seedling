@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 //gets plants from DB
-router.get('/plants', (req, res) => {
+router.get('/plants', rejectUnauthenticated, (req, res) => {
   const queryText = `
     SELECT * FROM plant
 	    JOIN growing_season ON growing_season.plant_id = plant.id;`;
@@ -18,7 +21,7 @@ router.get('/plants', (req, res) => {
 });
 
 //posts plot to DB
-router.post('/add_plot', (req, res) => {
+router.post('/add_plot', rejectUnauthenticated, (req, res) => {
   const month = req.body.month;
   const user = req.body.user;
 
@@ -46,7 +49,7 @@ router.post('/add_plot', (req, res) => {
 });
 
 //gets plot from DB
-router.get('/:id/plot', (req, res) => {
+router.get('/:id/plot', rejectUnauthenticated, (req, res) => {
   const userId = req.params.id;
 
   /////////////////////////HARDCODED FOR THE TIME BEING///////////////////////////
@@ -66,7 +69,7 @@ router.get('/:id/plot', (req, res) => {
       });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const plotToDelete = req.params.id;
   const queryText = 
     `DELETE FROM plot

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
@@ -12,16 +11,11 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import FindMonth from './FindMonth';
 
 function PlotDisplay(){
-  const dispatch = useDispatch();
-  const user = useSelector (store => store.user);
-  useEffect(() => {
-    dispatch({ type: 'FETCH_PLOT', payload: user.id});    //TODO: FIX RENDERING PROBLEM
-  }, [plotId]);
-
   const month = useSelector(store => store.garden.month);
   const plot = useSelector(store => store.garden.plot);
   const plotId = useSelector(store => store.garden.plotID);
 
+  const dispatch = useDispatch();
   const history = useHistory();
   const sendToNext = () => {
     history.push('/newplot/shade');
