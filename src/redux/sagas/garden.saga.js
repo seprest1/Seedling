@@ -68,7 +68,7 @@ function* deletePlot(action){
     try{
         const plotId = action.payload;
         yield axios.delete(`/garden/${plotId}`);
-        yield put({ type: 'FETCH_PLOT '});
+        yield put({ type: 'FETCH_PLOT '});         
     }
     catch(error){
         console.log('deletePlot failed:', error);

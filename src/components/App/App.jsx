@@ -16,6 +16,8 @@ import RegisterPage from '../LandingPage/RegisterPage/RegisterPage';
 import PlantForm from '../AddPlot/PlantForm/PlantForm';
 import AddShade from '../AddPlot/AddShade/AddShade';
 import AddPlants from '../AddPlot/AddPlants/AddPlants';
+import EditPlot from '../EditPlot/EditPlot/EditPlot';
+import EditPlants from '../EditPlot/EditPlants/EditPlants';
 
 function App() {
   
@@ -49,13 +51,21 @@ function App() {
           <ProtectedRoute exact path="/newplot/form">
             <PlantForm/>
           </ProtectedRoute>
-
+      
           <ProtectedRoute exact path="/newplot/shade">
             <AddShade/>
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/newplot/plants">
             <AddPlants/>
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/editplot">
+            <EditPlot/>
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/editplot/plants">
+            <EditPlants/>
           </ProtectedRoute>
 
           <Route exact path="/login"> {/* if user isn't logged in, redirect to login page*/}

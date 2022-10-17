@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 function PlantBed(){
+  useEffect(() => {
+    dispatch({type: 'FETCH_PLOT'});
+  }, []);
     
     const plot = useSelector(store => store.garden.plot);
     const plant = useSelector(store => store.garden.plantKey);

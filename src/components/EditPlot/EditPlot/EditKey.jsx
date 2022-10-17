@@ -2,14 +2,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 //components
-import KeyItem from './KeyItem';
+import KeyItem from '../../AddPlot/AddPlants/KeyItem';
 
-function PlantKey (){
+function EditKey (){
     //go back to edit plants
     const dispatch = useDispatch();
     const history = useHistory();
     const sendBack = () => {
-        history.push('/newplot/form');
+        history.push('/editplot/plants');
     };
 
     //submit plot to DB
@@ -33,18 +33,17 @@ function PlantKey (){
     return(
         <div className="right_body">
             <div className="right_header">
-                <h3 className="right_title">Add Plants</h3>
+                <h3 className="right_title">Edit Plants</h3>
             </div>
             <ul className="plant_list"> 
                 {plants.map((plant, i) => <KeyItem plant={plant} key={i}/>)}  
             </ul>
             <div className="buttons">
-                <button onClick={sendBack} className="button">Back</button>
-                <button onClick={submitPlot} className="button">Submit</button> 
+                <button onClick={sendBack} className="button">Add Plants</button>
+                <button onClick={submitPlot} className="button">Save</button> 
             </div>
         </div>
     )
 }
 
-export default PlantKey;
-
+export default EditKey;

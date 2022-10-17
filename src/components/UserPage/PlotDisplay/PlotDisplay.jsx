@@ -15,7 +15,7 @@ function PlotDisplay(){
   const dispatch = useDispatch();
   const user = useSelector (store => store.user);
   useEffect(() => {
-    dispatch({ type: 'FETCH_PLOT', payload: user.id});
+    dispatch({ type: 'FETCH_PLOT', payload: user.id});    //TODO: FIX RENDERING PROBLEM
   }, [plotId]);
 
   const month = useSelector(store => store.garden.month);
@@ -100,7 +100,7 @@ function PlotDisplay(){
                   <div className="user_header">
                     <h3 className="user_title">{month}</h3> 
                     <div className="user_header_buttons">
-                      <IconButton><EditIcon/></IconButton>
+                      <IconButton onClick={() => history.push('/editplot')}><EditIcon/></IconButton>
                       <IconButton onClick={deletePlot}><ClearIcon/></IconButton>
                       <IconButton onClick={sendToNext}>+</IconButton>
                     </div>
