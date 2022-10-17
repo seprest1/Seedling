@@ -111,6 +111,12 @@
     opacity: 80%;
   } 
 
+  .display_icon{
+    height: 2rem;
+    width: 2rem;
+    border-radius: 2rem;
+    margin: 0.5rem;
+  }
   /* -------------- BOTH ------------ */
 
 .user_header{

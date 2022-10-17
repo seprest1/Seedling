@@ -5,7 +5,6 @@ function PlantBed(){
     const plot = useSelector(store => store.garden.plot);
     const plant = useSelector(store => store.garden.plantKey);
     const month = useSelector(store => store.garden.month);
-    console.log('Plant picked:', plant);
 
     //set and send plant values for plot reducer
     const dispatch = useDispatch();
@@ -17,7 +16,6 @@ function PlantBed(){
             name: plant.name, 
             color: plant.color,
             subvariety: plant.subvariety};
-        console.log(divToSend);
 
         dispatch({
           type: 'SET_PLANT',

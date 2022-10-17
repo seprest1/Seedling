@@ -19,7 +19,6 @@ router.get('/plants', (req, res) => {
 
 //posts plot to DB
 router.post('/add_plot', (req, res) => {
-  console.log(req.body);
   const month = req.body.month;
   const user = req.body.user;
 
@@ -62,7 +61,23 @@ router.get('/:id/plot', (req, res) => {
         res.send(result.rows);
       })
       .catch(error => {
-        console.log('ERROR in GET plants:', error);
+        console.log('ERROR in GET plot:', error);
+        res.sendStatus(500);
+      });
+});
+
+router.delete('/:id', (req, res) => {
+  const plotToDelete = req.params.id;
+  const queryText = 
+    `DELETE FROM plot
+        WHERE id = $1;`;
+  
+  pool.query(queryText, [plotToDelete])
+      .then(result => {
+        res.sendStatus(401);
+      })
+      .catch(error => {
+        console.log('ERROR in DELETE plot:', error);
         res.sendStatus(500);
       });
 });

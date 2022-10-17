@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
+
 
 function PlantKey (){
     const dispatch = useDispatch();
@@ -11,7 +13,7 @@ function PlantKey (){
     const sendToNext = () => {
         const shadedDivTotal = plot.filter(div => div.shade);  
         if (month === 'Month'){     //makes sure that month is set before moving on
-            alert('Set month for your plot!');
+            swal("Set month for your plot!", "warning");
         }
         else if (shadedDivTotal.length === 48){    //determines if all plots have been assigned shade values               
             console.log('Sending plot to adding plants section:', plot);  

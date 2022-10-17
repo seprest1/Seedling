@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
 //components
 import KeyItem from './KeyItem';
 
@@ -24,7 +25,7 @@ function PlantKey (){
                 payload: {plot, month, user}
             }); //trigger saga function to send plot to DB
             dispatch({ type: 'CLEAR_EVERYTHING' }); //clears all local state
-            alert('Added Plot!');
+            swal("Added Plot!", "success");
             history.push('/home');
         };
     };
