@@ -16,6 +16,7 @@ function EditKey (){
     const plants = useSelector(store => store.garden.selectedPlants);
 
     //submit edited plot to DB
+    const userID = useSelector(store => store.user.id);
     const plot = useSelector(store => store.garden.plot);
     const plotID = useSelector(store => store.garden.plotID);
     const submitEditedPlot = () => {
@@ -25,7 +26,7 @@ function EditKey (){
                 type: 'EDIT_PLOT', 
                 payload: {plot: plot, plot_id: plotID}
             }); 
-            dispatch({ type: 'CLEAR_EVERYTHING' }); //clears all local state
+            dispatch({ type: 'CLEAR_PLANT_TYPE '}) //clears the plant selected to render on DOM 
             swal("Added Plot!", "success");
             history.push('/home');
         };

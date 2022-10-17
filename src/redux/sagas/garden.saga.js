@@ -1,4 +1,5 @@
 import { put, takeEvery } from 'redux-saga/effects';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 function* gardenSaga() {
@@ -29,7 +30,6 @@ function* addPlot(action){
             url: '/garden/add_plot', 
             data: action.payload
         });
-        yield put({ type: 'CLEAR_PLOT' });
     }
     catch(error){
         console.log('addPlot failed,', error);
@@ -80,15 +80,15 @@ function* fetchPlot(action){
 //edit user's plot
 function* ammendPlot(action){
    try{
-        const id = action.payload.plot_id;
+        const plot_id = action.payload.plot_id;
         const plot = action.payload.plot;
-        console.log(id);
-        console.log(plot);
+        console.log(plot_id);
         yield axios({ 
             method: 'PUT',
-            url: `/garden/${id}`, 
+            url: `/garden/${plot_id}`, 
             data: plot 
         });
+        yield put({ type: 'CLEAR_EVERTYHING' });
    }
    catch(error){
         console.log('ammendPlot failed:', error);

@@ -85,6 +85,8 @@ const plantKey = (state = {}, action) => {
     switch (action.type) {
         case 'SET_PLANT_TYPE':
             return action.payload;
+        case 'CLEAR_EVERYTHING':
+            return {};
         default: 
             return state;
     };
