@@ -6,6 +6,7 @@ function* gardenSaga() {
     yield takeEvery('SEND_PLOT', addPlot);
     yield takeEvery('GET_PLOT', fetchPlot);
     yield takeEvery('DELETE_PLOT', deletePlot);
+    yield takeEvery('EDIT_PLOT', ammendPlot);
   }
 
 //fetch list of available plants from DB
@@ -75,6 +76,24 @@ function* fetchPlot(action){
         console.log('fetchPlot failed:', error);
     };
 };
+
+//edit user's plot
+function* ammendPlot(action){
+   try{
+        const id = action.payload.plot_id;
+        const plot = action.payload.plot;
+        console.log(id);
+        console.log(plot);
+        yield axios({ 
+            method: 'PUT',
+            url: `/garden/${id}`, 
+            data: plot 
+        });
+   }
+   catch(error){
+        console.log('ammendPlot failed:', error);
+   }
+}
 
 //delete user's plot
 function* deletePlot(action){
