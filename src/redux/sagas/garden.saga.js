@@ -61,7 +61,7 @@ function* fetchPlot(action){
         const selectedPlants = removedDuplicates.map(div => 
             ({id: div.plant_id, 
               name: div.name, 
-              sunlight: div.shade, 
+              shade: div.shade, 
               color: div.color, 
               subvariety: div.subvariety}));
 

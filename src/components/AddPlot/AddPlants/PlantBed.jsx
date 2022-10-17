@@ -13,7 +13,7 @@ function PlantBed(){
     //set and send plant values for plot reducer
     const dispatch = useDispatch();
     const setDiv = (div) => {
-      if (div.shade === plant.sunlight){    //prevents user from planting in the wrong shade zone
+      if (div.shade === plant.shade){    //prevents user from planting in the wrong shade zone
         const divToSend = {
             location: div.location, 
             plant_id: plant.id, 
@@ -67,6 +67,8 @@ function PlantBed(){
       }
   }
 
+  const vector_image = "Images/Plant_Icons/beet.png";
+
     return(
       <div className="left_body">
         <div className="left_header">
@@ -77,7 +79,9 @@ function PlantBed(){
                 <div key={i}   
                     className={`plot_div ${changeBackground(div)}`}                    
                     onMouseOver={() => setDiv(div)}> 
-                        {div.name && <div className={`plant_icon ${plantColor(div)}`}></div>}
+                        {div.name && <div className={`plant_icon ${plantColor(div)}`}>
+                          <img src={vector_image} className="plant_vector"/>
+                          </div>}
                 </div>))} 
         </div>
       </div>

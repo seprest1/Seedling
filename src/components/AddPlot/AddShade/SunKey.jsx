@@ -34,7 +34,7 @@ function PlantKey (){
                 <li>
                         <div 
                             className="green1 icon"
-                            onClick={() => dispatch({type: 'SET_SUNLIGHT', payload: 'Full Sun'})}>
+                            onClick={() => dispatch({type: 'SET_SHADE', payload: 'Full Sun'})}>
                         </div> 
                     <span>Full Sun</span>
                 </li>
@@ -42,14 +42,14 @@ function PlantKey (){
                 <li>
                         <div 
                             className="green2 icon" 
-                            onClick={() => dispatch({type: 'SET_SUNLIGHT', payload: 'Partial Sun'})}>
+                            onClick={() => dispatch({type: 'SET_SHADE', payload: 'Partial Sun'})}>
                         </div> 
                     <span>Partial Sun</span>
                 </li>
                 <li>
                         <div 
                             className="green3 icon" 
-                            onClick={() => dispatch({type: 'SET_SUNLIGHT', payload: 'Full Shade'})}>
+                            onClick={() => dispatch({type: 'SET_SHADE', payload: 'Full Shade'})}>
                         </div> 
                     <span>Full Shade</span> 
                 </li>

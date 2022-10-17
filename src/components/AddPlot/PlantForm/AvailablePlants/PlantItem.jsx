@@ -10,7 +10,7 @@ function PlantItem({plant}){
             payload: {
                 id: plant.id,
                 name: plant.name,
-                sunlight: plant.sunlight,
+                shade: plant.shade,
                 color: plant.color
             }
         });
@@ -30,7 +30,7 @@ function PlantItem({plant}){
                 </div>
                 <div className="a_plant_info">
                     <div className="a_plant_details">
-                        <p className="a_plant_subname">{plant.scientific_name} - {plant.sunlight}</p>
+                        <p className="a_plant_subname">{plant.scientific_name} - {plant.shade}</p>
                         <p className="a_plant_fact">{plant.description}</p>
                         <p className="a_plant_fact">{plant.sowing}</p>
                         <p className="a_plant_fact">{plant.row_spacing}</p>
