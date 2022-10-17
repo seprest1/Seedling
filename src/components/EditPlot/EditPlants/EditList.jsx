@@ -1,14 +1,13 @@
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 //components
-import PlantName from './PlantName';
+import PlantName from '../../AddPlot/PlantForm/PlantList/PlantName';
 
-function SelectedPlants(){
+function EditList(){
     const history = useHistory();
     const selectedPlants = useSelector(store => store.garden.selectedPlants);
 
     return(
-        
         <div className="right_body">
             <div className="right_header">
                 <h3 className="right_title">Add Plants</h3> 
@@ -18,11 +17,10 @@ function SelectedPlants(){
                     <PlantName plant={plant} key={i} i={i}/>)}
             </ul>
             <div className="buttons">
-                <button onClick={() => history.push('/newplot/shade')} className="button">Back</button>
-                <button onClick={() => history.push('/newplot/plants')} className="button">Next</button>
+                <button onClick={() => history.push('/editplot')} className="button">Next</button>
             </div>
         </div>
     )
 }
 
-export default SelectedPlants;
+export default EditList;

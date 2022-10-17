@@ -4,13 +4,15 @@ import axios from 'axios';
 function* gardenSaga() {
     yield takeEvery('FETCH_PLANTS', fetchPlants);
     yield takeEvery('SEND_PLOT', addPlot);
-    yield takeEvery('FETCH_PLOT', fetchPlot);
+    yield takeEvery('GET_PLOT', fetchPlot);
+    yield takeEvery('DELETE_PLOT', deletePlot);
+    yield takeEvery('EDIT_PLOT', ammendPlot);
   }
-  
+
+//fetch list of available plants from DB
 function* fetchPlants(){
     try{
         const plants = yield axios.get('/garden/plants');
-        console.log('Get plants:', plants.data);
         yield put({ type: 'SET_PLANTS', payload: plants.data });
     }                       //set plant reducer to list of plants
     catch(error){
@@ -18,6 +20,7 @@ function* fetchPlants(){
     };
 };
 
+//add plot with all the divs to DB
 function* addPlot(action){
     try{
         console.log('Plot being added', action.payload);
@@ -33,27 +36,75 @@ function* addPlot(action){
     };
 };
 
+//fetch user's plot from DB
 function* fetchPlot(action){
     try{
         const userId = action.payload;
         const userPlot = yield axios.get(`/garden/${userId}/plot/`);
         const response = userPlot.data;
+        console.log('The response from fetchPlot:', response);
 
-        const plot = response.map(obj => ({ //Pulls only needed values from DB
+        //Pulls only needed values from DB to set plot
+        const plot = response.map(obj => ({ 
             plant_id: obj.plant_id, 
             location: obj.location, 
             name: obj.name, 
             subvariety: obj.subvariety, 
-            shade: obj.shade}));
-        const plotId = response[0].plot_id; //TO BE USED LATER?
+            shade: obj.shade,
+            color: obj.color}));
+        const plotId = response[0].plot_id; 
+
+        const removedDuplicates = response.filter((oldDiv, index, response) => 
+            response.findIndex(
+            (newDiv) =>  {return (newDiv.name === oldDiv.name && newDiv.subvariety === oldDiv.subvariety)}) === index);
+
+        const selectedPlants = removedDuplicates.map(div => 
+            ({id: div.plant_id, 
+              name: div.name, 
+              sunlight: div.shade, 
+              color: div.color, 
+              subvariety: div.subvariety}));
+
+        console.log(selectedPlants);
 
         yield put({ type: 'SET_PLOT', payload: plot });
         yield put({ type: 'SET_MONTH', payload: response[0].month });
-
+        yield put({ type: 'SET_PLOT_ID', payload: plotId });
+        yield put({ type: 'SET_SELECTED_PLANTS', payload: selectedPlants });
     }               
     catch(error){
-        console.log('fetchPlot failed', error);
+        console.log('fetchPlot failed:', error);
     };
+};
+
+//edit user's plot
+function* ammendPlot(action){
+   try{
+        const id = action.payload.plot_id;
+        const plot = action.payload.plot;
+        console.log(id);
+        console.log(plot);
+        yield axios({ 
+            method: 'PUT',
+            url: `/garden/${id}`, 
+            data: plot 
+        });
+   }
+   catch(error){
+        console.log('ammendPlot failed:', error);
+   }
+}
+
+//delete user's plot
+function* deletePlot(action){
+    try{
+        const plotId = action.payload;
+        yield axios.delete(`/garden/${plotId}`);
+        yield put({ type: 'FETCH_PLOT '});         
+    }
+    catch(error){
+        console.log('deletePlot failed:', error);
+    }
 }
 
 export default gardenSaga;

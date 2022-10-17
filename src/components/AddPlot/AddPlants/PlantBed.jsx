@@ -1,11 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 function PlantBed(){
+  useEffect(() => {
+    dispatch({type: 'FETCH_PLOT'});
+  }, []);
     
     const plot = useSelector(store => store.garden.plot);
     const plant = useSelector(store => store.garden.plantKey);
     const month = useSelector(store => store.garden.month);
-    console.log('Plant picked:', plant);
 
     //set and send plant values for plot reducer
     const dispatch = useDispatch();
@@ -17,7 +20,6 @@ function PlantBed(){
             name: plant.name, 
             color: plant.color,
             subvariety: plant.subvariety};
-        console.log(divToSend);
 
         dispatch({
           type: 'SET_PLANT',
@@ -48,7 +50,7 @@ function PlantBed(){
           case 8:
           case 9:
           case 10:
-              return 'green';
+              return 'light_green';
           case 2:
           case 3:
               return 'purple';

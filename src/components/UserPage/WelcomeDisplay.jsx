@@ -6,8 +6,8 @@ import Weather from './Widgets/Weather';
 import Rain from './Widgets/Rain';
 
 function WelcomeDisplay(){
-    const user = useSelector((store) => store.user);
-
+    const user = useSelector (store => store.user);
+ 
     return(
         <div className="user_welcome">
             <div className="user_header">

@@ -1,11 +1,16 @@
 import './UserPage.css';
-import { useSelector } from 'react-redux';
-
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 //components
 import WelcomeDisplay from './WelcomeDisplay';
 import PlotDisplay from './PlotDisplay/PlotDisplay';
 
 function UserPage() {
+  const dispatch = useDispatch();
+  const user = useSelector (store => store.user);
+  useEffect(() => {
+    dispatch({ type: 'GET_PLOT', payload: user.id});
+  }, []);
 
   return (
     <div className="user_body">

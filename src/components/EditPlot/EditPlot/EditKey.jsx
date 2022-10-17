@@ -1,29 +1,30 @@
+import { SortRounded } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 //components
-import KeyItem from './KeyItem';
+import KeyItem from '../../AddPlot/AddPlants/KeyItem';
 
-function PlantKey (){
+function EditKey (){
     //go back to edit plants
     const dispatch = useDispatch();
     const history = useHistory();
     const sendBack = () => {
-        history.push('/newplot/form');
+        history.push('/editplot/plants');
     };
-
-    //submit plot to DB
-    const user = useSelector(store => store.user.id);
-    const plot = useSelector(store => store.garden.plot);
+    
     const plants = useSelector(store => store.garden.selectedPlants);
-    const month = useSelector(store => store.garden.month);
-    const submitPlot = () => {
+
+    //submit edited plot to DB
+    const plot = useSelector(store => store.garden.plot);
+    const plotID = useSelector(store => store.garden.plotID);
+    const submitEditedPlot = () => {
         const totalPlants = plot.filter(div => div.plant_id);
         if (totalPlants.length === 48){     //only if all plants have been assigned
             dispatch({ 
-                type: 'SEND_PLOT', 
-                payload: {plot, month, user}
-            }); //trigger saga function to send plot to DB
+                type: 'EDIT_PLOT', 
+                payload: {plot: plot, plot_id: plotID}
+            }); 
             dispatch({ type: 'CLEAR_EVERYTHING' }); //clears all local state
             swal("Added Plot!", "success");
             history.push('/home');
@@ -33,18 +34,17 @@ function PlantKey (){
     return(
         <div className="right_body">
             <div className="right_header">
-                <h3 className="right_title">Add Plants</h3>
+                <h3 className="right_title">Edit Plants</h3>
             </div>
             <ul className="plant_list"> 
                 {plants.map((plant, i) => <KeyItem plant={plant} key={i}/>)}  
             </ul>
             <div className="buttons">
-                <button onClick={sendBack} className="button">Back</button>
-                <button onClick={submitPlot} className="button">Submit</button> 
+                <button onClick={sendBack} className="button">Add Plants</button>
+                <button onClick={submitEditedPlot} className="button">Save</button> 
             </div>
         </div>
     )
 }
 
-export default PlantKey;
-
+export default EditKey;

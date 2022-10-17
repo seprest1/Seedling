@@ -19,6 +19,9 @@ const selectedPlants = (state = [], action) => {
             return state.map((plant, i) => i === action.payload.index ? 
                                 {...plant, subvariety: action.payload.subvariety} 
                                 : plant);
+        case 'SET_SELECTED_PLANTS':
+            if (state = []){
+                return action.payload;}
         case 'CLEAR_EVERYTHING':
             return [];
         default: 
@@ -47,18 +50,16 @@ const initialPlot = [...Array(48)].map((div, i) =>
             color: null     }));
 const plot = (state = initialPlot, action) => {
     switch(action.type) {
-        case 'SET_SHADE': 
-            console.log(state);
+        case 'SET_SHADE':
             const shadedDiv = action.payload;          //maps through plot and changes only shade value
             return state.map(oldDiv => 
                 oldDiv.location === shadedDiv.location ? 
                     {...oldDiv, shade: shadedDiv.shade} 
                     : oldDiv);  
-        case 'SET_PLANT':
-            console.log(state);        
+        case 'SET_PLANT':     
             const plantDiv = action.payload;    //maps through plot and changes only plant ID & plant name
             return state.map(oldDiv => oldDiv.location === plantDiv.location ? 
-                    {...oldDiv, plant_id: plantDiv.plant_id, name: plantDiv.name, subvariety: plantDiv.subvariety} 
+                    {...oldDiv, plant_id: plantDiv.plant_id, name: plantDiv.name, subvariety: plantDiv.subvariety, color: plantDiv.color} 
                     : oldDiv);
         case 'SET_PLOT':
             return action.payload;  
@@ -89,6 +90,14 @@ const plantKey = (state = {}, action) => {
     };
 };
 
+const plotID = (state = 0, action) => {
+    switch (action.type) {
+        case 'SET_PLOT_ID':
+            return action.payload;
+        default: 
+            return state;
+    };
+}
 
 const garden = combineReducers({
     plants,
@@ -97,6 +106,7 @@ const garden = combineReducers({
     plot,
     month,
     selectedPlants,
+    plotID,
   });
 
 export default garden;
