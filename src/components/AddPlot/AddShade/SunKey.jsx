@@ -22,7 +22,6 @@ function PlantKey (){
     };
 
     const goBackToUser = () => {
-        dispatch({ type: 'CLEAR_EVERYTHING' });
         history.push('/user');
     };
 

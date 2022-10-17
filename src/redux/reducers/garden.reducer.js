@@ -63,8 +63,6 @@ const plot = (state = initialPlot, action) => {
                     : oldDiv);
         case 'SET_PLOT':
             return action.payload;  
-        case 'CLEAR_PLOT':
-            return initialPlot; 
         case 'CLEAR_EVERYTHING':
             return initialPlot;
         default: 
