@@ -24,8 +24,7 @@ function PlantKey (){
                 type: 'SEND_PLOT', 
                 payload: {plot, month, user}
             }); //trigger saga function to send plot to DB
-            dispatch({ type: 'CLEAR_EVERYTHING' }); //clears all local state
-            swal("Added Plot!", "success");
+            swal("Added Plot!");
             history.push('/home');
         };
     };

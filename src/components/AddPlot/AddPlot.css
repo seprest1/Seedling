@@ -216,11 +216,19 @@
 
 .plant_icon{
   grid-area: icon;
-  height: 2rem;
-  width: 2rem;
+  height: 3rem;
+  width: 3rem;
   border-radius: 2rem;
   margin: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 } 
+
+.plant_vector{
+  width: 60px;
+  height: 60px;
+}
 
 /* --------- COLORS --------- */
 
@@ -259,4 +267,5 @@
 .white{
   background-color: rgb(228, 220, 209);
 }
+
 

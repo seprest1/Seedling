@@ -1,10 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
-const {
-  rejectUnauthenticated,
+const {rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
-const { query } = require('express');
 
 //gets plants from DB
 router.get('/plants', rejectUnauthenticated, (req, res) => {
@@ -82,7 +80,7 @@ router.get('/:id/plot', rejectUnauthenticated, (req, res) => {
       });
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', rejectUnauthenticated, async (req, res) => {
   const connection = await pool.connect();
  
   try{
@@ -91,7 +89,6 @@ router.put('/:id', async (req, res) => {
     const plot_id = Number(req.params.id);
     const plot = req.body;
     console.log(plot_id);
-    console.log(plot);
     
     await Promise.all(plot.map(div => {
       const queryText = 

@@ -9,6 +9,7 @@ function UserPage() {
   const dispatch = useDispatch();
   const user = useSelector (store => store.user);
   useEffect(() => {
+    dispatch({ type: 'CLEAR_EVERYTHING' });
     dispatch({ type: 'GET_PLOT', payload: user.id});
   }, []);
 

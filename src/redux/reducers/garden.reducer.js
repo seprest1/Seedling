@@ -12,7 +12,7 @@ const plants = (state = [], action) => {
 const selectedPlants = (state = [], action) => {
     switch(action.type){
         case 'ADD_PLANT':
-            return [{id: action.payload.id, name: action.payload.name, sunlight: action.payload.sunlight, color: action.payload.color, subvariety: null}, ...state];
+            return [{id: action.payload.id, name: action.payload.name, shade: action.payload.shade, color: action.payload.color, subvariety: null}, ...state];
         case 'REMOVE_PLANT':
             return state.filter((plant, i) => i !== action.payload);
         case 'SET_SUBVARIETY':
@@ -63,8 +63,6 @@ const plot = (state = initialPlot, action) => {
                     : oldDiv);
         case 'SET_PLOT':
             return action.payload;  
-        case 'CLEAR_PLOT':
-            return initialPlot; 
         case 'CLEAR_EVERYTHING':
             return initialPlot;
         default: 
@@ -74,7 +72,7 @@ const plot = (state = initialPlot, action) => {
 
 const sunKey = (state = '', action) => {
     switch (action.type) {
-        case 'SET_SUNLIGHT':
+        case 'SET_SHADE':
             return action.payload;
         default: 
             return state;
@@ -85,6 +83,8 @@ const plantKey = (state = {}, action) => {
     switch (action.type) {
         case 'SET_PLANT_TYPE':
             return action.payload;
+        case 'CLEAR_EVERYTHING':
+            return {};
         default: 
             return state;
     };
