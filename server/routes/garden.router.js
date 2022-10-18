@@ -131,33 +131,50 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
       });
 });
 
-//requests all plants (not specific subvarieties) from API
-router.get('/api/plants?:id', rejectUnauthenticated, async (req, res) => {
-  try{
-    const plant = req.query.plant;
-    const response = await axios.get(`http://growstuff.org/crops/${plant}.json`);
-    const all_plants = response.data;
-    console.log(all_plants);
-    res.send(all_plants);
-  }
-  catch(error){
-      console.log('ERROR in GET API location:', error);
-      res.sendStatus(500);
-  };
-});
-
-//sends search query to API for specific plant
-router.get('/api/plants?:id', rejectUnauthenticated, (req, res) => {
-  try{
-    const plant = req.query.plant;
-    const response = axios.get(`http://growstuff.org/crops/${plant}.json`);
-    const plant_info = response.data;
-    res.send(plant_info);
-  }
-  catch(error){
-      console.log('ERROR in search plant API:', error);
-      res.sendStatus(500);
-  };
-});
-
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////routes to access "grow stuff" API//////////////////////////////
+//requests all plants (not specific subvarieties) from API
+// router.get('/api/plants', rejectUnauthenticated, async (req, res) => {
+//   try{
+//     const response = await axios.get(`http://growstuff.org/crops.json`);
+//     const all_plants = response.data;
+//     res.send(all_plants);
+//   }
+//   catch(error){
+//       console.log('ERROR in GET API location:', error);
+//       res.sendStatus(500);
+//   };
+// });
+
+// //sends search query to API for specific plant
+// router.get('/api/search?:plant', rejectUnauthenticated, async (req, res) => {
+//   try{
+//     const plant = req.query.plant;
+//     console.log(plant);
+//     const response = await axios.get(`http://growstuff.org/crops/${plant}.json`);
+//     const plant_info = response.data;
+//     console.log(plant_info);
+//     res.send(plant_info);
+//   }
+//   catch(error){
+//       console.log('ERROR in search plant API:', error);
+//       res.sendStatus(500);
+//   };
+// });

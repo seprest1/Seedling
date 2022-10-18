@@ -7,8 +7,6 @@ function* gardenSaga() {
     yield takeEvery('GET_PLOT', fetchPlot);
     yield takeEvery('DELETE_PLOT', deletePlot);
     yield takeEvery('EDIT_PLOT', ammendPlot);
-    yield takeEvery('FETCH_API_PLANTS', fetchApiPlants);
-    yield takeEvery('SEARCH_PLANT_API', searchPlantApi)
   }
 
 //fetch list of available plants from DB
@@ -110,62 +108,62 @@ function* deletePlot(action){
     }
 }
 
-//pull all plants from API
-function* fetchApiPlants(action){
-    try{
-        const response = yield axios.get(`/garden/api/plants?plant=${plantToSearch}`);
-
-        const plantId = response.data.id;
-        const parentId = response.data.parent_id;
-        const info = response.data.openfarm_data.attributes;
-      
-        const plantInfo = {
-            id: plantId,
-            parent_id: parentId,
-            name: info.name,
-            scientific_name: info.binomial_name,
-            description: info.description,
-            height: info.height,
-            spread: info.spread,
-            row: info.row_spacing,
-            sowing: info.sowing_method,
-            shade: info.sun_requirements,
-            image: info.main_image_path };
-        yield put({ type: 'SET_API_PLANT', payload: plantInfo });
-    }                      
-    catch(error){
-        console.log('fetchApiPlants failed', error);
-    };
-};
-
-//search API for one specific plant
-function* searchPlantApi (action){
-    try{
-        const plantToSearch = action.payload.replaceAll(/\s+/g, "-");   //replaces spaces in search term to fit api requirements
-        const response = yield axios.get(`/garden/api/plants?plant=${plantToSearch}`);
-
-        const plantId = response.data.id;
-        const parentId = response.data.parent_id;
-        const info = response.data.openfarm_data.attributes;
-      
-        //sets data object for reducer
-        const plantInfo = {
-            id: plantId,
-            parent_id: parentId,
-            name: info.name,
-            scientific_name: info.binomial_name,
-            description: info.description,
-            height: info.height,
-            spread: info.spread,
-            row: info.row_spacing,
-            sowing: info.sowing_method,
-            shade: info.sun_requirements,
-            image: info.main_image_path };
-        yield put({ type: 'SET_API_PLANT', payload: plantInfo });
-    }                      
-    catch(error){
-        console.log('searchPlantApi failed', error);
-    };
-};
 
 export default gardenSaga;
+
+
+
+/////////////////////routes to access "grow stuff" API//////////////////////////////
+
+
+// yield takeEvery('FETCH_API_PLANTS', fetchApiPlants);
+// yield takeEvery('SEARCH_PLANT_API', searchPlantApi);
+
+//fetch all plants from API
+// function* fetchApiPlants(){
+//     try{
+//         const response = yield axios.get(`/garden/api/plants`);
+//         const plants = response.data.map((plant) => (
+//             {   id: Number(plant.id),
+//                 name: plant.name,
+//                 scientific_name: plant.scientific_name,
+//                 image: plant.thumbnail_url}
+//         ));
+
+//         yield put({ type: 'SET_API_PLANTS', payload: plants });
+//     }                      
+//     catch(error){
+//         console.log('fetchApiPlants failed', error);
+//     };
+// };
+
+//search API for one specific plant
+// function* searchPlantApi (action){
+//     try{
+//         const plantToSearch = action.payload.replaceAll(/\s+/g, "-");   //replaces spaces in search term to fit api requirements
+//         console.log(plantToSearch);
+//         const response = yield axios.get(`/garden/api/search?plant=${plantToSearch}`);
+//         console.log(response);
+//         const plantId = response.data.id;
+//         const parentId = response.data.parent_id;
+//         const info = response.data.openfarm_data.attributes;
+      
+//         //sets data object for reducer
+//         const plantInfo = {
+//             id: plantId,
+//             parent_id: parentId,
+//             name: info.name,
+//             scientific_name: info.binomial_name,
+//             description: info.description,
+//             height: info.height,
+//             spread: info.spread,
+//             row: info.row_spacing,
+//             sowing: info.sowing_method,
+//             shade: info.sun_requirements,
+//             image: info.main_image_path };
+//         yield put({ type: 'SET_API_PLANT', payload: plantInfo });
+//     }                      
+//     catch(error){
+//         console.log('searchPlantApi failed', error);
+//     };
+// };
