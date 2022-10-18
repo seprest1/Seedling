@@ -81,6 +81,7 @@ router.get('/:id/plot', rejectUnauthenticated, (req, res) => {
       });
 });
 
+//sends edited plot to DB
 router.put('/:id', rejectUnauthenticated, async (req, res) => {
   const connection = await pool.connect();
  
@@ -113,6 +114,7 @@ router.put('/:id', rejectUnauthenticated, async (req, res) => {
     }
 });
 
+//deletes specified plot from DB
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const plotToDelete = req.params.id;
   const queryText = 
@@ -129,19 +131,33 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
       });
 });
 
-router.get('/api/plants?:id', rejectUnauthenticated, (req, res) => {
+//requests all plants (not specific subvarieties) from API
+router.get('/api/plants?:id', rejectUnauthenticated, async (req, res) => {
+  try{
     const plant = req.query.plant;
-    axios({
-      method: 'GET',
-      url: `http://growstuff.org/crops/${plant}.json `
-    }).then(result => {
-        console.log(result.data);
-        res.send(result.data);
-    })
-      .catch(error => {
-        console.log('ERROR in GET API location:', error);
-        res.sendStatus(500);
-    });
+    const response = await axios.get(`http://growstuff.org/crops/${plant}.json`);
+    const all_plants = response.data;
+    console.log(all_plants);
+    res.send(all_plants);
+  }
+  catch(error){
+      console.log('ERROR in GET API location:', error);
+      res.sendStatus(500);
+  };
+});
+
+//sends search query to API for specific plant
+router.get('/api/plants?:id', rejectUnauthenticated, (req, res) => {
+  try{
+    const plant = req.query.plant;
+    const response = axios.get(`http://growstuff.org/crops/${plant}.json`);
+    const plant_info = response.data;
+    res.send(plant_info);
+  }
+  catch(error){
+      console.log('ERROR in search plant API:', error);
+      res.sendStatus(500);
+  };
 });
 
 module.exports = router;

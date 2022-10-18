@@ -100,9 +100,9 @@ const plotID = (state = 0, action) => {
     };
 }
 
-const plantAPI = (state = {}, action) => {
+const apiPlant= (state = {}, action) => {
     switch (action.type) {
-        case 'SET_API_PLANTS':
+        case 'SET_API_PLANT':
             return action.payload;
         default: 
             return state;
@@ -117,6 +117,7 @@ const garden = combineReducers({
     month,
     selectedPlants,
     plotID,
+    apiPlant
   });
 
 export default garden;
