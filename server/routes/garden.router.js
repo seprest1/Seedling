@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../modules/pool')
+const pool = require('../modules/pool');
+const axios = require('axios');
 const {rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
@@ -126,6 +127,21 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
         console.log('ERROR in DELETE plot:', error);
         res.sendStatus(500);
       });
+});
+
+router.get('/api/plants?:id', rejectUnauthenticated, (req, res) => {
+    const plant = req.query.plant;
+    axios({
+      method: 'GET',
+      url: `http://growstuff.org/crops/${plant}.json `
+    }).then(result => {
+        console.log(result.data);
+        res.send(result.data);
+    })
+      .catch(error => {
+        console.log('ERROR in GET API location:', error);
+        res.sendStatus(500);
+    });
 });
 
 module.exports = router;

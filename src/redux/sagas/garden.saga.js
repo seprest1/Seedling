@@ -1,5 +1,4 @@
 import { put, takeEvery } from 'redux-saga/effects';
-import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 function* gardenSaga() {
@@ -8,6 +7,7 @@ function* gardenSaga() {
     yield takeEvery('GET_PLOT', fetchPlot);
     yield takeEvery('DELETE_PLOT', deletePlot);
     yield takeEvery('EDIT_PLOT', ammendPlot);
+    yield takeEvery('FETCH_API_PLANTS', fetchApiPlants);
   }
 
 //fetch list of available plants from DB
@@ -107,6 +107,17 @@ function* deletePlot(action){
     catch(error){
         console.log('deletePlot failed:', error);
     }
+}
+
+function* fetchApiPlants(action){
+    try{
+         console.log(action.payload);
+        const plants = yield axios.get(`/garden/api/plants?plant=${action.payload}`);
+            console.log(plants);
+    }                       //set plant reducer to list of plants
+    catch(error){
+        console.log('fetchApiPlants failed', error);
+    };
 }
 
 export default gardenSaga;

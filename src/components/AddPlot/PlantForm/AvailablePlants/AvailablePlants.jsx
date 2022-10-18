@@ -8,8 +8,10 @@ function AvailablePlants(){
     const month = useSelector(store => store.garden.month);
     const plants = useSelector(store => store.garden.plants);
     useEffect(() => {
-        dispatch({type: 'FETCH_PLANTS'});
+        dispatch({ type: 'FETCH_PLANTS' });
+        dispatch({ type: 'FETCH_API_PLANTS', payload: 'tomato' });
     }, []);
+
 
     return(
           <div className="left_body">

@@ -16,8 +16,8 @@ function UserPage() {
   return (
     <div className="user_body">
       <div className="user_welcome_display">
-          <WelcomeDisplay/>
            <PlotDisplay/>
+           <WelcomeDisplay/>
         </div>
     </div>
   );
