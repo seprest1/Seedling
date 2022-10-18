@@ -4,7 +4,7 @@ import MonthHeader from './MonthHeader';
 
 function ShadeBed(){
   //calls shade selected
-  const shade = useSelector(store => store.garden.sunKey);
+  const shade = useSelector(store => store.garden.pickedShade);
   const plot = useSelector(store => store.garden.plot);
   
   //set shade value for that specific div
@@ -14,7 +14,7 @@ function ShadeBed(){
     console.log(divToSend);
     {divToSend.shade && //only allows dispatch if shade is indicated 
       dispatch({
-        type: 'SET_SHADE',
+        type: 'SET_DIV_SHADE',
         payload: divToSend
       });
     };

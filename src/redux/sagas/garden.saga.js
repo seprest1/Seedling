@@ -51,7 +51,8 @@ function* fetchPlot(action){
             name: obj.name, 
             subvariety: obj.subvariety, 
             shade: obj.shade,
-            color: obj.color}));
+            color: obj.color,
+            icon: obj.icon }));
         const plotId = response[0].plot_id; 
 
         const removedDuplicates = response.filter((oldDiv, index, response) => 
@@ -63,7 +64,8 @@ function* fetchPlot(action){
               name: div.name, 
               shade: div.shade, 
               color: div.color, 
-              subvariety: div.subvariety}));
+              subvariety: div.subvariety,
+              icon: div.icon }));
 
         console.log(selectedPlants);
 

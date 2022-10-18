@@ -11,7 +11,8 @@ function PlantItem({plant}){
                 id: plant.id,
                 name: plant.name,
                 shade: plant.shade,
-                color: plant.color
+                color: plant.color,
+                icon: plant.icon
             }
         });
     };

@@ -54,7 +54,7 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
  
 ('Carrot', 'Daucus Carota', 'The carrot is a root vegetable. It is usually orange in color, but some cultivars are purple, black, red, white, and yellow. The most commonly eaten part of the plant is the taproot, but the greens are sometimes eaten as well. The leaves appear first, and the taproot grows more slowly beneath the soil. Fast-growing cultivars mature within three months of sowing the seed. Slower-maturing cultivars are harvested four months after sowing.', 'Full Sun', 'Direct Seed, thin to 3cm apart when seedlings are 8cm high.', '5 centimeters', 'orange', 'https://images.pexels.com/photos/6631952/pexels-photo-6631952.jpeg?auto=compress&cs=tinysrgb&w=800', 'Images/Plant_Icons/carrot.png'), 
 
-('Cucumber', 'Cucumis Sativus', 'Cucumbers are the fruit of a creeping vine. They are generally oblong and have a high water content. Their edible skin is often green but can also be yellow, white, or striped. The vine can be left to spread along the ground, or it can be trained to a trellis. The vine''s large leaves hide the cucumbers and shade them. There are three main varieties of cucumber: slicing, pickling, and seedless.', 'Full Sun', 'Direct seed outdoors in groups of 2-3, 1/2" deep. Thin to 1 plant.', '120 centimeters', 'light_green', 'https://images.pexels.com/photos/9020085/pexels-photo-9020085.jpeg?auto=compress&cs=tinysrgb&w=800', 'Images/Plant_Icons/carrot.png'), 
+('Cucumber', 'Cucumis Sativus', 'Cucumbers are the fruit of a creeping vine. They are generally oblong and have a high water content. Their edible skin is often green but can also be yellow, white, or striped. The vine can be left to spread along the ground, or it can be trained to a trellis. The vine''s large leaves hide the cucumbers and shade them. There are three main varieties of cucumber: slicing, pickling, and seedless.', 'Full Sun', 'Direct seed outdoors in groups of 2-3, 1/2" deep. Thin to 1 plant.', '120 centimeters', 'light_green', 'https://images.pexels.com/photos/9020085/pexels-photo-9020085.jpeg?auto=compress&cs=tinysrgb&w=800', 'Images/Plant_Icons/cucumber.png'), 
 
 ('Beet', 'Beta Vulgaris', 'Typically grown for its round or cylindrical taproot, the leaves of the beet are also edible. Leaves resemble Swiss chard on a smaller scale and are good sautéed. The taproot, or beet, ranges in color from deep red to gold, orange, or white and red striped. The beet has a delicious, earthy flavor with a touch of sweetness to it when roasted.', 'Full Shade', 'Direct seed into soil. Thin to 7cm apart when seedlings are 5cm tall.', '10 centimeters', 'red', 'https://images.pexels.com/photos/5012852/pexels-photo-5012852.jpeg?auto=compress&cs=tinysrgb&w=800', 'Images/Plant_Icons/beet.png'),
 
@@ -130,8 +130,4 @@ INSERT INTO "growing_season" ( "plant_id", "march", "april", "may", "june", "jul
 	(10, 0, 50, 70, 90, 100, 100, 90, 80), --BEANS
 	(11, 70, 90, 70, 0, 0, 70, 90, 70), --KALE
 	(12, 70, 90, 70, 0, 0, 70, 90, 70); --CAULIFLOWER
-	
-UPDATE div 
-          SET plant_id = '1', name = 'ahhchooo', subvariety = 'please', color='work'
-            WHERE (plot_id = '20' AND location = '20');
 	
