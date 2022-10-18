@@ -78,10 +78,11 @@
   background-color: transparent;
   border: 0.1rem solid rgb(211, 205, 205, 0.7);
   font-family: 'Inter Tight', sans-serif;
-  margin: 0 10% 0 10%;
-  font-size: 5vh;
+  font-size: 4vh;
   font-weight: bold;
   height: 90%;
+  width: 10rem;
+  margin-left: 1rem;
   border: none;
 }
 

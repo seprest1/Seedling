@@ -29,9 +29,9 @@ const selectedPlants = (state = [], action) => {
     };
 };
 
-const month = (state = 'Month', action) => {
+const date = (state = {month: 0, year: 0}, action) => {
     switch(action.type){
-        case 'SET_MONTH':
+        case 'SET_DATE':
             return action.payload;
         case 'CLEAR_EVERYTHING':
             return 'Month';
@@ -107,7 +107,7 @@ const garden = combineReducers({
     pickedShade,
     pickedPlant,
     plot,
-    month,
+    date,
     selectedPlants,
     plotID,
   });

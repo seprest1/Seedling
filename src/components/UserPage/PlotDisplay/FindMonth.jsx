@@ -1,66 +1,48 @@
-import date from 'date-and-time';
 import { useEffect, useState } from 'react';
+import moment from 'moment';
 
 function FindMonth(){
-    const monthArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-    const monthsFromDB = [0, 1, 2, 3, 4, 6, 8];
+   
     useEffect(() => {
-        checkMonth(monthArray);
-        changeMonthDisplay;
-      }, [interval]);
-
-    const now = new Date();
-    const thisYear = date.format(now, 'YYYY');
-    const thisMonth = Number(date.format(now, 'M'));
-    const thisMonthParsed = date.format(now, 'MMMM');
-    const [selectedMonth, setSelectedMonth] = useState('');
+        setDisplayMonth(moment().format('MMMM'));
+      }, []);
     
-
-    const [interval, setInterval] = useState(0);
-    const [month, setMonth] = useState(date.format(now, 'MMMM'));
-
- 
-    //returns current month, and if no match, the latest month.
-    const checkMonth = () => {
-        for (let dbMonth of monthsFromDB){     //loops backwards through months in DB
-            const month1 = new Date(thisYear, dbMonth, 1, 0);  
-            for (let i = thisMonth; i >= 0; i--){  //checks current month and loops backwards through the monthArray
-                const monthToCheck = monthArray[i];
-                const month2 = new Date(thisYear, monthToCheck, 1, 0); 
-                    if (date.isSameDay(month1, month2) === true){   //compares month from DB with month in Array;
-                        setSelectedMonth(monthToCheck);
-                    }
-            }
-        }
-    }
+    const [currentMonth, setCurrentMonth] = useState(moment());
+    const [displayMonth, setDisplayMonth] = useState();
 
     const subtractCounter = () => {
-        setInterval(interval - 1);
-        console.log(interval);
-        changeMonthDisplay;
+        setCurrentMonth(currentMonth.subtract(1, "month"));
+        setDisplayMonth(currentMonth.format('MMMM'));
+        console.log(currentMonth.format('YYYY'));
+        checkMonth();
     }
 
     const addCounter = () => {
-        setInterval(interval + 1);
-        console.log(interval);
-        changeMonthDisplay;
+        setDisplayMonth(currentMonth.add(1, "month").format('MMMM'));
+        console.log(currentMonth.format('YYYY'));
+        checkMonth();
     }
 
-    const changeMonthDisplay = () => {
-        const month = date.addMonths(now, interval);
-        const newMonth = date.format(month, 'MMMM');
-        setMonth(newMonth);
-    }
+
+    const monthsFromDB = [{month: 1, year: 2020}, {month: 4, year: 2021}, {month: 5, year: 2021}, {month: 7, year: 2022}, {month: 9, year: 2022}]
+   //returns current month, and if no match, the latest month.
+   const checkMonth = () => {
+    for (let plot of monthsFromDB){ 
+        console.log(currentMonth.format('YYYY'));
+        if (plot.year === currentMonth.format('YYYY')){
+            console.log(plot.year);
+        }
+    }};   
 
 
     return(
         <>
-        <h1>{month}</h1>
-        <button onClick={subtractCounter}>Back</button>
-        <button onClick={addCounter}>Forward</button>
+          <h1>{displayMonth}</h1>
+          <button onClick={subtractCounter}>-</button>
+          <button onClick={addCounter}>+</button>
         </>
     )
 
-}
+};
 
 export default FindMonth;

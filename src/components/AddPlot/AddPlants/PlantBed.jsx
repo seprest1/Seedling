@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import moment from 'moment';
 
 function PlantBed(){
   useEffect(() => {
@@ -8,7 +9,6 @@ function PlantBed(){
     
     const plot = useSelector(store => store.garden.plot);
     const plant = useSelector(store => store.garden.pickedPlant);
-    const month = useSelector(store => store.garden.month);
 
     //set and send plant values for plot reducer
     const dispatch = useDispatch();
@@ -49,7 +49,7 @@ function PlantBed(){
     return(
       <div className="left_body">
         <div className="left_header">
-            <h3 className="left_title">{month}</h3> 
+            <h3 className="left_title">Month.</h3> 
         </div>
         <div className="shade_bed">
         {plot.map((div, i) => (  /* creates 24 divs, index = 0 */

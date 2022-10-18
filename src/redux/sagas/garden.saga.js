@@ -53,11 +53,14 @@ function* fetchPlot(action){
             color: obj.color,
             icon: obj.icon }));
         const plotId = response[0].plot_id; 
+        const date = {month: response[0].month, year: response[0].year};
 
+        //removes duplicates, in order to set plant list in edit plot
         const removedDuplicates = response.filter((oldDiv, index, response) => 
             response.findIndex(
             (newDiv) =>  {return (newDiv.name === oldDiv.name && newDiv.subvariety === oldDiv.subvariety)}) === index);
 
+        //what will be the plant list in edit plot
         const selectedPlants = removedDuplicates.map(div => 
             ({id: div.plant_id, 
               name: div.name, 
@@ -69,7 +72,7 @@ function* fetchPlot(action){
         console.log(selectedPlants);
 
         yield put({ type: 'SET_PLOT', payload: plot });
-        yield put({ type: 'SET_MONTH', payload: response[0].month });
+        yield put({ type: 'SET_DATE', payload: date });
         yield put({ type: 'SET_PLOT_ID', payload: plotId });
         yield put({ type: 'SET_SELECTED_PLANTS', payload: selectedPlants });
     }               

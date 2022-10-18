@@ -16,13 +16,13 @@ function PlantKey (){
     const user = useSelector(store => store.user.id);
     const plot = useSelector(store => store.garden.plot);
     const plants = useSelector(store => store.garden.selectedPlants);
-    const month = useSelector(store => store.garden.month);
+    const date = useSelector(store => store.garden.date);
     const submitPlot = () => {
         const totalPlants = plot.filter(div => div.plant_id);
         if (totalPlants.length === 48){     //only if all plants have been assigned
             dispatch({ 
                 type: 'SEND_PLOT', 
-                payload: {plot, month, user}
+                payload: {plot, date, user}
             }); //trigger saga function to send plot to DB
             swal("Added Plot!");
             history.push('/home');

@@ -25,16 +25,17 @@ router.post('/add_plot', rejectUnauthenticated, async (req, res) => {
   const connection = await pool.connect();
   
   try{ 
-    const month = req.body.month;
+    const month = req.body.date.month;
+    const year = req.body.date.year;
     const user = req.body.user;
 
     await connection.query('BEGIN')
       const plotQueryText = `
-          INSERT INTO plot (user_id, month)
-            VALUES ($1, $2)
+          INSERT INTO plot (user_id, month, year)
+            VALUES ($1, $2, $3)
               RETURNING id;`;
 
-    const insertedPlotResults = await connection.query(plotQueryText, [user, month]);
+    const insertedPlotResults = await connection.query(plotQueryText, [user, month, year]);
     
     
     const plotId = insertedPlotResults.rows[0].id; 
@@ -66,9 +67,10 @@ router.get('/:id/plot', rejectUnauthenticated, (req, res) => {
 
   /////////////////////////HARDCODED FOR THE TIME BEING///////////////////////////
   const queryText = `
-    SELECT div.*, plot.month FROM div
+    SELECT div.*, plot.month, plot.year FROM div
       JOIN plot on plot.id = div.plot_id
-      WHERE plot.month = 'March'
+      WHERE plot.month = 3 
+        AND plot.year = 2024
         AND plot.user_id = $1;`;
 
   pool.query(queryText, [userId])
