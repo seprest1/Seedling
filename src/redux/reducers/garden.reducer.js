@@ -100,14 +100,7 @@ const plotID = (state = 0, action) => {
     };
 }
 
-const plantAPI = (state = {}, action) => {
-    switch (action.type) {
-        case 'SET_API_PLANTS':
-            return action.payload;
-        default: 
-            return state;
-    };
-}
+
 
 const garden = combineReducers({
     plants,
@@ -120,3 +113,38 @@ const garden = combineReducers({
   });
 
 export default garden;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////REDUCERS FOR "grow stuff" API ////////////////////////
+// const apiPlant= (state = {}, action) => {
+//     switch (action.type) {
+//         case 'SET_API_PLANT':
+//             return action.payload;
+//         default: 
+//             return state;
+//     };
+// };
+
+// const apiPlants = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_API_PLANTS':
+//             return action.payload;
+//         default: 
+//             return state;
+//     };
+// }
