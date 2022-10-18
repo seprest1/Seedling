@@ -1,5 +1,6 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
+import moment from 'moment';
 
 function* gardenSaga() {
     yield takeEvery('FETCH_PLANTS', fetchPlants);
@@ -53,7 +54,12 @@ function* fetchPlot(action){
             color: obj.color,
             icon: obj.icon }));
         const plotId = response[0].plot_id; 
-        const date = {month: response[0].month, year: response[0].year};
+
+        //sets the date with accurate display
+        const month = response[0].month;
+        const year = response[0].year;
+        const display = moment().month(month).format('MMMM');
+        console.log(month, year, display);
 
         //removes duplicates, in order to set plant list in edit plot
         const removedDuplicates = response.filter((oldDiv, index, response) => 
@@ -72,7 +78,7 @@ function* fetchPlot(action){
         console.log(selectedPlants);
 
         yield put({ type: 'SET_PLOT', payload: plot });
-        yield put({ type: 'SET_DATE', payload: date });
+        yield put({ type: 'SET_DATE', payload: {month, year, display} });
         yield put({ type: 'SET_PLOT_ID', payload: plotId });
         yield put({ type: 'SET_SELECTED_PLANTS', payload: selectedPlants });
     }               

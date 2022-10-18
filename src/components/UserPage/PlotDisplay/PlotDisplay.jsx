@@ -14,7 +14,7 @@ import FindMonth from './FindMonth';
 function PlotDisplay(){
   const plot = useSelector(store => store.garden.plot);
   const plotId = useSelector(store => store.garden.plotID);
-  const month = useSelector(store => store.garden.month);
+  const month = useSelector(store => store.garden.date.display);
   const dispatch = useDispatch();
   const history = useHistory();
   const sendToNext = () => {
@@ -50,7 +50,7 @@ function PlotDisplay(){
 
     return(
         <div className="user_plot_display">   
-          {month === 'Month' ?      /* if there isn't a plot to display */
+          {!plotId ?      /* if there isn't a plot to display */
                 <>  
                 <div className="user_header">
                     <h3 className="user_title">Add Plot</h3> 
@@ -69,7 +69,7 @@ function PlotDisplay(){
               :
                 <>
                   <div className="user_header">
-                    <h3 className="user_title">Month.</h3> 
+                    <h3 className="user_title">{month}</h3> 
                     <div className="user_header_buttons">
                       <IconButton onClick={() => history.push('/editplot')}><EditIcon/></IconButton>
                       <IconButton onClick={deletePlot}><ClearIcon/></IconButton>

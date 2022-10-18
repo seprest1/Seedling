@@ -5,11 +5,12 @@ import moment from 'moment';
 function MonthHeader(){
     const dispatch = useDispatch();
 
+    const monthDisplay = useSelector(store => store.garden.date.display);
     const [showMonth, setShowMonth] = useState(true);
     const [month, setMonth] = useState(0);
     const [year, setYear] = useState(0);
     const setMonthAndYear = () => {
-        dispatch({ type: 'SET_DATE', payload: {month: Number(month), year: Number(year)} });
+        dispatch({ type: 'SET_DATE', payload: {month: Number(month), year: Number(year), display: moment().month(month).format('MMMM')} });
         setShowMonth(!showMonth)
       }
   
@@ -17,7 +18,7 @@ function MonthHeader(){
         <>
         {showMonth === true ?    //conditionally render header, when clicking edit-mode
             <div className="left_header">
-                <h3 className="left_title">Month.</h3> 
+                <h3 className="left_title">{monthDisplay}</h3> 
                 <button className="selected_button month_button edit" onClick={() => setShowMonth(!showMonth)}>✎</button>
             </div>
                 : 
