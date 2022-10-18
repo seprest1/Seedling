@@ -40,9 +40,9 @@ router.post('/add_plot', rejectUnauthenticated, async (req, res) => {
     const plot = req.body.plot;
     await Promise.all(plot.map(div => {
       const divQueryText = `
-          INSERT INTO div (plot_id, plant_id, location, shade, name, subvariety, color)
-            VALUES ($1, $2, $3, $4, $5, $6, $7);`;
-      const divQueryValues = [plotId, div.plant_id, div.location, div.shade, div.name, div.subvariety, div.color];
+          INSERT INTO div (plot_id, plant_id, location, shade, name, subvariety, color, icon)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`;
+      const divQueryValues = [plotId, div.plant_id, div.location, div.shade, div.name, div.subvariety, div.color, div.icon];
       return connection.query(divQueryText, divQueryValues);
     }));
 
@@ -93,9 +93,9 @@ router.put('/:id', rejectUnauthenticated, async (req, res) => {
     await Promise.all(plot.map(div => {
       const queryText = 
         `UPDATE div 
-          SET plant_id = $1, name = $2, subvariety = $3, color= $4
-            WHERE (plot_id = $5 AND location = $6);`;
-      const queryValues = [div.plant_id, div.name, div.subvariety, div.color, plot_id, div.location];
+          SET plant_id = $1, name = $2, subvariety = $3, color = $4, icon = $5
+            WHERE (plot_id = $6 AND location = $7);`;
+      const queryValues = [div.plant_id, div.name, div.subvariety, div.color, div.icon, plot_id, div.location];
       return connection.query(queryText, queryValues);
     }));
 

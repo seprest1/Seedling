@@ -12,7 +12,7 @@ const plants = (state = [], action) => {
 const selectedPlants = (state = [], action) => {
     switch(action.type){
         case 'ADD_PLANT':
-            return [{id: action.payload.id, name: action.payload.name, shade: action.payload.shade, color: action.payload.color, subvariety: null}, ...state];
+            return [{id: action.payload.id, name: action.payload.name, shade: action.payload.shade, color: action.payload.color, icon: action.payload.icon, subvariety: null}, ...state];
         case 'REMOVE_PLANT':
             return state.filter((plant, i) => i !== action.payload);
         case 'SET_SUBVARIETY':
@@ -47,10 +47,11 @@ const initialPlot = [...Array(48)].map((div, i) =>
             name: null, 
             subvariety: null, 
             shade: null,  
-            color: null     }));
+            color: null,
+            icon: null     }));
 const plot = (state = initialPlot, action) => {
     switch(action.type) {
-        case 'SET_SHADE':
+        case 'SET_DIV_SHADE':
             const shadedDiv = action.payload;          //maps through plot and changes only shade value
             return state.map(oldDiv => 
                 oldDiv.location === shadedDiv.location ? 
@@ -59,7 +60,7 @@ const plot = (state = initialPlot, action) => {
         case 'SET_PLANT':     
             const plantDiv = action.payload;    //maps through plot and changes only plant ID & plant name
             return state.map(oldDiv => oldDiv.location === plantDiv.location ? 
-                    {...oldDiv, plant_id: plantDiv.plant_id, name: plantDiv.name, subvariety: plantDiv.subvariety, color: plantDiv.color} 
+                    {...oldDiv, plant_id: plantDiv.plant_id, name: plantDiv.name, subvariety: plantDiv.subvariety, color: plantDiv.color, icon: plantDiv.icon} 
                     : oldDiv);
         case 'SET_PLOT':
             return action.payload;  
@@ -70,7 +71,7 @@ const plot = (state = initialPlot, action) => {
     };
 };
 
-const sunKey = (state = '', action) => {
+const pickedShade = (state = '', action) => {
     switch (action.type) {
         case 'SET_SHADE':
             return action.payload;
@@ -79,7 +80,7 @@ const sunKey = (state = '', action) => {
     };
 };
 
-const plantKey = (state = {}, action) => {
+const pickedPlant = (state = {}, action) => {
     switch (action.type) {
         case 'SET_PLANT_TYPE':
             return action.payload;
@@ -101,8 +102,8 @@ const plotID = (state = 0, action) => {
 
 const garden = combineReducers({
     plants,
-    sunKey,
-    plantKey,
+    pickedShade,
+    pickedPlant,
     plot,
     month,
     selectedPlants,

@@ -102,7 +102,7 @@ function PlotDisplay(){
                   <div className="display_bed">
                   {plot.map((div, i) => (  /* creates 24 divs, index = 0 */
                         <div key={i} className={`display_div ${changeBackground(div)}`}> 
-                          <div className={`display_icon ${plantColor(div)}`}></div>
+                          <div className={`display_icon ${div.color}`}><img src={`${div.icon}`} className="display_vector"/></div>
                         </div>))} 
                   </div>
                   <div className="change_plot_buttons">

@@ -7,7 +7,7 @@ function PlantBed(){
   }, []);
     
     const plot = useSelector(store => store.garden.plot);
-    const plant = useSelector(store => store.garden.plantKey);
+    const plant = useSelector(store => store.garden.pickedPlant);
     const month = useSelector(store => store.garden.month);
 
     //set and send plant values for plot reducer
@@ -19,7 +19,8 @@ function PlantBed(){
             plant_id: plant.id, 
             name: plant.name, 
             color: plant.color,
-            subvariety: plant.subvariety};
+            subvariety: plant.subvariety,
+            icon: plant.icon};
 
         dispatch({
           type: 'SET_PLANT',
@@ -43,30 +44,6 @@ function PlantBed(){
       }
     }
 
-    //change colors of icons depending on plant (will have to find better way of accomplishing this)
-    const plantColor = (div) => { 
-      switch(div.plant_id){               
-          case 6:
-          case 8:
-          case 9:
-          case 10:
-              return 'light_green';
-          case 2:
-          case 3:
-              return 'purple';
-          case 4:
-          case 5:
-              return 'orange';
-          case 1:
-          case 7:
-              return 'red';
-          case 11:
-              return 'white';
-          default:
-              return null;
-      }
-  }
-
   const vector_image = "Images/Plant_Icons/beet.png";
 
     return(
@@ -79,8 +56,8 @@ function PlantBed(){
                 <div key={i}   
                     className={`plot_div ${changeBackground(div)}`}                    
                     onMouseOver={() => setDiv(div)}> 
-                        {div.name && <div className={`plant_icon ${plantColor(div)}`}>
-                          <img src={vector_image} className="plant_vector"/>
+                        {div.name && <div className={`plant_icon ${div.color}`}>
+                            <img src={`${div.icon}`} className="display_vector"/>
                           </div>}
                 </div>))} 
         </div>
