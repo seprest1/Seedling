@@ -103,13 +103,17 @@
     font-size: x-large;
     margin: 0;
     background-color:rgb(219, 211, 211, 0.30);
-    width: 2rem;
-    height: 2rem;
+    width: 3rem;
+    height: 3rem;
     border: 0.01rem solid rgb(139, 137, 137, 0.4);
     border-radius: 0.5rem;
     font-family: 'Inter Tight', sans-serif;
     opacity: 80%;
   } 
+
+  .display_button:hover{
+    background-color:rgba(219, 211, 211, 0.95);
+  }
 
   .display_icon{
     height: 2rem;
@@ -153,5 +157,9 @@
 
   .display_bed_empty{
     height: 70%;
+    background-color: rgba(245, 245, 245, 0.73);
+    border: 2px solid #dc343a9a;
+    border-radius: 0.5rem;
     margin: 1.5rem 2rem;
+    padding: 2rem;
   }

@@ -1,45 +1,62 @@
 import { useEffect, useState } from 'react';
 import moment from 'moment';
+import { useSelector, useDispatch } from 'react-redux';
 
 function FindMonth(){
-   
+    const dispatch = useDispatch();
+    const user_id = useSelector(store => store.user.id);
     useEffect(() => {
-        setDisplayMonth(moment().format('MMMM'));
+        dispatch({ type: "GET_USER_PLOTS", payload: user_id });
       }, []);
     
-    const [currentMonth, setCurrentMonth] = useState(moment());
-    const [displayMonth, setDisplayMonth] = useState();
+    const currentYear = moment().format('YYYY');
+    const currentMonth = moment().format('MM');
+    const userPlots = useSelector(store => store.garden.userPlots);
+    console.log(currentYear, currentMonth, userPlots);
 
-    const subtractCounter = () => {
-        setCurrentMonth(currentMonth.subtract(1, "month"));
-        setDisplayMonth(currentMonth.format('MMMM'));
-        console.log(currentMonth.format('YYYY'));
-        checkMonth();
-    }
+    // const findInitialPlot = () => {
+    //     for (let i = (userPlots.length - 1); i >= 0; i--){
+    //         const plot = userPlots[i];
+    //         if (plot.year === currentYear && plot.month === currentMonth){
+    //             console.log(plot);
+    //         }
+    //         else if (plot.year === currentYear && plot.month < currentMonth){
+    //             console.log(plot);
+    //         }
+    //     }
+    // };
+    
+   
 
-    const addCounter = () => {
-        setDisplayMonth(currentMonth.add(1, "month").format('MMMM'));
-        console.log(currentMonth.format('YYYY'));
-        checkMonth();
-    }
+    // const subtractCounter = () => {
+    //     setMonth(month.subtract(1, "month"));
+    //     setDisplayMonth(month.format('MMMM'));
+    //     console.log(month.format('YYYY'));
+    //     checkMonth();
+    // }
 
+    // const addCounter = () => {
+    //     setDisplayMonth(month.add(1, "month").format('MMMM'));
+    //     console.log(month.format('YYYY'));
+    //     checkMonth();
+    // }
 
-    const monthsFromDB = [{month: 1, year: 2020}, {month: 4, year: 2021}, {month: 5, year: 2021}, {month: 7, year: 2022}, {month: 9, year: 2022}]
    //returns current month, and if no match, the latest month.
-   const checkMonth = () => {
-    for (let plot of monthsFromDB){ 
-        console.log(currentMonth.format('YYYY'));
-        if (plot.year === currentMonth.format('YYYY')){
-            console.log(plot.year);
-        }
-    }};   
+//    const checkMonth = () => {
+    // for (let plot of monthsFromDB){ 
+    //     console.log(currentMonth.format('YYYY'));
+    //     if (plot.year === currentMonth.format('YYYY')){
+    //         console.log(plot.year);
+    //     }
+    // }};   
 
 
     return(
         <>
-          <h1>{displayMonth}</h1>
+          {/* <h1>{displayMonth}</h1>
           <button onClick={subtractCounter}>-</button>
-          <button onClick={addCounter}>+</button>
+          <button onClick={addCounter}>+</button> */}
+          {/* <button onClick={findInitialPlot}>hi</button> */}
         </>
     )
 

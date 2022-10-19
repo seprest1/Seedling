@@ -8,6 +8,7 @@ function* gardenSaga() {
     yield takeEvery('GET_PLOT', fetchPlot);
     yield takeEvery('DELETE_PLOT', deletePlot);
     yield takeEvery('EDIT_PLOT', ammendPlot);
+    yield takeEvery('GET_USER_PLOTS', fetchUserPlots);
   }
 
 //fetch list of available plants from DB
@@ -42,7 +43,6 @@ function* fetchPlot(action){
         const userId = action.payload;
         const userPlot = yield axios.get(`/garden/${userId}/plot/`);
         const response = userPlot.data;
-        console.log('The response from fetchPlot:', response);
 
         //Pulls only needed values from DB to set plot
         const plot = response.map(obj => ({ 
@@ -59,7 +59,6 @@ function* fetchPlot(action){
         const month = response[0].month;
         const year = response[0].year;
         const display = moment().month(month).format('MMMM');
-        console.log(month, year, display);
 
         //removes duplicates, in order to set plant list in edit plot
         const removedDuplicates = response.filter((oldDiv, index, response) => 
@@ -74,8 +73,6 @@ function* fetchPlot(action){
               color: div.color, 
               subvariety: div.subvariety,
               icon: div.icon }));
-
-        console.log(selectedPlants);
 
         yield put({ type: 'SET_PLOT', payload: plot });
         yield put({ type: 'SET_DATE', payload: {month, year, display} });
@@ -114,8 +111,20 @@ function* deletePlot(action){
     }
     catch(error){
         console.log('deletePlot failed:', error);
+    };
+};
+
+//get ids and dates of all user's plots
+function* fetchUserPlots(action){
+    try{
+        const userId = action.payload;
+        const userPlots = yield axios.get(`/garden/${userId}/plots`);
+        yield put({ type: `SET_USER_PLOTS`, payload: userPlots.data});
     }
-}
+    catch(error){
+        console.log('fetchUserPlots failed:', error);
+    };
+};
 
 
 export default gardenSaga;

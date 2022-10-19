@@ -104,6 +104,15 @@ const plotID = (state = 0, action) => {
     };
 }
 
+const userPlots = (state = [], action) => {
+    switch(action.type) {
+        case 'SET_USER_PLOTS':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 
 
 const garden = combineReducers({
@@ -114,6 +123,7 @@ const garden = combineReducers({
     date,
     selectedPlants,
     plotID,
+    userPlots,
   });
 
 export default garden;

@@ -8,6 +8,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import ClearIcon from '@mui/icons-material/Clear';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Tooltip from '@mui/material/Tooltip';
 //components
 import FindMonth from './FindMonth';
 
@@ -53,13 +54,15 @@ function PlotDisplay(){
           {!plotId ?      /* if there isn't a plot to display */
                 <>  
                 <div className="user_header">
-                    <h3 className="user_title">Add Plot</h3> 
-                    <button onClick={sendToNext} className="display_button">+</button>
+                    <h3 className="user_title">Your Plots:</h3> 
+                    <Tooltip title="Add Plot" placement="bottom-end">
+                      <button onClick={sendToNext} className="display_button add_plot_button">+</button>
+                    </Tooltip>
                 </div>
                 <div className="display_bed_empty">
-                    <p className="new_plot_info">
-                      Each section in your new garden plot will symbolize a 1ft x 1ft section of your garden!
-                    </p>
+                    <p className="new_plot_info">Each section in your new garden plot will symbolize a 1ft x 1ft section of your garden!</p>
+                      <br/>
+                    <p className="new_plot_info">Visit our design studio to select sunlight values for your garden plot, select plants, set subvarities and start planning out your dream garden!</p>
                 </div>
                 <div className="change_plot_buttons">
                     <button className="display_button">←</button>

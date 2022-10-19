@@ -4,6 +4,8 @@ const pool = require('../modules/pool');
 const axios = require('axios');
 const {rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
+const moment = require('moment');
+
 
 //gets plants from DB
 router.get('/plants', rejectUnauthenticated, (req, res) => {
@@ -23,7 +25,7 @@ router.get('/plants', rejectUnauthenticated, (req, res) => {
 //posts plot to DB
 router.post('/add_plot', rejectUnauthenticated, async (req, res) => {
   const connection = await pool.connect();
-  
+
   try{ 
     const month = req.body.date.month;
     const year = req.body.date.year;
@@ -65,12 +67,16 @@ router.post('/add_plot', rejectUnauthenticated, async (req, res) => {
 router.get('/:id/plot', rejectUnauthenticated, (req, res) => {
   const userId = req.params.id;
 
+  const currentMonth = moment().format('MM');
+  const currentYear = moment().format('YYYY');
+ 
+ 
   /////////////////////////HARDCODED FOR THE TIME BEING///////////////////////////
   const queryText = `
     SELECT div.*, plot.month, plot.year FROM div
       JOIN plot on plot.id = div.plot_id
-      WHERE plot.month = 5 
-        AND plot.year = 2024
+      WHERE plot.month = 3 
+        AND plot.year = 2022
         AND plot.user_id = $1;`;
 
   pool.query(queryText, [userId])
@@ -86,7 +92,7 @@ router.get('/:id/plot', rejectUnauthenticated, (req, res) => {
 //sends edited plot to DB
 router.put('/:id', rejectUnauthenticated, async (req, res) => {
   const connection = await pool.connect();
- 
+
   try{
     await connection.query('BEGIN')
 
@@ -131,6 +137,27 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
         console.log('ERROR in DELETE plot:', error);
         res.sendStatus(500);
       });
+});
+
+//gets user plot ids and dates
+router.get('/:id/plots', rejectUnauthenticated, async (req, res) => {
+  const connection = await pool.connect();
+
+  try{  
+    await connection.query('BEGIN')
+    const queryText = `
+      SELECT id, month, year FROM plot
+        WHERE plot.user_id = $1
+        ORDER BY year, month;`;
+  
+    const userId = req.params.id;
+    const response = await connection.query(queryText, [userId]);
+    res.send(response.rows);
+  }
+  catch(error){
+    console.log('ERROR in GET plotSSSS:', error);
+    res.sendStatus(500);
+  }
 });
 
 module.exports = router;
