@@ -45,41 +45,43 @@ function* fetchPlot(action){
         console.log('Plot_id in saga function:', plot_id);
         const userPlot = yield axios.get(`/garden/plot/${plot_id}`);
         const response = userPlot.data;
-        console.log(response);
+        console.log('Response from fetchPlot is:', response);
 
-        // //Pulls only needed values from DB to set plot
-        // const plot = response.map(obj => ({ 
-        //     plant_id: obj.plant_id, 
-        //     location: obj.location, 
-        //     name: obj.name, 
-        //     subvariety: obj.subvariety, 
-        //     shade: obj.shade,
-        //     color: obj.color,
-        //     icon: obj.icon }));
+        //Pulls only needed values from DB to set plot
+        const plot = response.map(obj => ({ 
+            plant_id: obj.plant_id, 
+            location: obj.location, 
+            name: obj.name, 
+            subvariety: obj.subvariety, 
+            shade: obj.shade,
+            color: obj.color,
+            icon: obj.icon }));
 
         //sets the date with accurate display
-        // const month = response[0].month;
-        // const year = response[0].year;
-        // const display = moment().month(month).format('MMMM');
+        const month = response[0].month;
+        const year = response[0].year;
+        const display = moment().month(month).format('MMMM');
 
-        // //removes duplicates, in order to set plant list in edit plot
-        // const removedDuplicates = response.filter((oldDiv, index, response) => 
-        //     response.findIndex(
-        //     (newDiv) =>  {return (newDiv.name === oldDiv.name && newDiv.subvariety === oldDiv.subvariety)}) === index);
+        console.log(month, year, display);
 
-        // //what will be the plant list in edit plot
-        // const selectedPlants = removedDuplicates.map(div => 
-        //     ({id: div.plant_id, 
-        //       name: div.name, 
-        //       shade: div.shade, 
-        //       color: div.color, 
-        //       subvariety: div.subvariety,
-        //       icon: div.icon }));
+        //removes duplicates, in order to set plant list in edit plot
+        const removedDuplicates = response.filter((oldDiv, index, response) => 
+            response.findIndex(
+            (newDiv) =>  {return (newDiv.name === oldDiv.name && newDiv.subvariety === oldDiv.subvariety)}) === index);
 
-        // yield put({ type: 'SET_PLOT', payload: plot });
-        // yield put({ type: 'SET_DATE', payload: {month, year, display} });       //MAYBE REDUNDENT? 
-        // yield put({ type: 'SET_PLOT_ID', payload: plot_id });
-        // yield put({ type: 'SET_SELECTED_PLANTS', payload: selectedPlants });
+        //what will be the plant list in edit plot
+        const selectedPlants = removedDuplicates.map(div => 
+            ({id: div.plant_id, 
+              name: div.name, 
+              shade: div.shade, 
+              color: div.color, 
+              subvariety: div.subvariety,
+              icon: div.icon }));
+
+        yield put({ type: 'SET_PLOT', payload: plot });
+        yield put({ type: 'SET_DATE', payload: {month, year, display} });       //MAYBE REDUNDENT? 
+        yield put({ type: 'SET_PLOT_ID', payload: plot_id });
+        yield put({ type: 'SET_SELECTED_PLANTS', payload: selectedPlants });
     }               
     catch(error){
         console.log('fetchPlot failed:', error);

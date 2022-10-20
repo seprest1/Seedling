@@ -67,7 +67,7 @@ router.post('/add_plot', rejectUnauthenticated, async (req, res) => {
 router.get('/plot/:plot_id', rejectUnauthenticated, (req, res) => {
     plotId =req.params.plot_id;
     console.log(plotId);
-    
+
   const queryText = `
     SELECT div.*, plot.month, plot.year FROM div
       JOIN plot on plot.id = div.plot_id
@@ -76,7 +76,7 @@ router.get('/plot/:plot_id', rejectUnauthenticated, (req, res) => {
   pool.query(queryText, [plotId])
       .then(result => {
         console.log(result.rows);
-        // res.send(result.rows);
+        res.send(result.rows);
       })
       .catch(error => {
         console.log('ERROR in GET plot:', error);

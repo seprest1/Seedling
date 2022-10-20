@@ -34,6 +34,8 @@ const selectedPlants = (state = [], action) => {
 //date the user sets for their plot
 const date = (state = {}, action) => {
     switch(action.type){
+        case 'SET_DATE':
+            return action.payload;
         case 'SET_MONTH':
             return {...state, month: action.payload};
         case 'SET_YEAR':
