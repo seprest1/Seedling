@@ -13,9 +13,11 @@ function ToDo () {
     const [toDoInput, setToDoInput] = useState('');
 
     const dispatch = useDispatch();
+    const user = useSelector(store => store.user);
     const addItem = (e) => {
         e.preventDefault();
-        console.log(e.target.value);
+        console.log(toDoInput);
+        dispatch({ type: 'ADD_TASK', payload: {user: user.id, task: toDoInput} });
         setToDoInput('');
     }
 

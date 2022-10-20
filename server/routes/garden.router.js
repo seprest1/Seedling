@@ -4,7 +4,6 @@ const pool = require('../modules/pool');
 const axios = require('axios');
 const {rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
-const moment = require('moment');
 
 
 //gets plants from DB
@@ -66,7 +65,6 @@ router.post('/add_plot', rejectUnauthenticated, async (req, res) => {
 //gets plot from DB
 router.get('/plot/:plot_id', rejectUnauthenticated, (req, res) => {
     plotId =req.params.plot_id;
-    console.log(plotId);
 
   const queryText = `
     SELECT div.*, plot.month, plot.year FROM div
@@ -75,7 +73,6 @@ router.get('/plot/:plot_id', rejectUnauthenticated, (req, res) => {
 
   pool.query(queryText, [plotId])
       .then(result => {
-        console.log(result.rows);
         res.send(result.rows);
       })
       .catch(error => {
@@ -156,49 +153,3 @@ router.get('/:id/plots', rejectUnauthenticated, async (req, res) => {
 });
 
 module.exports = router;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/////////////////////routes to access "grow stuff" API//////////////////////////////
-//requests all plants (not specific subvarieties) from API
-// router.get('/api/plants', rejectUnauthenticated, async (req, res) => {
-//   try{
-//     const response = await axios.get(`http://growstuff.org/crops.json`);
-//     const all_plants = response.data;
-//     res.send(all_plants);
-//   }
-//   catch(error){
-//       console.log('ERROR in GET API location:', error);
-//       res.sendStatus(500);
-//   };
-// });
-
-// //sends search query to API for specific plant
-// router.get('/api/search?:plant', rejectUnauthenticated, async (req, res) => {
-//   try{
-//     const plant = req.query.plant;
-//     console.log(plant);
-//     const response = await axios.get(`http://growstuff.org/crops/${plant}.json`);
-//     const plant_info = response.data;
-//     console.log(plant_info);
-//     res.send(plant_info);
-//   }
-//   catch(error){
-//       console.log('ERROR in search plant API:', error);
-//       res.sendStatus(500);
-//   };
-// });

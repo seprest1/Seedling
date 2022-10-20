@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeEvery } from 'redux-saga/effects';
+import { actionChannel, put, takeEvery } from 'redux-saga/effects';
 
 function* tasksSaga() {
     yield takeEvery('FETCH_TASKS', fetchTasks);
@@ -17,9 +17,14 @@ function* tasksSaga() {
     };
   };
 
-  function* addTask(){
+  function* addTask(action){
     try{
-
+      console.log('Task:', action.payload);
+      yield axios({
+        method: 'POST',
+        url: '/tasks', 
+        data: { user: action.payload.user, task: action.payload.task }
+      });
     }
     catch(error){
 
