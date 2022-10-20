@@ -1,18 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import moment from 'moment';
 
 function PlantBed(){
   useEffect(() => {
-    dispatch({type: 'FETCH_PLOT'});
   }, []);
     
     const plot = useSelector(store => store.garden.plot);
     const plant = useSelector(store => store.garden.pickedPlant);
-    const month = useSelector(store => store.garden.month);
+    const month = useSelector(store => store.garden.date.display);
 
     //set and send plant values for plot reducer
     const dispatch = useDispatch();
     const setDiv = (div) => {
+      console.log(div);
       if (div.shade === plant.shade){    //prevents user from planting in the wrong shade zone
         const divToSend = {
             location: div.location, 

@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import moment from 'moment';
 //components
 import PlantItem from './PlantItem';
 
 function AvailablePlants(){
     const dispatch = useDispatch();
-    const month = useSelector(store => store.garden.month);
     const plants = useSelector(store => store.garden.plants);
+    const month = useSelector(store => store.garden.date.display);
     useEffect(() => {
         dispatch({type: 'FETCH_PLANTS'});
     }, []);

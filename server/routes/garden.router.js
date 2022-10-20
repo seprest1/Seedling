@@ -4,6 +4,8 @@ const pool = require('../modules/pool');
 const axios = require('axios');
 const {rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
+const moment = require('moment');
+
 
 //gets plants from DB
 router.get('/plants', rejectUnauthenticated, (req, res) => {
@@ -23,18 +25,19 @@ router.get('/plants', rejectUnauthenticated, (req, res) => {
 //posts plot to DB
 router.post('/add_plot', rejectUnauthenticated, async (req, res) => {
   const connection = await pool.connect();
-  
+
   try{ 
-    const month = req.body.month;
+    const month = req.body.date.month;
+    const year = req.body.date.year;
     const user = req.body.user;
 
     await connection.query('BEGIN')
       const plotQueryText = `
-          INSERT INTO plot (user_id, month)
-            VALUES ($1, $2)
+          INSERT INTO plot (user_id, month, year)
+            VALUES ($1, $2, $3)
               RETURNING id;`;
 
-    const insertedPlotResults = await connection.query(plotQueryText, [user, month]);
+    const insertedPlotResults = await connection.query(plotQueryText, [user, month, year]);
     
     
     const plotId = insertedPlotResults.rows[0].id; 
@@ -61,18 +64,18 @@ router.post('/add_plot', rejectUnauthenticated, async (req, res) => {
 });
 
 //gets plot from DB
-router.get('/:id/plot', rejectUnauthenticated, (req, res) => {
-  const userId = req.params.id;
+router.get('/plot/:plot_id', rejectUnauthenticated, (req, res) => {
+    plotId =req.params.plot_id;
+    console.log(plotId);
 
-  /////////////////////////HARDCODED FOR THE TIME BEING///////////////////////////
   const queryText = `
-    SELECT div.*, plot.month FROM div
+    SELECT div.*, plot.month, plot.year FROM div
       JOIN plot on plot.id = div.plot_id
-      WHERE plot.month = 'March'
-        AND plot.user_id = $1;`;
+        WHERE plot.id = $1;`;
 
-  pool.query(queryText, [userId])
+  pool.query(queryText, [plotId])
       .then(result => {
+        console.log(result.rows);
         res.send(result.rows);
       })
       .catch(error => {
@@ -84,7 +87,7 @@ router.get('/:id/plot', rejectUnauthenticated, (req, res) => {
 //sends edited plot to DB
 router.put('/:id', rejectUnauthenticated, async (req, res) => {
   const connection = await pool.connect();
- 
+
   try{
     await connection.query('BEGIN')
 
@@ -129,6 +132,27 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
         console.log('ERROR in DELETE plot:', error);
         res.sendStatus(500);
       });
+});
+
+//gets user plot ids and dates
+router.get('/:id/plots', rejectUnauthenticated, async (req, res) => {
+  const connection = await pool.connect();
+
+  try{  
+    await connection.query('BEGIN')
+    const queryText = `
+      SELECT id, month, year FROM plot
+        WHERE plot.user_id = $1
+        ORDER BY year DESC, month DESC `;
+  
+    const userId = req.params.id;
+    const response = await connection.query(queryText, [userId]);
+    res.send(response.rows);
+  }
+  catch(error){
+    console.log('ERROR in GET plotSSSS:', error);
+    res.sendStatus(500);
+  }
 });
 
 module.exports = router;

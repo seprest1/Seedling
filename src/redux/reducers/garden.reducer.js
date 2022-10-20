@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+//initial plants user can choose from
 const plants = (state = [], action) => {
     switch (action.type) {
         case 'SET_PLANTS':
@@ -9,6 +10,7 @@ const plants = (state = [], action) => {
     };
 };
 
+//array of plants that the user picks for their plot
 const selectedPlants = (state = [], action) => {
     switch(action.type){
         case 'ADD_PLANT':
@@ -29,12 +31,19 @@ const selectedPlants = (state = [], action) => {
     };
 };
 
-const month = (state = 'Month', action) => {
+//date the user sets for their plot
+const date = (state = {}, action) => {
     switch(action.type){
-        case 'SET_MONTH':
+        case 'SET_DATE':
             return action.payload;
+        case 'SET_MONTH':
+            return {...state, month: action.payload};
+        case 'SET_YEAR':
+            return {...state, year: action.payload};
+        case 'SET_DISPLAY':
+            return {...state, display: action.payload};
         case 'CLEAR_EVERYTHING':
-            return 'Month';
+            return {};
         default:
             return state;
     };
@@ -49,6 +58,7 @@ const initialPlot = [...Array(48)].map((div, i) =>
             shade: null,  
             color: null,
             icon: null     }));
+//data for each div in the plot
 const plot = (state = initialPlot, action) => {
     switch(action.type) {
         case 'SET_DIV_SHADE':
@@ -100,6 +110,15 @@ const plotID = (state = 0, action) => {
     };
 }
 
+const userPlots = (state = [], action) => {
+    switch(action.type) {
+        case 'SET_USER_PLOTS':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 
 
 const garden = combineReducers({
@@ -107,9 +126,10 @@ const garden = combineReducers({
     pickedShade,
     pickedPlant,
     plot,
-    month,
+    date,
     selectedPlants,
     plotID,
+    userPlots,
   });
 
 export default garden;

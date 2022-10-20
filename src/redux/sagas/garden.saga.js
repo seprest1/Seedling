@@ -1,5 +1,6 @@
 import { put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
+import moment from 'moment';
 
 function* gardenSaga() {
     yield takeEvery('FETCH_PLANTS', fetchPlants);
@@ -7,6 +8,7 @@ function* gardenSaga() {
     yield takeEvery('GET_PLOT', fetchPlot);
     yield takeEvery('DELETE_PLOT', deletePlot);
     yield takeEvery('EDIT_PLOT', ammendPlot);
+    yield takeEvery('GET_USER_PLOTS', fetchUserPlots);
   }
 
 //fetch list of available plants from DB
@@ -38,10 +40,12 @@ function* addPlot(action){
 //fetch user's plot from DB
 function* fetchPlot(action){
     try{
-        const userId = action.payload;
-        const userPlot = yield axios.get(`/garden/${userId}/plot/`);
+        const plot_id = action.payload.plot_id;
+
+        console.log('Plot_id in saga function:', plot_id);
+        const userPlot = yield axios.get(`/garden/plot/${plot_id}`);
         const response = userPlot.data;
-        console.log('The response from fetchPlot:', response);
+        console.log('Response from fetchPlot is:', response);
 
         //Pulls only needed values from DB to set plot
         const plot = response.map(obj => ({ 
@@ -52,12 +56,20 @@ function* fetchPlot(action){
             shade: obj.shade,
             color: obj.color,
             icon: obj.icon }));
-        const plotId = response[0].plot_id; 
 
+        //sets the date with accurate display
+        const month = response[0].month;
+        const year = response[0].year;
+        const display = moment().month(month-1).format('MMMM');
+
+        console.log(month, year, display);
+
+        //removes duplicates, in order to set plant list in edit plot
         const removedDuplicates = response.filter((oldDiv, index, response) => 
             response.findIndex(
             (newDiv) =>  {return (newDiv.name === oldDiv.name && newDiv.subvariety === oldDiv.subvariety)}) === index);
 
+        //what will be the plant list in edit plot
         const selectedPlants = removedDuplicates.map(div => 
             ({id: div.plant_id, 
               name: div.name, 
@@ -66,11 +78,9 @@ function* fetchPlot(action){
               subvariety: div.subvariety,
               icon: div.icon }));
 
-        console.log(selectedPlants);
-
         yield put({ type: 'SET_PLOT', payload: plot });
-        yield put({ type: 'SET_MONTH', payload: response[0].month });
-        yield put({ type: 'SET_PLOT_ID', payload: plotId });
+        yield put({ type: 'SET_DATE', payload: {month, year, display} });       //MAYBE REDUNDENT? 
+        yield put({ type: 'SET_PLOT_ID', payload: plot_id });
         yield put({ type: 'SET_SELECTED_PLANTS', payload: selectedPlants });
     }               
     catch(error){
@@ -105,11 +115,59 @@ function* deletePlot(action){
     }
     catch(error){
         console.log('deletePlot failed:', error);
+    };
+};
+
+//get ids and dates of all user's plots
+function* fetchUserPlots(action){
+    try{
+        const userId = action.payload;
+        const response = yield axios.get(`/garden/${userId}/plots`);
+        const userPlots = response.data;
+        yield put({ type: `SET_USER_PLOTS`, payload: userPlots}); 
+        console.log(userPlots);
+     
+        const currentYear = Number(moment().format('YYYY'));
+        const currentMonth = Number(moment().format('MM')); 
+        console.log(currentYear, currentMonth);
+        const match = userPlots.find(plot => plot.year === currentYear && plot.month === currentMonth);
+        const plotBefore = userPlots.find(plot => plot.year === currentYear && plot.month < currentMonth);
+        const plotAfter = userPlots.find(plot => plot.year === currentYear && plot.month > currentMonth);
+        console.log(userId, match, plotBefore, plotAfter);
+
+
+        // dispatch 'get plot' route for initial plot
+        if (match){
+            console.log('Match', match.id);
+            yield put({ type: 'GET_PLOT', payload: { plot_id: match.id } }); //if there's a plot from current month
+        } 
+        else if (plotAfter){
+            console.log('Getting future plot', plotAfter.id);
+            yield put({ type: 'GET_PLOT', payload: { plot_id: plotAfter.id } }); //if there's a future plot
+        }
+        else{
+            console.log('Getting past plot', plotBefore.id);
+            yield put({ type: 'GET_PLOT', payload: { plot_id: plotBefore.id } }); //get the closest previous month's plot
+        }
+
     }
-}
+    catch(error){
+        console.log('fetchUserPlots failed:', error);
+    };
+};
 
 
 export default gardenSaga;
+
+
+
+
+
+
+
+
+
+
 
 
 
