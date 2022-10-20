@@ -9,7 +9,7 @@ function MonthHeader(){
     const displayMonth = useSelector(store => store.garden.date.display);
  
     const setDisplay = () => {
-        dispatch ({ type: 'SET_DISPLAY', payload: moment().month(month).format('MMMM') })
+        dispatch ({ type: 'SET_DISPLAY', payload: moment().month(month-1).format('MMMM') })
         setShowMonth(!showMonth)
     }
 
@@ -25,20 +25,19 @@ function MonthHeader(){
                 <select 
                     required
                     className="month_select"
-                    defaultValue={0}
                     onChange={(e) => dispatch({ type: 'SET_MONTH', payload: Number(e.target.value) })}>  {/* starts at 0, because in moment.js i=0 */}
-                    <option value={0} className="month_option">January</option> 
-                    <option value={1} className="month_option">February</option>
-                    <option value={2} className="month_option">March</option>
-                    <option value={3} className="month_option">April</option>
-                    <option value={4} className="month_option">May</option>
-                    <option value={5} className="month_option">June</option>
-                    <option value={6} className="month_option">July</option>
-                    <option value={7} className="month_option">August</option>
-                    <option value={8} className="month_option">September</option>
-                    <option value={9} className="month_option">October</option>
-                    <option value={10} className="month_option">November</option>
-                    <option value={11} className="month_option">December</option>
+                    <option value={1} className="month_option">January</option> 
+                    <option value={2} className="month_option">February</option>
+                    <option value={3} className="month_option">March</option>
+                    <option value={4} className="month_option">April</option>
+                    <option value={5} className="month_option">May</option>
+                    <option value={6} className="month_option">June</option>
+                    <option value={7} className="month_option">July</option>
+                    <option value={8} className="month_option">August</option>
+                    <option value={9} className="month_option">September</option>
+                    <option value={10} className="month_option">October</option>
+                    <option value={11} className="month_option">November</option>
+                    <option value={12} className="month_option">December</option>
                 </select>
                 <select 
                     required

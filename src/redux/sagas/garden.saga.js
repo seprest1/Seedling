@@ -60,7 +60,7 @@ function* fetchPlot(action){
         //sets the date with accurate display
         const month = response[0].month;
         const year = response[0].year;
-        const display = moment().month(month).format('MMMM');
+        const display = moment().month(month-1).format('MMMM');
 
         console.log(month, year, display);
 
@@ -125,11 +125,11 @@ function* fetchUserPlots(action){
         const response = yield axios.get(`/garden/${userId}/plots`);
         const userPlots = response.data;
         yield put({ type: `SET_USER_PLOTS`, payload: userPlots}); 
-        
         console.log(userPlots);
      
         const currentYear = Number(moment().format('YYYY'));
         const currentMonth = Number(moment().format('MM')); 
+        console.log(currentYear, currentMonth);
         const match = userPlots.find(plot => plot.year === currentYear && plot.month === currentMonth);
         const plotBefore = userPlots.find(plot => plot.year === currentYear && plot.month < currentMonth);
         const plotAfter = userPlots.find(plot => plot.year === currentYear && plot.month > currentMonth);

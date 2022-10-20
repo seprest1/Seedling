@@ -14,13 +14,30 @@ import Tooltip from '@mui/material/Tooltip';
 function PlotDisplay(){
   const plot = useSelector(store => store.garden.plot);
   const plotId = useSelector(store => store.garden.plotID);
-  const month = useSelector(store => store.garden.date.display);
+  const displayMonth = useSelector(store => store.garden.date.display);
   const dispatch = useDispatch();
   const history = useHistory();
   const sendToNext = () => {
     dispatch({ type: 'CLEAR_EVERYTHING' });
     history.push('/newplot/shade');
   }  
+
+  //toggles between plots when button is clicked
+  const userPlots = useSelector(store => store.garden.userPlots);
+  const changePlotDisplay = (value) => {
+    
+    const currentPlotIndex = userPlots.findIndex(plot => plot.id === plotId);
+    const newPlotIndex = currentPlotIndex + value;
+    const newPlot = userPlots[newPlotIndex];
+    const newPlotId = newPlot.id;
+    console.log('Current plot is:', userPlots[currentPlotIndex]);
+    console.log('Next plot is:', newPlot);
+
+    if (newPlotId){ //if there's no further plot, don't send request
+      dispatch({ type: 'CLEAR_EVERYTHING' });
+      dispatch({ type: 'GET_PLOT', payload: {plot_id: newPlotId} });
+      }
+  }
 
   const changeBackground = (div) => {
     switch(div.shade){
@@ -63,15 +80,11 @@ function PlotDisplay(){
                       <br/>
                     <p className="new_plot_info">Visit our design studio to select sunlight values for your garden plot, select plants, set subvarities and start planning out your dream garden!</p>
                 </div>
-                <div className="change_plot_buttons">
-                    <button className="display_button">←</button>
-                    <button className="display_button">→</button>
-                </div>
                 </>
               :
                 <>
                   <div className="user_header">
-                    <h3 className="user_title">{month}</h3> 
+                    <h3 className="user_title">{displayMonth}</h3> 
                     <div className="user_header_buttons">
                       <IconButton onClick={() => history.push('/editplot')}><EditIcon/></IconButton>
                       <IconButton onClick={deletePlot}><ClearIcon/></IconButton>
@@ -85,8 +98,8 @@ function PlotDisplay(){
                         </div>))} 
                   </div>
                   <div className="change_plot_buttons">
-                    <IconButton className="display_button"><ArrowBackIosIcon/></IconButton>
-                    <IconButton className="display_button"><ArrowForwardIosIcon/></IconButton>
+                    <IconButton className="display_button" onClick={() => changePlotDisplay(-1)}><ArrowBackIosIcon/></IconButton>
+                    <IconButton className="display_button" onClick={() => changePlotDisplay(1)}><ArrowForwardIosIcon/></IconButton>
                   </div>
                 </>}
         </div>
