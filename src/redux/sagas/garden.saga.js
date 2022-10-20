@@ -40,44 +40,46 @@ function* addPlot(action){
 //fetch user's plot from DB
 function* fetchPlot(action){
     try{
-        const userId = action.payload;
-        const userPlot = yield axios.get(`/garden/${userId}/plot/`);
-        const response = userPlot.data;
+        const plot_id = action.payload.plot_id;
 
-        //Pulls only needed values from DB to set plot
-        const plot = response.map(obj => ({ 
-            plant_id: obj.plant_id, 
-            location: obj.location, 
-            name: obj.name, 
-            subvariety: obj.subvariety, 
-            shade: obj.shade,
-            color: obj.color,
-            icon: obj.icon }));
-        const plotId = response[0].plot_id; 
+        console.log('Plot_id in saga function:', plot_id);
+        const userPlot = yield axios.get(`/garden/plot/${plot_id}`);
+        const response = userPlot.data;
+        console.log(response);
+
+        // //Pulls only needed values from DB to set plot
+        // const plot = response.map(obj => ({ 
+        //     plant_id: obj.plant_id, 
+        //     location: obj.location, 
+        //     name: obj.name, 
+        //     subvariety: obj.subvariety, 
+        //     shade: obj.shade,
+        //     color: obj.color,
+        //     icon: obj.icon }));
 
         //sets the date with accurate display
-        const month = response[0].month;
-        const year = response[0].year;
-        const display = moment().month(month).format('MMMM');
+        // const month = response[0].month;
+        // const year = response[0].year;
+        // const display = moment().month(month).format('MMMM');
 
-        //removes duplicates, in order to set plant list in edit plot
-        const removedDuplicates = response.filter((oldDiv, index, response) => 
-            response.findIndex(
-            (newDiv) =>  {return (newDiv.name === oldDiv.name && newDiv.subvariety === oldDiv.subvariety)}) === index);
+        // //removes duplicates, in order to set plant list in edit plot
+        // const removedDuplicates = response.filter((oldDiv, index, response) => 
+        //     response.findIndex(
+        //     (newDiv) =>  {return (newDiv.name === oldDiv.name && newDiv.subvariety === oldDiv.subvariety)}) === index);
 
-        //what will be the plant list in edit plot
-        const selectedPlants = removedDuplicates.map(div => 
-            ({id: div.plant_id, 
-              name: div.name, 
-              shade: div.shade, 
-              color: div.color, 
-              subvariety: div.subvariety,
-              icon: div.icon }));
+        // //what will be the plant list in edit plot
+        // const selectedPlants = removedDuplicates.map(div => 
+        //     ({id: div.plant_id, 
+        //       name: div.name, 
+        //       shade: div.shade, 
+        //       color: div.color, 
+        //       subvariety: div.subvariety,
+        //       icon: div.icon }));
 
-        yield put({ type: 'SET_PLOT', payload: plot });
-        yield put({ type: 'SET_DATE', payload: {month, year, display} });
-        yield put({ type: 'SET_PLOT_ID', payload: plotId });
-        yield put({ type: 'SET_SELECTED_PLANTS', payload: selectedPlants });
+        // yield put({ type: 'SET_PLOT', payload: plot });
+        // yield put({ type: 'SET_DATE', payload: {month, year, display} });       //MAYBE REDUNDENT? 
+        // yield put({ type: 'SET_PLOT_ID', payload: plot_id });
+        // yield put({ type: 'SET_SELECTED_PLANTS', payload: selectedPlants });
     }               
     catch(error){
         console.log('fetchPlot failed:', error);
@@ -118,8 +120,34 @@ function* deletePlot(action){
 function* fetchUserPlots(action){
     try{
         const userId = action.payload;
-        const userPlots = yield axios.get(`/garden/${userId}/plots`);
-        yield put({ type: `SET_USER_PLOTS`, payload: userPlots.data});
+        const response = yield axios.get(`/garden/${userId}/plots`);
+        const userPlots = response.data;
+        yield put({ type: `SET_USER_PLOTS`, payload: userPlots}); 
+        
+        console.log(userPlots);
+     
+        const currentYear = Number(moment().format('YYYY'));
+        const currentMonth = Number(moment().format('MM')); 
+        const match = userPlots.find(plot => plot.year === currentYear && plot.month === currentMonth);
+        const plotBefore = userPlots.find(plot => plot.year === currentYear && plot.month < currentMonth);
+        const plotAfter = userPlots.find(plot => plot.year === currentYear && plot.month > currentMonth);
+        console.log(userId, match, plotBefore, plotAfter);
+
+
+        // dispatch 'get plot' route for initial plot
+        if (match){
+            console.log('Match', match.id);
+            yield put({ type: 'GET_PLOT', payload: { plot_id: match.id } }); //if there's a plot from current month
+        } 
+        else if (plotAfter){
+            console.log('Getting future plot', plotAfter.id);
+            yield put({ type: 'GET_PLOT', payload: { plot_id: plotAfter.id } }); //if there's a future plot
+        }
+        else{
+            console.log('Getting past plot', plotBefore.id);
+            yield put({ type: 'GET_PLOT', payload: { plot_id: plotBefore.id } }); //get the closest previous month's plot
+        }
+
     }
     catch(error){
         console.log('fetchUserPlots failed:', error);
@@ -128,6 +156,16 @@ function* fetchUserPlots(action){
 
 
 export default gardenSaga;
+
+
+
+
+
+
+
+
+
+
 
 
 

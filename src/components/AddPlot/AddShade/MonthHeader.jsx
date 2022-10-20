@@ -4,21 +4,20 @@ import moment from 'moment';
 
 function MonthHeader(){
     const dispatch = useDispatch();
-
-    const monthDisplay = useSelector(store => store.garden.date.display);
-    const [showMonth, setShowMonth] = useState(true);
-    const [month, setMonth] = useState(0);
-    const [year, setYear] = useState(0);
-    const setMonthAndYear = () => {
-        dispatch({ type: 'SET_DATE', payload: {month: Number(month), year: Number(year), display: moment().month(month).format('MMMM')} });
+    const [showMonth, setShowMonth] = useState(true); //toggle for month input
+    const month = useSelector(store => store.garden.date.month);
+    const displayMonth = useSelector(store => store.garden.date.display);
+ 
+    const setDisplay = () => {
+        dispatch ({ type: 'SET_DISPLAY', payload: moment().month(month).format('MMMM') })
         setShowMonth(!showMonth)
-      }
-  
+    }
+
     return(
         <>
         {showMonth === true ?    //conditionally render header, when clicking edit-mode
             <div className="left_header">
-                <h3 className="left_title">{monthDisplay}</h3> 
+                <h3 className="left_title">{displayMonth ? displayMonth : 'Month'}</h3> 
                 <button className="selected_button month_button edit" onClick={() => setShowMonth(!showMonth)}>✎</button>
             </div>
                 : 
@@ -27,7 +26,7 @@ function MonthHeader(){
                     required
                     className="month_select"
                     defaultValue={0}
-                    onChange={(e) => setMonth(e.target.value)}>  {/* starts at 0, because in moment.js i=0 */}
+                    onChange={(e) => dispatch({ type: 'SET_MONTH', payload: Number(e.target.value) })}>  {/* starts at 0, because in moment.js i=0 */}
                     <option value={0} className="month_option">January</option> 
                     <option value={1} className="month_option">February</option>
                     <option value={2} className="month_option">March</option>
@@ -45,7 +44,7 @@ function MonthHeader(){
                     required
                     className="month_select"
                     defaultValue={2020}
-                    onChange={(e) => setYear(e.target.value)}>
+                    onChange={(e) => dispatch({ type: 'SET_YEAR', payload: Number(e.target.value) })}>
                     <option value={2020} className="month_option">2020</option>
                     <option value={2021} className="month_option">2021</option>
                     <option value={2022} className="month_option">2022</option> 
@@ -53,7 +52,7 @@ function MonthHeader(){
                     <option value={2024} className="month_option">2024</option>
                     <option value={2025} className="month_option">2025</option>
                 </select>    
-                <button className="icon_button month_button" onClick={setMonthAndYear}>✓</button>
+                <button className="icon_button month_button" onClick={() => setDisplay()}>✓</button>
             </div>}
         </>
     )

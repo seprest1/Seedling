@@ -37,7 +37,7 @@ function ToDo () {
                             onChange={(e) => setToDoInput(e.target.value)}>
                     </input>
                 </form>}
-            {list.map(item => <ToDoItem value={item}/>)}
+            {list.map((item, i) => <ToDoItem value={item} key={i}/>)}
             </List>
         </div>
     )

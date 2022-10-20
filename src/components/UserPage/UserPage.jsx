@@ -1,6 +1,7 @@
-import './UserPage.css';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import moment from 'moment';
+import './UserPage.css';
 //components
 import WelcomeDisplay from './WelcomeDisplay';
 import PlotDisplay from './PlotDisplay/PlotDisplay';
@@ -10,9 +11,10 @@ function UserPage() {
   const user = useSelector (store => store.user);
   useEffect(() => {
     dispatch({ type: 'CLEAR_EVERYTHING' });
-    dispatch({ type: 'GET_PLOT', payload: user.id});
+    dispatch({ type: "GET_USER_PLOTS", payload: user.id });
   }, []);
 
+  
   return (
     <div className="user_body">
       <div className="user_welcome_display">

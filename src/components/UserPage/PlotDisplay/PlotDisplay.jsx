@@ -10,7 +10,6 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Tooltip from '@mui/material/Tooltip';
 //components
-import FindMonth from './FindMonth';
 
 function PlotDisplay(){
   const plot = useSelector(store => store.garden.plot);

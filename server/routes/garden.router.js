@@ -64,24 +64,19 @@ router.post('/add_plot', rejectUnauthenticated, async (req, res) => {
 });
 
 //gets plot from DB
-router.get('/:id/plot', rejectUnauthenticated, (req, res) => {
-  const userId = req.params.id;
-
-  const currentMonth = moment().format('MM');
-  const currentYear = moment().format('YYYY');
- 
- 
-  /////////////////////////HARDCODED FOR THE TIME BEING///////////////////////////
+router.get('/plot/:plot_id', rejectUnauthenticated, (req, res) => {
+    plotId =req.params.plot_id;
+    console.log(plotId);
+    
   const queryText = `
     SELECT div.*, plot.month, plot.year FROM div
       JOIN plot on plot.id = div.plot_id
-      WHERE plot.month = 3 
-        AND plot.year = 2022
-        AND plot.user_id = $1;`;
+        WHERE plot.id = $1;`;
 
-  pool.query(queryText, [userId])
+  pool.query(queryText, [plotId])
       .then(result => {
-        res.send(result.rows);
+        console.log(result.rows);
+        // res.send(result.rows);
       })
       .catch(error => {
         console.log('ERROR in GET plot:', error);
@@ -148,7 +143,7 @@ router.get('/:id/plots', rejectUnauthenticated, async (req, res) => {
     const queryText = `
       SELECT id, month, year FROM plot
         WHERE plot.user_id = $1
-        ORDER BY year, month;`;
+        ORDER BY year DESC, month DESC `;
   
     const userId = req.params.id;
     const response = await connection.query(queryText, [userId]);

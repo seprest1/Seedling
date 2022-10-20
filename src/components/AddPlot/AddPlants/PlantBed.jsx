@@ -4,7 +4,6 @@ import moment from 'moment';
 
 function PlantBed(){
   useEffect(() => {
-    dispatch({type: 'FETCH_PLOT'});
   }, []);
     
     const plot = useSelector(store => store.garden.plot);
@@ -14,6 +13,7 @@ function PlantBed(){
     //set and send plant values for plot reducer
     const dispatch = useDispatch();
     const setDiv = (div) => {
+      console.log(div);
       if (div.shade === plant.shade){    //prevents user from planting in the wrong shade zone
         const divToSend = {
             location: div.location, 

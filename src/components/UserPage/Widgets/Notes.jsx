@@ -1,10 +1,8 @@
-import FindMonth from "../PlotDisplay/FindMonth";
-
 function Notes () {
     return(
         <div className="widget_container">
             <div>
-                <FindMonth/>
+                <h1>Notes</h1>
             </div>
         </div>
     )
