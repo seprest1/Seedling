@@ -9,12 +9,15 @@ import ClearIcon from '@mui/icons-material/Clear';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Tooltip from '@mui/material/Tooltip';
+import PopperUnstyled from '@mui/base/PopperUnstyled';
 //components
+import Div from './Div';
 
 function PlotDisplay(){
   const plot = useSelector(store => store.garden.plot);
   const plotId = useSelector(store => store.garden.plotID);
   const displayMonth = useSelector(store => store.garden.date.display);
+  const year = useSelector(store => store.garden.date.year);
   const dispatch = useDispatch();
   const history = useHistory();
   const sendToNext = () => {
@@ -25,32 +28,20 @@ function PlotDisplay(){
   //toggles between plots when button is clicked
   const userPlots = useSelector(store => store.garden.userPlots);
   const changePlotDisplay = (value) => {
-    
     const currentPlotIndex = userPlots.findIndex(plot => plot.id === plotId);
     const newPlotIndex = currentPlotIndex + value;
-    const newPlot = userPlots[newPlotIndex];
-    const newPlotId = newPlot.id;
-    console.log('Current plot is:', userPlots[currentPlotIndex]);
-    console.log('Next plot is:', newPlot);
+  
+    if (newPlotIndex){ //if there's no further plot, don't send request
+      const newPlot = userPlots[newPlotIndex];
+      const newPlotId = newPlot.id;
 
-    if (newPlotId){ //if there's no further plot, don't send request
+      console.log('Current plot is:', userPlots[currentPlotIndex]);
+      console.log('Next plot is:', newPlot);
+
       dispatch({ type: 'CLEAR_EVERYTHING' });
       dispatch({ type: 'GET_PLOT', payload: {plot_id: newPlotId} });
       }
   }
-
-  const changeBackground = (div) => {
-    switch(div.shade){
-      case 'Full Sun':
-        return 'green1';
-      case 'Partial Sun':
-        return 'green2';
-      case 'Full Shade':
-        return 'green3';
-      default: 
-        return null;
-    };
-  };
 
   const deletePlot = () => {
     swal({
@@ -65,6 +56,7 @@ function PlotDisplay(){
     }});
   }
 
+  
     return(
         <div className="user_plot_display">   
           {!plotId ?      /* if there isn't a plot to display */
@@ -84,24 +76,22 @@ function PlotDisplay(){
               :
                 <>
                   <div className="user_header">
-                    <h3 className="user_title">{displayMonth}</h3> 
+                    <h3 className="user_title">{displayMonth}, {year}</h3> 
                     <div className="user_header_buttons">
                       <IconButton onClick={() => history.push('/editplot')}><EditIcon/></IconButton>
                       <IconButton onClick={deletePlot}><ClearIcon/></IconButton>
                       <IconButton onClick={sendToNext}>+</IconButton>
                     </div>
                   </div>
-                  <div className="display_bed">
-                  {plot.map((div, i) => (  /* creates 24 divs, index = 0 */
-                        <div key={i} className={`display_div ${changeBackground(div)}`}> 
-                          <div className={`display_icon ${div.color}`}><img src={`${div.icon}`} className="display_vector"/></div>
-                        </div>))} 
+                  <div className="display_bed">  {/* creates 24 divs, index = 0 */}
+                    {plot.map((div, i) => 
+                    <Div key={i} i={i} div={div}/>)} 
                   </div>
-                  <div className="change_plot_buttons">
-                    <IconButton className="display_button" onClick={() => changePlotDisplay(-1)}><ArrowBackIosIcon/></IconButton>
-                    <IconButton className="display_button" onClick={() => changePlotDisplay(1)}><ArrowForwardIosIcon/></IconButton>
+                  <div className="change_plot_buttons">     {/* opposite because array comes in sorted with future plots first */}
+                    <IconButton className="display_button" onClick={() => changePlotDisplay(1)}><ArrowBackIosIcon/></IconButton>
+                    <IconButton className="display_button" onClick={() => changePlotDisplay(-1)}><ArrowForwardIosIcon/></IconButton>
                   </div>
-                </>}
+                </>} 
         </div>
     )
 }
