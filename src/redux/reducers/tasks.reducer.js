@@ -1,4 +1,4 @@
-const tasksReducer = (state = {}, action) => {
+const tasksReducer = (state = [], action) => {
     switch (action.type) {
       case 'SET_TASKS':
         return action.payload;

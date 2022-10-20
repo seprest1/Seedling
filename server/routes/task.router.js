@@ -5,6 +5,24 @@ const axios = require('axios');
 const {rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
+router.get('/:user', rejectUnauthenticated, (req, res) => {
+    console.log('in GET tasks route');
+
+    const queryText = 
+    `SELECT id, task FROM "tasks" 
+        WHERE user_id = $1
+            ORDER BY id DESC;`;
+    
+    pool.query(queryText, [req.params.user])
+        .then(result => {
+          res.send(result.rows);
+        })
+        .catch(error => {
+          console.log('ERROR in GET tasks:', error);
+          res.sendStatus(500);
+        });
+});
+
 router.post('/', rejectUnauthenticated, (req, res) => {
     const user = req.body.user;
     const task = req.body.task;

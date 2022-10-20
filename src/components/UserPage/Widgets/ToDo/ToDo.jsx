@@ -1,5 +1,5 @@
 import './ToDo.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 //MUI
 import List from '@mui/material/List';
@@ -8,12 +8,18 @@ import Tooltip from '@mui/material/Tooltip';
 import ToDoItem from "./ToDoItem";
 
 function ToDo () {
-
-    const [toggleInput, setToggleInput] = useState(false);
-    const [toDoInput, setToDoInput] = useState('');
-
     const dispatch = useDispatch();
     const user = useSelector(store => store.user);
+    useEffect(() => {
+        dispatch({ type: "FETCH_TASKS", payload: user.id });
+      }, []);
+    
+    //hides or shows input
+    const [toggleInput, setToggleInput] = useState(false);
+    const [toDoInput, setToDoInput] = useState('');
+    const taskList = useSelector(store => store.tasks);
+
+    //adds task item to DB
     const addItem = (e) => {
         e.preventDefault();
         console.log(toDoInput);
@@ -21,7 +27,7 @@ function ToDo () {
         setToDoInput('');
     }
 
-    const list = ['To Do Thing', 'Another To-Do Thing', 'WOw heres another', 'I hate dummy data', 'gotta go to the meeting'];
+
     return(
         <div className="widget_container todo_container">
             <div className="todo_header">
@@ -39,7 +45,7 @@ function ToDo () {
                             onChange={(e) => setToDoInput(e.target.value)}>
                     </input>
                 </form>}
-            {list.map((item, i) => <ToDoItem value={item} key={i}/>)}
+                {taskList ? taskList.map((item, i) => <ToDoItem value={item.task} key={i}/>) : ''}
             </List>
         </div>
     )

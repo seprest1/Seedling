@@ -8,26 +8,32 @@ function* tasksSaga() {
     yield takeEvery('DELETE_TASK', deleteTask);
   }
 
-  function* fetchTasks(){
+  function* fetchTasks(action){
     try{
-
+        const response = yield axios.get(`/tasks/${action.payload}`);
+        const taskList = response.data;
+        yield put({ type: 'SET_TASKS', payload: taskList });
     }
     catch(error){
-
+      console.log('Error in fetchTasks Saga function,', error);
     };
   };
 
   function* addTask(action){
     try{
       console.log('Task:', action.payload);
+      const user = action.payload.user;
+      const task = action.payload.task;
       yield axios({
         method: 'POST',
         url: '/tasks', 
-        data: { user: action.payload.user, task: action.payload.task }
+        data: { user, task }
       });
+
+      yield put({ type: 'FETCH_TASKS', payload: user });
     }
     catch(error){
-
+      console.log('Error in addTask Saga function,', error);
     };
   };
 
