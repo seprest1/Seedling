@@ -1,3 +1,4 @@
+import { TaskSharp } from '@mui/icons-material';
 import axios from 'axios';
 import { actionChannel, put, takeEvery } from 'redux-saga/effects';
 
@@ -37,9 +38,12 @@ function* tasksSaga() {
     };
   };
 
-  function* updateTask(){
+  function* updateTask(action){
     try{
-
+      const task_id = action.payload.id;
+      const user = action.payload.user;
+      yield axios.put('/tasks', {id: task_id});
+      yield put({ type: 'FETCH_TASKS', payload: user })
     }
     catch(error){
 

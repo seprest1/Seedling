@@ -9,9 +9,9 @@ import ToDoItem from "./ToDoItem";
 
 function ToDo () {
     const dispatch = useDispatch();
-    const user = useSelector(store => store.user);
+    const user_id = useSelector(store => store.user.id);
     useEffect(() => {
-        dispatch({ type: "FETCH_TASKS", payload: user.id });
+        dispatch({ type: "FETCH_TASKS", payload: user_id });
       }, []);
     
     //hides or shows input
@@ -45,7 +45,8 @@ function ToDo () {
                             onChange={(e) => setToDoInput(e.target.value)}>
                     </input>
                 </form>}
-                {taskList ? taskList.map((item, i) => <ToDoItem value={item.task} key={i}/>) : ''}
+                {taskList ? taskList.map((item, i) => 
+                    <ToDoItem key={i} task={item} userID={user_id}/>) : ''}
             </List>
         </div>
     )

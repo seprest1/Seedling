@@ -9,7 +9,7 @@ router.get('/:user', rejectUnauthenticated, (req, res) => {
     console.log('in GET tasks route');
 
     const queryText = 
-    `SELECT id, task FROM "tasks" 
+    `SELECT id, task, completed FROM "tasks" 
         WHERE user_id = $1
             ORDER BY id DESC;`;
     
@@ -40,6 +40,25 @@ router.post('/', rejectUnauthenticated, (req, res) => {
           console.log('ERROR in POST tasks:', error);
           res.sendStatus(500);
         });
+});
+
+router.put('/', rejectUnauthenticated, (req, res) => {
+  const task_id = req.body.id;
+  console.log('In PUT tasks route');
+
+  const queryText = `
+      UPDATE "tasks" 
+        SET "completed" = true 
+          WHERE id = $1;`;
+  
+  pool.query(queryText, [task_id])
+      .then(result => {
+        res.sendStatus(200);
+      })
+      .catch(error => {
+        console.log('ERROR in PUT tasks:', error);
+        res.sendStatus(500);
+      });
 });
 
 module.exports = router;
