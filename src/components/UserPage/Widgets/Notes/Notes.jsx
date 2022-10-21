@@ -13,7 +13,7 @@ function Notes () {
     const [noteInput, setNoteInput] = useState(`${plot.notes}`);
 
 
-    //send notes to DB
+    //sends notes to DB via 'Enter'
     const onEnterSubmit = (e) => {
         if(e.keyCode == 13 && e.shiftKey == false) {
           e.preventDefault();
@@ -22,6 +22,7 @@ function Notes () {
         };
       };
     
+    //sends notes to DB via button
     const buttonSubmit = () => {
         dispatch({ type: 'SET_NOTES', payload: {plot_id: plot.id, notes: noteInput} });
         setToggleNotes(!toggleNotes);
@@ -58,7 +59,7 @@ function Notes () {
                         </Tooltip>
                 </div>
                 <div className="notes_body">
-                    <p className="notes">{plot && noteInput}</p>
+                    <p className="notes">{plot && plot.notes}</p>
                 </div>
             </div>
         }

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import ToDo from './Widgets/ToDo/ToDo';
 import Notes from './Widgets/Notes/Notes';
 import Weather from './Widgets/Weather';
-import Rain from './Widgets/Rain';
+import Rain from './Widgets/GardeningTip';
 
 function WelcomeDisplay(){
     const user = useSelector (store => store.user);

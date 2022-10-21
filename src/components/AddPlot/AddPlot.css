@@ -215,20 +215,22 @@
   justify-self: flex-end;
 }
 
+
 .plant_icon{
   grid-area: icon;
-  height: 3rem;
-  width: 3rem;
-  border-radius: 2rem;
-  margin: 0.5rem;
+  height: 85%;
+  width: 85%;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
+  margin: 0 10%;
   display: flex;
   justify-content: center;
   align-items: center;
 } 
 
 .plant_vector{
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
 }
 
 /* --------- COLORS --------- */

@@ -1,0 +1,108 @@
+.about_container{
+    height: 95vh;
+    width: 100%;
+    margin: 0;
+    background-image: url('https://images.pexels.com/photos/1301856/pexels-photo-1301856.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 1em;
+    color: whitesmoke;
+    font-weight: 300;
+}
+
+.about_photos{
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.about_text{
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    grid-gap: 2rem;
+    padding-left: 20%;
+    background-color: rgba(245, 245, 245, 0.1);
+}
+
+.headshot{
+    width: 70%;
+    height: 50%;
+    border-radius: 0.5rem;
+    margin: 2rem;
+}
+
+.about_name{
+    width: 70%;
+    height: 15%;
+    margin: 0;
+    background-color:#dc343aeb;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sarah_p{
+    color: whitesmoke;
+    letter-spacing: 0.3rem;
+    font-weight: 100;
+    margin: 0;
+    text-align: center;
+}
+
+.she_her{
+    color: whitesmoke;
+    font-style: italic;
+    font-weight: 500;
+    margin: 0 0 0 2rem;
+}
+
+.linked_in_section{
+    width: 70%;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.linked_in_photo{
+    width: 40%;
+    height: 60%;
+}
+
+.linked_in_qr{
+    width: 40%;
+    height: 60%;
+    border-radius: 1rem;
+}
+
+.special_thanks{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    text-align: justify;
+}
+
+.about_list{
+    list-style-type: none;
+    padding: 0;
+    font-style: italic;
+    text-align: start;
+}
+
+.about_h2{
+    letter-spacing: 0.1rem;
+}

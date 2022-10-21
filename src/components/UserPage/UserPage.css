@@ -58,6 +58,11 @@
     justify-content: center;
   }
 
+  .gardening_tip{
+    padding: 3rem;
+    text-align: center;
+  }
+
   /* --------- RIGHT SECTION --------- */
   
   .user_plot_display{

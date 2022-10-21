@@ -23,7 +23,7 @@ function ToDo () {
     const addItem = (e) => {
         e.preventDefault();
         console.log(toDoInput);
-        dispatch({ type: 'ADD_TASK', payload: {user: user.id, task: toDoInput} });
+        dispatch({ type: 'ADD_TASK', payload: {user: user_id, task: toDoInput} });
         setToDoInput('');
     }
 

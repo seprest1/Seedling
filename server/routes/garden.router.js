@@ -153,6 +153,7 @@ router.get('/:id/plots', rejectUnauthenticated, async (req, res) => {
   }
 });
 
+//adds notes to user's plot
 router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
   const plot_id = req.params.id;
   const notes = req.body.notes;

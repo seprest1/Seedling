@@ -69,7 +69,7 @@ function App() {
           </ProtectedRoute>
 
           <Route exact path="/login"> {/* if user isn't logged in, redirect to login page*/}
-            {user.id ? <Redirect to="/user"/>
+            {user.id ? <Redirect to="/home"/>
               :
               <LoginPage/>}
           </Route>

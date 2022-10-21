@@ -58,7 +58,7 @@ function PlantBed(){
                     className={`plot_div ${changeBackground(div)}`}                    
                     onMouseOver={() => setDiv(div)}> 
                         {div.name && <div className={`plant_icon ${div.color}`}>
-                            <img src={`${div.icon}`} className="display_vector"/>
+                            <img src={`${div.icon}`} className="plant_vector"/>
                           </div>}
                 </div>))} 
         </div>
