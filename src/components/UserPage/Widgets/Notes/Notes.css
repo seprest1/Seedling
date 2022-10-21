@@ -1,0 +1,58 @@
+.notes_container{
+    display: flex;
+    flex-direction: column;
+}
+
+.notes_header{
+    height: 20%;
+    width: 100%;
+    background-color: rgba(245, 245, 245, 0.484);
+    border-radius: 0.5rem 0.5rem 0 0;
+    display: flex;
+    align-items: center;
+}
+
+.notes_text{
+    width: 90%;
+    padding-left: 15%;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    text-align: center;
+    letter-spacing: 0.3rem;
+}
+
+.notes_body{
+    width: 100%;
+    height: 80%;
+}
+
+.notes{ /* to match MUI list */
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-weight: 300;
+    font-size: 0.875rem;   
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+    padding: 1rem;
+    margin: 0;
+}
+
+.notes_input{
+    height: 10rem;
+    width: 10rem;
+    word-break: break-all;
+    word-break: break-word;
+    background-color: transparent;
+    border: 1px solid rgb(101, 96, 96);
+    border-radius: 0.3rem;
+    padding: 1rem;
+    margin: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    vertical-align: text-top;
+}
+
+.notes_input{
+    outline: none !important;
+}

@@ -8,13 +8,12 @@ import PlotDisplay from './PlotDisplay/PlotDisplay';
 
 function UserPage() {
   const dispatch = useDispatch();
-  const user = useSelector (store => store.user);
+  const user = useSelector (store => store.user.id);
   useEffect(() => {
     dispatch({ type: 'CLEAR_EVERYTHING' });
-    dispatch({ type: "GET_USER_PLOTS", payload: user.id });
+    dispatch({ type: "GET_USER_PLOTS", payload: user });
   }, []);
 
-  
   return (
     <div className="user_body">
       <div className="user_welcome_display">

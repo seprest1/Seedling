@@ -9,6 +9,7 @@ function* gardenSaga() {
     yield takeEvery('DELETE_PLOT', deletePlot);
     yield takeEvery('EDIT_PLOT', ammendPlot);
     yield takeEvery('GET_USER_PLOTS', fetchUserPlots);
+    yield takeEvery('SET_NOTES', addNotes);
   }
 
 //fetch list of available plants from DB
@@ -31,6 +32,7 @@ function* addPlot(action){
             url: '/garden/add_plot', 
             data: action.payload
         });
+        yield put ({ type: 'GET_USER_PLOTS', payload: action.payload.user });
     }
     catch(error){
         console.log('addPlot failed,', error);
@@ -75,11 +77,11 @@ function* fetchPlot(action){
               icon: div.icon }));
 
         //plot notes
-        const notes = response.notes;
-        
+        const notes = response[0].notes;
+
         yield put({ type: 'SET_PLOT', payload: plot });
-        yield put({ type: 'SET_DATE', payload: {month, year, display} });       //MAYBE REDUNDENT? 
-        yield put({ type: 'SET_PLOT_INFO', payload: {id: plot_id, notes: notes });
+        yield put({ type: 'SET_DATE', payload: {month, year, display} });   
+        yield put({ type: 'SET_PLOT_INFO', payload: {id: plot_id, notes: notes} });
         yield put({ type: 'SET_SELECTED_PLANTS', payload: selectedPlants });
     }               
     catch(error){
@@ -120,15 +122,16 @@ function* deletePlot(action){
 //get ids and dates of all user's plots
 function* fetchUserPlots(action){
     try{
+        //get all plots from user and set them to the reducer
         const userId = action.payload;
         const response = yield axios.get(`/garden/${userId}/plots`);
         const userPlots = response.data;
         yield put({ type: `SET_USER_PLOTS`, payload: userPlots}); 
         console.log(userPlots);
      
+        //logic to determine which plot is shown initially 
         const currentYear = Number(moment().format('YYYY'));
         const currentMonth = Number(moment().format('MM')); 
-        console.log(currentYear, currentMonth);
         const match = userPlots.find(plot => plot.year === currentYear && plot.month === currentMonth);
         const plotBefore = userPlots.find(plot => plot.year === currentYear && plot.month < currentMonth);
         const plotAfter = userPlots.find(plot => plot.year === currentYear && plot.month > currentMonth);
@@ -148,79 +151,26 @@ function* fetchUserPlots(action){
             console.log('Getting past plot', plotBefore.id);
             yield put({ type: 'GET_PLOT', payload: { plot_id: plotBefore.id } }); //get the closest previous month's plot
         }
-
     }
     catch(error){
         console.log('fetchUserPlots failed:', error);
     };
 };
 
+function* addNotes(action){
+    try{
+        console.log(action.payload);
+        yield axios({
+            method: 'PUT',
+            url: `/garden/notes/${action.payload.plot_id}`, 
+            data: {notes: action.payload.notes}
+        });
+        yield put({ type: 'GET_PLOT', payload: {plot_id: action.payload.plot_id} });
+        
+    }
+    catch(error){
+        console.log('addPlot failed,', error);
+    };
+};
 
 export default gardenSaga;
-
-
-
-
-
-
-
-
-
-
-
-
-
-/////////////////////routes to access "grow stuff" API//////////////////////////////
-
-
-// yield takeEvery('FETCH_API_PLANTS', fetchApiPlants);
-// yield takeEvery('SEARCH_PLANT_API', searchPlantApi);
-
-//fetch all plants from API
-// function* fetchApiPlants(){
-//     try{
-//         const response = yield axios.get(`/garden/api/plants`);
-//         const plants = response.data.map((plant) => (
-//             {   id: Number(plant.id),
-//                 name: plant.name,
-//                 scientific_name: plant.scientific_name,
-//                 image: plant.thumbnail_url}
-//         ));
-
-//         yield put({ type: 'SET_API_PLANTS', payload: plants });
-//     }                      
-//     catch(error){
-//         console.log('fetchApiPlants failed', error);
-//     };
-// };
-
-//search API for one specific plant
-// function* searchPlantApi (action){
-//     try{
-//         const plantToSearch = action.payload.replaceAll(/\s+/g, "-");   //replaces spaces in search term to fit api requirements
-//         console.log(plantToSearch);
-//         const response = yield axios.get(`/garden/api/search?plant=${plantToSearch}`);
-//         console.log(response);
-//         const plantId = response.data.id;
-//         const parentId = response.data.parent_id;
-//         const info = response.data.openfarm_data.attributes;
-      
-//         //sets data object for reducer
-//         const plantInfo = {
-//             id: plantId,
-//             parent_id: parentId,
-//             name: info.name,
-//             scientific_name: info.binomial_name,
-//             description: info.description,
-//             height: info.height,
-//             spread: info.spread,
-//             row: info.row_spacing,
-//             sowing: info.sowing_method,
-//             shade: info.sun_requirements,
-//             image: info.main_image_path };
-//         yield put({ type: 'SET_API_PLANT', payload: plantInfo });
-//     }                      
-//     catch(error){
-//         console.log('searchPlantApi failed', error);
-//     };
-// };

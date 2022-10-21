@@ -15,7 +15,7 @@
 .todo_text{
     width: 90%;
     padding-left: 15%;
-    font-family: 'Inter Tight', sans-serif;
+    font-family: 'Inter Tight', sans-serif !important;
     font-size: 1rem;
     font-weight: 300;
     text-align: center;
