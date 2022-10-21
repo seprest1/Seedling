@@ -11,6 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const gardenRouter = require('./routes/garden.router');
 const weatherRouter = require('./routes/weather.router');
+const taskRouter = require('./routes/task.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -27,6 +28,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/garden', gardenRouter);
 app.use('/weather', weatherRouter);
+app.use('/tasks', taskRouter);
 
 // Serve static files
 app.use(express.static('build'));
