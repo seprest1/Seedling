@@ -67,7 +67,7 @@ router.get('/plot/:plot_id', rejectUnauthenticated, (req, res) => {
     plotId =req.params.plot_id;
 
   const queryText = `
-    SELECT div.*, plot.month, plot.year FROM div
+    SELECT div.*, plot.month, plot.year, plot.notes FROM div
       JOIN plot on plot.id = div.plot_id
         WHERE plot.id = $1;`;
 

@@ -5,7 +5,7 @@ import EditKey from './EditKey';
 
 function EditPlot(){
     const user = useSelector(store => store.user);
-    const plot = useSelector(store => store.plot);
+    const plot = useSelector(store => store.divs);
 
    return(
     <div className="app_body">

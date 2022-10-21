@@ -14,7 +14,7 @@ function PlantKey (){
 
     //submit plot to DB
     const user = useSelector(store => store.user.id);
-    const plot = useSelector(store => store.garden.plot);
+    const plot = useSelector(store => store.garden.divs);
     const plants = useSelector(store => store.garden.selectedPlants);
     const date = useSelector(store => store.garden.date);
     const submitPlot = () => {

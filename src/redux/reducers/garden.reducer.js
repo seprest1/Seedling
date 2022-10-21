@@ -31,20 +31,24 @@ const selectedPlants = (state = [], action) => {
     };
 };
 
-//date the user sets for their plot
-const date = (state = {}, action) => {
-    switch(action.type){
-        case 'SET_DATE':
+//single plant user picked while setting plot
+const pickedPlant = (state = {}, action) => {
+    switch (action.type) {
+        case 'SET_PLANT_TYPE':
             return action.payload;
-        case 'SET_MONTH':
-            return {...state, month: action.payload};
-        case 'SET_YEAR':
-            return {...state, year: action.payload};
-        case 'SET_DISPLAY':
-            return {...state, display: action.payload};
         case 'CLEAR_EVERYTHING':
             return {};
-        default:
+        default: 
+            return state;
+    };
+};
+
+//selected shade picked by user for planning their plot
+const pickedShade = (state = '', action) => {
+    switch (action.type) {
+        case 'SET_SHADE':
+            return action.payload;
+        default: 
             return state;
     };
 };
@@ -59,7 +63,7 @@ const initialPlot = [...Array(48)].map((div, i) =>
             color: null,
             icon: null     }));
 //data for each div in the plot
-const plot = (state = initialPlot, action) => {
+const divs = (state = initialPlot, action) => {
     switch(action.type) {
         case 'SET_DIV_SHADE':
             const shadedDiv = action.payload;          //maps through plot and changes only shade value
@@ -81,35 +85,6 @@ const plot = (state = initialPlot, action) => {
     };
 };
 
-const pickedShade = (state = '', action) => {
-    switch (action.type) {
-        case 'SET_SHADE':
-            return action.payload;
-        default: 
-            return state;
-    };
-};
-
-const pickedPlant = (state = {}, action) => {
-    switch (action.type) {
-        case 'SET_PLANT_TYPE':
-            return action.payload;
-        case 'CLEAR_EVERYTHING':
-            return {};
-        default: 
-            return state;
-    };
-};
-
-const plotID = (state = 0, action) => {
-    switch (action.type) {
-        case 'SET_PLOT_ID':
-            return action.payload;
-        default: 
-            return state;
-    };
-}
-
 const userPlots = (state = [], action) => {
     switch(action.type) {
         case 'SET_USER_PLOTS':
@@ -119,52 +94,47 @@ const userPlots = (state = [], action) => {
     }
 }
 
+//date the user sets for their plot
+const date = (state = {}, action) => {
+    switch(action.type){
+        case 'SET_DATE':
+            return action.payload;
+        case 'SET_MONTH':
+            return {...state, month: action.payload};
+        case 'SET_YEAR':
+            return {...state, year: action.payload};
+        case 'SET_DISPLAY':
+            return {...state, display: action.payload};
+        case 'CLEAR_EVERYTHING':
+            return {};
+        default:
+            return state;
+    };
+};
+
+//ID and notes for selected plot
+const selectedPlot = (state = {}, action) => {
+    switch (action.type) {
+        case 'SET_PLOT_INFO':
+            return action.payload;
+        default: 
+            return state;
+    };
+}
+
+
+
 
 
 const garden = combineReducers({
     plants,
     pickedShade,
     pickedPlant,
-    plot,
+    divs,
     date,
     selectedPlants,
-    plotID,
+    selectedPlot,
     userPlots,
   });
 
 export default garden;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-///////////////REDUCERS FOR "grow stuff" API ////////////////////////
-// const apiPlant= (state = {}, action) => {
-//     switch (action.type) {
-//         case 'SET_API_PLANT':
-//             return action.payload;
-//         default: 
-//             return state;
-//     };
-// };
-
-// const apiPlants = (state = [], action) => {
-//     switch (action.type) {
-//         case 'SET_API_PLANTS':
-//             return action.payload;
-//         default: 
-//             return state;
-//     };
-// }

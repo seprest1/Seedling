@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 //components
 import ToDo from './Widgets/ToDo/ToDo';
-import Notes from './Widgets/Notes';
+import Notes from './Widgets/Notes/Notes';
 import Weather from './Widgets/Weather';
 import Rain from './Widgets/Rain';
 

@@ -7,7 +7,7 @@ function PlantKey (){
     const dispatch = useDispatch();
     
     const history = useHistory();
-    const plot = useSelector(store => store.garden.plot);
+    const plot = useSelector(store => store.garden.divs);
     const month = useSelector(store => store.garden.date.month);
     const displayMonth = useSelector(store => store.garden.date.display);
    

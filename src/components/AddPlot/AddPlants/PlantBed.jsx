@@ -6,7 +6,7 @@ function PlantBed(){
   useEffect(() => {
   }, []);
     
-    const plot = useSelector(store => store.garden.plot);
+    const plot = useSelector(store => store.garden.divs);
     const plant = useSelector(store => store.garden.pickedPlant);
     const month = useSelector(store => store.garden.date.display);
 

@@ -5,7 +5,7 @@ import MonthHeader from './MonthHeader';
 function ShadeBed(){
   //calls shade selected
   const shade = useSelector(store => store.garden.pickedShade);
-  const plot = useSelector(store => store.garden.plot);
+  const plot = useSelector(store => store.garden.divs);
   
   //set shade value for that specific div
   const dispatch = useDispatch();

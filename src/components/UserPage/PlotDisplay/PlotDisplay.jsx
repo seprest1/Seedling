@@ -14,8 +14,8 @@ import PopperUnstyled from '@mui/base/PopperUnstyled';
 import Div from './Div';
 
 function PlotDisplay(){
-  const plot = useSelector(store => store.garden.plot);
-  const plotId = useSelector(store => store.garden.plotID);
+  const plot = useSelector(store => store.garden.divs);
+  const plotId = useSelector(store => store.garden.selectedPlot.id);
   const displayMonth = useSelector(store => store.garden.date.display);
   const year = useSelector(store => store.garden.date.year);
   const dispatch = useDispatch();

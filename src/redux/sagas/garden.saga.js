@@ -41,8 +41,6 @@ function* addPlot(action){
 function* fetchPlot(action){
     try{
         const plot_id = action.payload.plot_id;
-
-        console.log('Plot_id in saga function:', plot_id);
         const userPlot = yield axios.get(`/garden/plot/${plot_id}`);
         const response = userPlot.data;
         console.log('Response from fetchPlot is:', response);
@@ -62,8 +60,6 @@ function* fetchPlot(action){
         const year = response[0].year;
         const display = moment().month(month-1).format('MMMM');
 
-        console.log(month, year, display);
-
         //removes duplicates, in order to set plant list in edit plot
         const removedDuplicates = response.filter((oldDiv, index, response) => 
             response.findIndex(
@@ -78,9 +74,12 @@ function* fetchPlot(action){
               subvariety: div.subvariety,
               icon: div.icon }));
 
+        //plot notes
+        const notes = response.notes;
+        
         yield put({ type: 'SET_PLOT', payload: plot });
         yield put({ type: 'SET_DATE', payload: {month, year, display} });       //MAYBE REDUNDENT? 
-        yield put({ type: 'SET_PLOT_ID', payload: plot_id });
+        yield put({ type: 'SET_PLOT_INFO', payload: {id: plot_id, notes: notes });
         yield put({ type: 'SET_SELECTED_PLANTS', payload: selectedPlants });
     }               
     catch(error){
