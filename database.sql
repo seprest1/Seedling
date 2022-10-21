@@ -3,7 +3,7 @@
 -----------------------------USER TABLE-----------------------------
 
 
-DROP TABLE "user";
+--DROP TABLE "user";
 CREATE TABLE "user" (
 	"id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
@@ -15,11 +15,13 @@ CREATE TABLE "user" (
 -----------------------------PLOT TABLE-----------------------------	
 
 
-DROP TABLE "plot";
+--DROP TABLE "plot";
 CREATE TABLE "plot" (
 	"id" SERIAL PRIMARY KEY,
 	"user_id" INT REFERENCES "user" ON DELETE CASCADE ON UPDATE CASCADE,
-	"month" varchar (150) NOT NULL,
+	"month" INT,
+	"year" INT, 
+	"notes" VARCHAR (1000),
 	"time created" DATE DEFAULT CURRENT_DATE,
 	"time updated" DATE DEFAULT CURRENT_DATE
 );
@@ -27,7 +29,7 @@ CREATE TABLE "plot" (
 --------------------------VEGGIE TABLE-----------------------------
 
 
-DROP TABLE "plant";
+--DROP TABLE "plant";
 CREATE TABLE "plant" (
 	"id" SERIAL PRIMARY KEY,
 	"name" VARCHAR (150) NOT NULL,
@@ -73,11 +75,11 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 ------------------TABLE FOR EACH DIV EVER CREATED------------------
 
 
-DROP TABLE "div";
+--DROP TABLE "div";
 CREATE TABLE "div" (
 	"id" SERIAL PRIMARY KEY,
 	"plot_id" INT REFERENCES plot ON DELETE CASCADE ON UPDATE CASCADE,
-	"plant_id" INT REFERENCES plant ON DELETE CASCADE ON UPDATE CASCADE,
+	"plant_id" INT REFERENCES plant,
 	"location" INT, --refers to placement on a 4x6 grid
 	"shade" VARCHAR (150) DEFAULT 'Full Sun', --refers to user-set shade
 	"name" VARCHAR (150),
@@ -88,11 +90,11 @@ CREATE TABLE "div" (
 
 ------------------------COMPANION TABLE-----------------------------
 
-DROP TABLE "companion";
+--DROP TABLE "companion";
 CREATE TABLE "companion" (
 	"id" SERIAL PRIMARY KEY,
-	"plantID_1" INT REFERENCES plant ON DELETE CASCADE ON UPDATE CASCADE,
-	"plantID_2" INT REFERENCES plant ON DELETE CASCADE ON UPDATE CASCADE,
+	"plantID_1" INT REFERENCES plant,
+	"plantID_2" INT REFERENCES plant,
 	"relationship" VARCHAR (600)
 );
 
@@ -101,10 +103,10 @@ INSERT INTO "companion" ("plantID_1", "plantID_2")
 	
 ------------------------GROWING SEASON-----------------------------
 
-DROP TABLE "growing_season";
+--DROP TABLE "growing_season";
 CREATE TABLE "growing_season" (
 	"id" SERIAL PRIMARY KEY,
-	"plant_id" INT REFERENCES plant ON DELETE CASCADE ON UPDATE CASCADE,
+	"plant_id" INT REFERENCES plant,
 	"user_hardiness" VARCHAR (80),
 	"march" INT,
 	"april" INT,
@@ -130,4 +132,15 @@ INSERT INTO "growing_season" ( "plant_id", "march", "april", "may", "june", "jul
 	(10, 0, 50, 70, 90, 100, 100, 90, 80), --BEANS
 	(11, 70, 90, 70, 0, 0, 70, 90, 70), --KALE
 	(12, 70, 90, 70, 0, 0, 70, 90, 70); --CAULIFLOWER
-	
+			
+--DROP TABLE "tasks";
+CREATE TABLE "tasks" (
+	"id" SERIAL PRIMARY KEY,
+	"user_id" INT REFERENCES "user" ON DELETE CASCADE ON UPDATE CASCADE,
+	"task" VARCHAR (500),
+	"completed" BOOLEAN DEFAULT false
+);
+
+
+        
+
