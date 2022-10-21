@@ -10,17 +10,14 @@ import Checkbox from '@mui/material/Checkbox';
 
 
 function ToDoItem ({task, userID}){
-    console.log(task);
+
     const dispatch = useDispatch();
-    const checkItem = () => {
-        dispatch({ type: 'COMPLETED_TASK', payload: {id: task.id, user: userID} });
-    }
 
     return(
         <ListItem 
             className="todo_item">
             <ListItemButton dense
-               onClick={ () => checkItem() }>
+               onClick={ () =>  dispatch({ type: 'COMPLETED_TASK', payload: {id: task.id, user: userID} }) }>
               <ListItemIcon>
                 <Checkbox
                   edge="end"
@@ -32,7 +29,7 @@ function ToDoItem ({task, userID}){
                 </ListItemIcon>
                 <ListItemText primary={task.task}/>
             </ListItemButton>
-            <button className="widget_button todo_delete" onClick={() => dispatch({ type: 'DELETE_TASK', payload: task.id })}>⨉</button>
+            <button className="widget_button todo_delete" onClick={() => dispatch({ type: 'DELETE_TASK', payload: {id: task.id, user: userID} })}>⨉</button>
         </ListItem>
     )
 }

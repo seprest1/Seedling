@@ -42,8 +42,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         });
 });
 
-router.put('/', rejectUnauthenticated, (req, res) => {
-  const task_id = req.body.id;
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  const task_id = req.params.id;
   console.log('In PUT tasks route');
 
   const queryText = `
@@ -57,6 +57,24 @@ router.put('/', rejectUnauthenticated, (req, res) => {
       })
       .catch(error => {
         console.log('ERROR in PUT tasks:', error);
+        res.sendStatus(500);
+      });
+});
+
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  const task_id = req.params.id;
+  console.log('In PUT tasks route');
+
+  const queryText = `
+      DELETE FROM "tasks" 
+          WHERE id = $1;`;
+  
+  pool.query(queryText, [task_id])
+      .then(result => {
+        res.sendStatus(200);
+      })
+      .catch(error => {
+        console.log('ERROR in DELETE tasks:', error);
         res.sendStatus(500);
       });
 });

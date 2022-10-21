@@ -42,20 +42,23 @@ function* tasksSaga() {
     try{
       const task_id = action.payload.id;
       const user = action.payload.user;
-      yield axios.put('/tasks', {id: task_id});
+      yield axios.put(`/tasks/${task_id}`);
       yield put({ type: 'FETCH_TASKS', payload: user })
     }
     catch(error){
-
+      console.log('Error in updateTask Saga function,', error);
     };
   };
   
-  function* deleteTask(){
+  function* deleteTask(action){
     try{
-
+      const task_id = action.payload.id;
+      const user = action.payload.user;
+      yield axios.delete(`/tasks/${task_id}`);
+      yield put({ type: 'FETCH_TASKS', payload: user })
     }
     catch(error){
-
+      console.log('Error in deleteTask Saga function,', error);
     };
   };
 
