@@ -3,23 +3,66 @@ import { useSelector, useDispatch } from 'react-redux';
 import './Notes.css';
 //MUI
 import Tooltip from '@mui/material/Tooltip';
+import EditIcon from '@mui/icons-material/Edit';
 
 function Notes () {
+    const dispatch = useDispatch();
+    const month = useSelector(store => store.garden.date.display);
+    const plot = useSelector(store => store.garden.selectedPlot);
     const [toggleNotes, setToggleNotes] = useState(false);
-    const 
+    const [noteInput, setNoteInput] = useState(`${plot.notes}`);
+
+
+    //send notes to DB
+    const onEnterSubmit = (e) => {
+        if(e.keyCode == 13 && e.shiftKey == false) {
+          e.preventDefault();
+          dispatch({ type: 'SET_NOTES', payload: {plot_id: plot.id, notes: noteInput} });
+          setToggleNotes(!toggleNotes);
+        };
+      };
+    
+    const buttonSubmit = () => {
+        dispatch({ type: 'SET_NOTES', payload: {plot_id: plot.id, notes: noteInput} });
+        setToggleNotes(!toggleNotes);
+        setNoteInput(plot.notes);
+    };
+    
 
     return(
-        <div className="widget_container">
-            <div className="notes_header">
-                    <h4 className="notes_text">MONTH notes:</h4>
-                    <Tooltip title="Add Notes" placement="bottom-end">
-                        <button className="widget_button" onClick={() => setToggleNotes(true)}>+</button>
-                    </Tooltip>
+        <>  
+        {toggleNotes ?          ////EDIT MODE////
+            <div className="widget_container notes_container"> 
+                <div className="notes_header">
+                        <h4 className="notes_text">{month} Notes:</h4>
+                        <Tooltip title="Submit" placement="bottom-end">
+                            <button className="widget_button" onClick={() =>  buttonSubmit()}>⨉</button>
+                        </Tooltip>
+                </div>
+                <div className="edit_notes">
+                    <textarea type="text" 
+                        className="notes_input"
+                        value={noteInput} 
+                        onChange={(e) => setNoteInput(e.target.value)}
+                        onKeyDown={(e) => onEnterSubmit(e)}/>
+                </div>
+             </div>
+            :               ////DISPLAY MODE////
+            <div className="widget_container notes_container">
+                <div className="notes_header">
+                        <h4 className="notes_text">{month} Notes:</h4>
+                        <Tooltip title="Add Notes" placement="bottom-end">
+                            <button className="widget_button" onClick={() => setToggleNotes(!toggleNotes)}>
+                                <EditIcon fontSize="small"/>
+                            </button>
+                        </Tooltip>
+                </div>
+                <div className="notes_body">
+                    <p className="notes">{plot && noteInput}</p>
+                </div>
             </div>
-            <div className="notes_body">
-                <p className="notes"></p>
-            </div>
-        </div>
+        }
+    </>
     )
 }
 

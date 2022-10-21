@@ -134,6 +134,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 //gets user plot ids and dates
 router.get('/:id/plots', rejectUnauthenticated, async (req, res) => {
   const connection = await pool.connect();
+  console.log('In GET userplots, plot is:', req.params.id);
 
   try{  
     await connection.query('BEGIN')
@@ -151,5 +152,26 @@ router.get('/:id/plots', rejectUnauthenticated, async (req, res) => {
     res.sendStatus(500);
   }
 });
+
+router.put('/notes/:id', rejectUnauthenticated, (req, res) => {
+  const plot_id = req.params.id;
+  const notes = req.body.notes;
+  console.log('In PUT notes route:', plot_id, notes);
+
+  const queryText = `
+      UPDATE "plot" 
+        SET "notes" = $1
+          WHERE id = $2;`;
+  
+  pool.query(queryText, [notes, plot_id])
+      .then(result => {
+        res.sendStatus(200);
+      })
+      .catch(error => {
+        console.log('ERROR in PUT tasks:', error);
+        res.sendStatus(500);
+      });
+});
+
 
 module.exports = router;
