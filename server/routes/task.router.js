@@ -48,7 +48,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 
   const queryText = `
       UPDATE "tasks" 
-        SET "completed" = true 
+        SET "completed" = NOT "completed" 
           WHERE id = $1;`;
   
   pool.query(queryText, [task_id])
