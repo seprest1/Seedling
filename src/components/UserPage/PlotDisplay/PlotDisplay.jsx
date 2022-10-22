@@ -77,7 +77,7 @@ function PlotDisplay(){
                   <div className="user_header">
                     <h3 className="user_title">{displayMonth}, {year}</h3> 
                     <div className="user_header_buttons">
-                      <IconButton onClick={() => history.push('/editplot')}><EditIcon/></IconButton>
+                      <IconButton onClick={() => history.push(`/editplot/${plotId}`)}><EditIcon/></IconButton>
                       <IconButton onClick={deletePlot}><ClearIcon/></IconButton>
                       <IconButton onClick={sendToNext}>+</IconButton>
                     </div>

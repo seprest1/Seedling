@@ -1,12 +1,17 @@
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Parallax } from 'react-scroll-parallax';
 import './LandingPage.css';
 //components
 import ParalaxBanner from './ParalaxBanner';
 import Footer from '../App/AllPages/Footer';
+import RegisterForm from './RegisterForm';
+import LoginForm from './LoginForm';
 
-function LandingPage() {
+function LandingPage({routeProp}) {
   const history = useHistory();
+
+  const [dialog, setDialog] = useState('');
 
   return (
     <div className="landing_body"> 
@@ -37,15 +42,17 @@ function LandingPage() {
                 <div className="register_prompt">
                       <img src="https://images.pexels.com/photos/5624254/pexels-photo-5624254.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" className="register_image"/>
                       <p>New to Seedling?</p>
-                      <button className="prompt_button" onClick={() => history.push('/login')}>Make Account</button>
+                      <button onClick={() => history.push('/register')} className="prompt_button">Make Account</button>
                 </div>
                 <div className="info_prompt">
                       <img src="https://images.pexels.com/photos/7728883/pexels-photo-7728883.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" className="register_image"/>
                       <p>Curious about our start?</p>
-                      <button className="prompt_button" onClick={() => history.push('/about')}>Learn More</button>
+                      <button onClick={() => history.push('/about')} className="prompt_button">Learn More</button>
                 </div>
               </div>
           </div>
+          {routeProp === 'register' && <RegisterForm/>}
+          {routeProp === 'login' && <LoginForm/>}
           <Footer/>
         </div> 
     </div>

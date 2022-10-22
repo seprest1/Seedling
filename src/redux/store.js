@@ -1,11 +1,16 @@
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import logger from 'redux-logger';
+import { createLogger } from 'redux-logger'
 
 import rootReducer from './reducers/_root.reducer'; // imports ./redux/reducers/index.js
 import rootSaga from './sagas/_root.saga'; // imports ./redux/sagas/index.js
 
 const sagaMiddleware = createSagaMiddleware();
+
+const logger = createLogger({
+  predicate: (getState, action) => action.type !== 'SET_PLANT',
+  predicate: (getState, action) => action.type !== 'SET_DIV_SHADE'
+});
 
 // this line creates an array of all of redux middleware you want to use
 // we don't want a whole ton of console logs in our production code

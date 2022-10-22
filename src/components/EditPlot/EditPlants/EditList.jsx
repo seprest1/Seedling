@@ -6,6 +6,7 @@ import PlantName from '../../AddPlot/PlantForm/PlantList/PlantName';
 function EditList(){
     const history = useHistory();
     const selectedPlants = useSelector(store => store.garden.selectedPlants);
+    const plotID = useSelector(store => store.garden.selectedPlot.id);
 
     return(
         <div className="right_body">
@@ -17,7 +18,7 @@ function EditList(){
                     <PlantName plant={plant} key={i} i={i}/>)}
             </ul>
             <div className="buttons">
-                <button onClick={() => history.push('/editplot')} className="button">Next</button>
+                <button onClick={() => history.push(`/editplot/${plotID}`)} className="button">Next</button>
             </div>
         </div>
     )

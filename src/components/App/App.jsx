@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { ParallaxProvider } from 'react-scroll-parallax';
@@ -11,13 +11,13 @@ import AboutPage from '../AboutPage/AboutPage';
 import InfoPage from '../InfoPage/InfoPage';
 import UserPage from '../UserPage/UserPage';
 import LandingPage from '../LandingPage/LandingPage';
-import LoginPage from '../LandingPage/LoginPage/LoginPage';
-import RegisterPage from '../LandingPage/RegisterPage/RegisterPage';
 import PlantForm from '../AddPlot/PlantForm/PlantForm';
 import AddShade from '../AddPlot/AddShade/AddShade';
 import AddPlants from '../AddPlot/AddPlants/AddPlants';
 import EditPlot from '../EditPlot/EditPlot/EditPlot';
 import EditPlants from '../EditPlot/EditPlants/EditPlants';
+import LoginForm from '../LandingPage/LoginForm';
+import RegisterForm from '../LandingPage/RegisterForm';
 
 //MUI
 import { ThemeProvider } from '@mui/material';
@@ -32,6 +32,7 @@ function App() {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
+  //MUI Theme
   const theme = createTheme({ 
       palette: {
         type: 'light',
@@ -108,10 +109,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
     <ParallaxProvider>
-    <Router>
       <div className="body">
         <Nav/>
-        <Switch>
+        <Switch >
         
           <Redirect exact from="/" to="/home" />     {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
 
@@ -119,13 +119,25 @@ function App() {
             <AboutPage/>
           </Route>
 
+          <Route exact path="/info">
+            <InfoPage/>
+          </Route>
+
+          <Route exact path="/register">
+          {user.id ? <Redirect to="/user"/>
+              :
+            <LandingPage routeProp={'register'}/>}
+          </Route>
+
+          <Route exact path="/login">
+          {user.id ? <Redirect to="/user"/>
+              :
+            <LandingPage routeProp={'login'}/>}
+          </Route>
+
           <ProtectedRoute exact path="/user">  {/* logged in shows UserPage else shows LoginPage*/}
             <UserPage/>
           </ProtectedRoute> 
-
-          <ProtectedRoute exact path="/info">
-            <InfoPage/>
-          </ProtectedRoute>
 
           <ProtectedRoute exact path="/newplot/form">
             <PlantForm/>
@@ -139,41 +151,27 @@ function App() {
             <AddPlants/>
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/editplot">
+          <ProtectedRoute exact path="/editplot/:id">
             <EditPlot/>
           </ProtectedRoute>
 
-          <ProtectedRoute exact path="/editplot/plants">
+          <ProtectedRoute exact path="/editplot/:id/plants">
             <EditPlants/>
           </ProtectedRoute>
-
-          <Route exact path="/login"> {/* if user isn't logged in, redirect to login page*/}
-            {user.id ? <Redirect to="/home"/>
-              :
-              <LoginPage/>}
-          </Route>
-
-          <Route exact path="/registration"> {/* if user is already logged in, redirect to user page*/}
-            {user.id ? <Redirect to="/user"/>
-              :
-              <RegisterPage/>}
-          </Route>
 
           <Route exact path="/home">
             {user.id ? <Redirect to="/user"/>
               :
-              <LandingPage/>}
+              <LandingPage dialogOpen={false}/>}
           </Route>
 
-          {/* If none of the other routes matched, we will show a 404. */}
           <Route>
             <h1>404</h1>
           </Route>
 
         </Switch>
-        {/* <Footer/> */}
+
       </div>
-    </Router>
     </ParallaxProvider>
     </ThemeProvider>
   );

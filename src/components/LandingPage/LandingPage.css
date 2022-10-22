@@ -107,8 +107,8 @@
 } 
 
 .prompt_button{
-    height: 15%;
-    background-color: rgba(94, 80, 80, 0.978);;
+    height: 4rem !important;
+    background-color: rgba(94, 80, 80, 0.978);
     border: 0.01rem solid rgb(139, 137, 137, 0.4);
     border-radius: 0.1rem;
     color: whitesmoke;
