@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import '../App.css';
+//components
+import LoginForm from '../../LandingPage/LoginForm';
 
 function Nav() {
   const dispatch = useDispatch();
@@ -16,7 +18,7 @@ function Nav() {
           about
         </Link>
                                    {/* user not logged in */}
-        {!user.id && <Link className="nav_link" to="/login"> sign in </Link>}
+        {!user.id && <LoginForm classProp={`nav_button`}/>}
         
         {user.id && <>             {/* user logged in */}
             <Link className="nav_link" to="/user"> home </Link>

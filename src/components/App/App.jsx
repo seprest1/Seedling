@@ -32,36 +32,75 @@ function App() {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
-  const theme = createTheme({
-    palette: {
-      type: 'light',
-      primary: {
-        main: '#d82623',
-        contrastText: 'rgba(65,40,40,0.87)',
-        dark: '#4d605b',
-      },
-      secondary: {
-        main: '#bdae28',
-      },
-      error: {
-        main: '#f07167',
-      },
-      warning: {
-        main: '#ff9800',
-      },
-      success: {
-        main: '#f6bd60',
-      },
-      background: {
-        default: '#f5f5f5',
-        paper: '#f5f5f5',
-      },
-      text: {
-        primary: 'rgba(65,40,40,0.87)',
-        secondary: 'rgba(41,30,30,0.87)',
-      },
-      info: {
-        main: '#436b0b',
+  const theme = createTheme({ 
+      palette: {
+        type: 'light',
+        primary: {
+          main: '#d64946',
+          contrastText: '#f5f5f5',
+          dark: '#ce3e16',
+          light: '#d66446',
+        },
+        secondary: {
+          main: '#c7c71f',
+          dark: '#b5b522',
+        },
+        error: {
+          main: '#f07167',
+        },
+        warning: {
+          main: '#ff9800',
+        },
+        success: {
+          main: '#f6bd60',
+        },
+        background: {
+          default: '#f5f5f5',
+          paper: '#f5f5f5',
+        },
+        text: {
+          primary: 'rgba(65,40,40,0.87)',
+          secondary: 'rgba(41,30,30,0.87)',
+        },
+        info: {
+          main: '#436b0b',
+        },
+        typography: {
+          subtitle1: {
+            fontFamily: 'Droid Sans',
+          },
+          button: {
+            fontFamily: 'Droid Sans',
+            fontWeight: 300,
+            letterSpacing: '0.09em',
+          },
+          caption: {
+            fontFamily: 'Droid Sans',
+          },
+          h3: {
+            fontFamily: 'Droid Sans',
+          },
+          body1: {
+            fontFamily: 'Droid Sans',
+          },
+          subtitle2: {
+            fontFamily: 'Droid Sans',
+          },
+          h6: {
+            fontFamily: 'Droid Sans',
+          },
+          h5: {
+            fontFamily: 'Droid Sans',
+          },
+          h4: {
+            fontFamily: 'Droid Sans',
+          },
+          overline: {
+            fontFamily: 'Droid Sans',
+          },
+          link:{
+            fontFamily: 'Droid Sans',
+          },
       },
     },
   });

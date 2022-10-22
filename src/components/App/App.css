@@ -53,7 +53,7 @@ body{
 }
 
 .nav_link:hover, .nav_button:hover{
-  background-color: #ff443381;
+  background-color: #ff443381 !important;
 }
 
 .nav_link:active{
@@ -61,11 +61,9 @@ body{
 }
 
 .nav_button{
-  background-color: transparent;
+  background-color: transparent !important;
   border: none;
 }
-
-
 
 .footer{
   height: 20vh;
