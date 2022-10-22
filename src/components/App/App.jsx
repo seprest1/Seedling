@@ -19,6 +19,11 @@ import AddPlants from '../AddPlot/AddPlants/AddPlants';
 import EditPlot from '../EditPlot/EditPlot/EditPlot';
 import EditPlants from '../EditPlot/EditPlants/EditPlants';
 
+//MUI
+import { ThemeProvider } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
+
+
 function App() {
   
   const dispatch = useDispatch();
@@ -27,7 +32,42 @@ function App() {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
+  const theme = createTheme({
+    palette: {
+      type: 'light',
+      primary: {
+        main: '#d82623',
+        contrastText: 'rgba(65,40,40,0.87)',
+        dark: '#4d605b',
+      },
+      secondary: {
+        main: '#bdae28',
+      },
+      error: {
+        main: '#f07167',
+      },
+      warning: {
+        main: '#ff9800',
+      },
+      success: {
+        main: '#f6bd60',
+      },
+      background: {
+        default: '#f5f5f5',
+        paper: '#f5f5f5',
+      },
+      text: {
+        primary: 'rgba(65,40,40,0.87)',
+        secondary: 'rgba(41,30,30,0.87)',
+      },
+      info: {
+        main: '#436b0b',
+      },
+    },
+  });
+
   return (
+    <ThemeProvider theme={theme}>
     <ParallaxProvider>
     <Router>
       <div className="body">
@@ -96,6 +136,7 @@ function App() {
       </div>
     </Router>
     </ParallaxProvider>
+    </ThemeProvider>
   );
 }
 
