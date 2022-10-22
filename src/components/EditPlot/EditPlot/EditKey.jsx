@@ -1,4 +1,3 @@
-import { SortRounded } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
@@ -8,15 +7,9 @@ import KeyItem from '../../AddPlot/AddPlants/KeyItem';
 function EditKey (){
     //go back to edit plants
     const dispatch = useDispatch();
-    const history = useHistory();
-    const sendBack = () => {
-        history.push('/editplot/plants');
-    };
-    
     const plants = useSelector(store => store.garden.selectedPlants);
 
     //submit edited plot to DB
-    const userID = useSelector(store => store.user.id);
     const plot = useSelector(store => store.garden.divs);
     const plotID = useSelector(store => store.garden.selectedPlot.id);
     const submitEditedPlot = () => {
@@ -30,6 +23,11 @@ function EditKey (){
             swal("Saved Plot!");
             history.push('/home');
         };
+    };
+
+    const history = useHistory();
+    const sendBack = () => {
+        history.push(`/editplot/${plotID}/plants`);
     };
 
     return(

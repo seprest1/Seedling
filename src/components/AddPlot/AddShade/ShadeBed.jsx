@@ -11,7 +11,6 @@ function ShadeBed(){
   const dispatch = useDispatch();
   const setDiv = (location) => {
     const divToSend = {location, shade}
-    console.log(divToSend);
     {divToSend.shade && //only allows dispatch if shade is indicated 
       dispatch({
         type: 'SET_DIV_SHADE',

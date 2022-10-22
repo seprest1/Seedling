@@ -107,8 +107,8 @@
 } 
 
 .prompt_button{
-    height: 15%;
-    background-color: rgb(218, 214, 214, 0.2);
+    height: 4rem !important;
+    background-color: rgba(94, 80, 80, 0.978);
     border: 0.01rem solid rgb(139, 137, 137, 0.4);
     border-radius: 0.1rem;
     color: whitesmoke;
@@ -116,4 +116,17 @@
     font-weight: 100;
     margin: 0 25% 5%;
     justify-self: center;
+}
+
+.prompt_button:hover{
+    background-color: rgb(218, 214, 214, 0.2);
+}
+
+.lock_icon{
+    font-size: 5rem !important;
+    margin: 2rem 40% 0 40%;
+    background-color: rgb(66, 39, 39, .9);
+    padding: 1rem;
+    border-radius: 5rem;
+    color: whitesmoke !important;
 }
