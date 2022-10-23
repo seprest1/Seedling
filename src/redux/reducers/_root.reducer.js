@@ -4,6 +4,7 @@ import user from './user.reducer';
 import garden from './garden.reducer';
 import tasks from './tasks.reducer';
 import weather from './weather.reducer';
+import tips from './tips.reducer';
 
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   garden,
   tasks,
   weather,
+  tips,
 });
 
 export default rootReducer;
