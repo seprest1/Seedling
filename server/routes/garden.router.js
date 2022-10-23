@@ -64,8 +64,9 @@ router.post('/add_plot', rejectUnauthenticated, async (req, res) => {
 
 //gets plot from DB
 router.get('/plot/:plot_id', rejectUnauthenticated, (req, res) => {
-    plotId =req.params.plot_id;
+  console.log('In GET /plot/', req.params.plot_id);
 
+  const plotId =req.params.plot_id;
   const queryText = `
     SELECT div.*, plot.month, plot.year, plot.notes FROM div
       JOIN plot on plot.id = div.plot_id

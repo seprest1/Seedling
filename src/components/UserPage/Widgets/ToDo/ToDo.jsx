@@ -25,6 +25,7 @@ function ToDo () {
         console.log(toDoInput);
         dispatch({ type: 'ADD_TASK', payload: {user: user_id, task: toDoInput} });
         setToDoInput('');
+        setToggleInput(!toggleInput);
     }
 
 
