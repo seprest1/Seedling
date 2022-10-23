@@ -36,7 +36,7 @@
     "body";
 }
 
-.left_header{
+.left_header, .select_header{
   grid-area: title;
   width: 100%;
   background-color: rgba(204, 204, 204, 0.6);
@@ -44,6 +44,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.select_header{
+  justify-content: center !important;
 }
 
 .left_title{
@@ -86,8 +90,14 @@
   border: none;
 }
 
+.month_select:active{
+  border: none !important;
+}
+
 .month_button{
-  margin-right: 6%;
+  margin: 1rem !important;
+  width: 3rem !important;
+  height: 3rem !important;
 }
 
 /* --------- RIGHT SECTION --------- */
@@ -108,10 +118,9 @@
   border-radius: 0.2rem;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 15% 30% 1fr 0.1fr;
+  grid-template-rows: 15% 1fr 0.1fr;
   grid-template-areas: 
     "header"
-    "info"
     "list"
     "buttons";
 } 
@@ -132,30 +141,6 @@
   font-size: 4vh;
 } 
 
-.shade_info{
-  grid-area: info;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  font-size: small;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  grid-gap: 1rem;
-}
-
-.shade_directions{
-  color: rgba(26, 9, 9, 0.9);
-  padding: 0 !important;
-  margin: 0;
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: justify;
-}
 
 /*--------------SAME----------------*/
 .plant_list{

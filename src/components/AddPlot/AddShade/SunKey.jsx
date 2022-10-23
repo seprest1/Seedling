@@ -39,11 +39,6 @@ function PlantKey (){
              <div className="right_header">
                 <h3 className="right_title"></h3>
             </div>
-            <div className="shade_info">
-                <p className="shade_directions">
-                   
-                </p>
-            </div>
             <ul className="shade_list"> 
                 <li>
                         <div 
@@ -72,7 +67,7 @@ function PlantKey (){
                 <button onClick={goBackToUser} className="button">Back</button>
                 <button onClick={sendToNext} className="button">Next</button>
             </div>
-            {userPlots.length === 0 && <ShadeDialog/>}
+            {userPlots.length === 0 && <ShadeDialog/>} {/*opens a dialogue for new users to explain the process*/}
         </div>
     )
 }

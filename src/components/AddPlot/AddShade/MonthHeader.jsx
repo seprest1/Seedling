@@ -11,14 +11,16 @@ function MonthHeader(){
     const [showMonth, setShowMonth] = useState(true); //toggle for month input
     const displayMonth = useSelector(store => store.garden.date.display);
 
-    const handleChange = (e) => {
-        dispatch ({ type: 'SET_DISPLAY', payload: moment().month(month-1).format('MMMM') });
-        dispatch({ type: 'SET_YEAR', payload: Number(e.target.value) });
-        setShowMonth(!showMonth);
-    }
 
     const [monthValue, setMonthValue] = useState(1);
     const [yearValue, setYearValue] = useState(2020);
+    const handleChange = (e) => {
+        setYearValue(Number(e.target.value));
+        dispatch({ type: 'SET_MONTH', payload: monthValue });
+        dispatch ({ type: 'SET_DISPLAY', payload: moment().month(month-1).format('MMMM') });
+        dispatch({ type: 'SET_YEAR', payload: yearValue });
+        setShowMonth(!showMonth);
+    }
 
     return(
         <>
@@ -28,12 +30,12 @@ function MonthHeader(){
                 <IconButton className="selected_button month_button" onClick={() => setShowMonth(!showMonth)}><EditIcon/></IconButton>
             </div>
                 : 
-            <div className="left_header">
+            <div className="select_header">
                 <select 
                     required
-                    value={1}
+                    value={monthValue}
                     className="month_select"
-                    onChange={(e) => dispatch({ type: 'SET_MONTH', payload: Number(e.target.value) })}>  {/* starts at 0, because in moment.js i=0 */} 
+                    onChange={(e) => setMonthValue(Number(e.target.value))}>  {/* starts at 0, because in moment.js i=0 */} 
                     <option value='' hidden></option> 
                     <option value={1} className="month_option">January</option> 
                     <option value={2} className="month_option">February</option>
@@ -51,7 +53,7 @@ function MonthHeader(){
                 <select 
                     required
                     className="month_select"
-                    value={2020}
+                    value={yearValue}
                     onChange={(e) => handleChange(e)}>
                     <option value={2020} className="month_option">2020</option>
                     <option value={2021} className="month_option">2021</option>
