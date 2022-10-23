@@ -31,7 +31,7 @@ function ToDo () {
     return(
         <div className="widget_container todo_container">
             <div className="todo_header">
-                    <h4 className="todo_text">tasks:</h4>
+                    <h4 className="todo_text">Tasks:</h4>
                     <Tooltip title="Add Task" placement="bottom-end">
                         <button className="widget_button" onClick={() => setToggleInput(true)}>+</button>
                     </Tooltip>

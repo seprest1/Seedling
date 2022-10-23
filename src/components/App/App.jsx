@@ -11,7 +11,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import InfoPage from '../InfoPage/InfoPage';
 import UserPage from '../UserPage/UserPage';
 import LandingPage from '../LandingPage/LandingPage';
-import PlantForm from '../AddPlot/PlantForm/PlantForm';
+import PlantForm from '../AddPlot/AddShade/PlantForm/PlantForm';
 import AddShade from '../AddPlot/AddShade/AddShade';
 import AddPlants from '../AddPlot/AddPlants/AddPlants';
 import EditPlot from '../EditPlot/EditPlot/EditPlot';

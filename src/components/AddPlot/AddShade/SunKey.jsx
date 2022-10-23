@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
+import '../AddPlot.css';
 
 
 function PlantKey (){
@@ -15,10 +16,7 @@ function PlantKey (){
         const shadedDivTotal = plot.filter(div => div.shade);  
         console.log('Display Month:', displayMonth);
         if(!month){
-            swal("Set month for your plot!");
-        }
-        else if (!displayMonth){     //makes sure that month is set before moving on
-            swal("Submit month!");
+            swal("Set month for your plot!");  //makes sure that month is set before moving on
         }
         else if (shadedDivTotal.length === 48){    //determines if all plots have been assigned shade values               
             console.log('Sending plot to adding plants section:', plot);  
@@ -33,7 +31,17 @@ function PlantKey (){
     return(
         <div className="right_body">
              <div className="right_header">
-                <h3 className="right_title">Add Shade</h3>
+                <h3 className="right_title"></h3>
+            </div>
+            <div className="shade_info">
+                <p className="shade_directions">
+                    Each plant prefers a different kind of sunlight.
+                    Map out the sunny and shady spots of your plot by clicking on the key below 
+                    and dragging to each 1ft x 1ft section. 
+                </p>
+                <p className="shade_directions">
+                    Set a month for this garden bed, so you can keep track of your harvest for every season.
+                </p>
             </div>
             <ul className="shade_list"> 
                 <li>
