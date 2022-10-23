@@ -7,10 +7,10 @@ function* weatherSaga() {
 
 function* fetchWeather(action){
     try{
-        const zipcode = action.payload;
+        const key = action.payload.weather_key;
         const response = yield axios({
             method: 'GET',
-            url: `/weather/location?zip=${zipcode}`});
+            url: `/weather/location?key=${key}`});
         const weatherData = response.data[0];
         console.log(weatherData);
         // yield put({ type: 'SET_WEATHER', payload: weatherData });
