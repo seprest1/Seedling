@@ -1,6 +1,5 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
 import swal from 'sweetalert';
 //MUI
 import IconButton from '@mui/material/IconButton';
@@ -9,6 +8,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Tooltip from '@mui/material/Tooltip';
+import AddIcon from '@mui/icons-material/Add';
 //components
 import Div from './Div';
 
@@ -30,7 +30,7 @@ function PlotDisplay(){
     const currentPlotIndex = userPlots.findIndex(plot => plot.id === plotId);
     const newPlotIndex = currentPlotIndex + value;
   
-    if (newPlotIndex){ //if there's no further plot, don't send request
+    if (!newPlotIndex){ //if there's no further plot, don't send request
       const newPlot = userPlots[newPlotIndex];
       const newPlotId = newPlot.id;
 
@@ -79,7 +79,7 @@ function PlotDisplay(){
                     <div className="user_header_buttons">
                       <IconButton onClick={() => history.push(`/editplot/${plotId}`)}><EditIcon/></IconButton>
                       <IconButton onClick={deletePlot}><ClearIcon/></IconButton>
-                      <IconButton onClick={sendToNext}>+</IconButton>
+                      <IconButton onClick={sendToNext}><AddIcon/></IconButton>
                     </div>
                   </div>
                   <div className="display_bed">  {/* creates 24 divs, index = 0 */}

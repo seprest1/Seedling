@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import moment from 'moment';
 import './Weather.css';
 //MUI
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -7,12 +8,12 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 function Weather (){
     const dispatch = useDispatch();
     const zipcode = useSelector(store => store.user.zipcode);
-    useEffect(() => {
-        dispatch({ type: 'FETCH_WEATHER', payload: zipcode });
-      }, []);
+    // useEffect(() => {
+    //     dispatch({ type: 'FETCH_WEATHER', payload: zipcode });
+    //   }, []);
     
     const weather = useSelector(store => store.weather);
-    
+
     //assigns weather with image
     const weatherIcon = (iconNumber) => {
         switch(iconNumber){
@@ -46,8 +47,8 @@ function Weather (){
     return(
         <div className="widget_container weather_container">
             <div className="weather_time">
-                <h1 className="weather_day">Monday</h1>
-                <h2 className="weather_date">Sept 16th 2022</h2>
+                <h1 className="weather_day">{moment().format('dddd')}</h1>
+                <h2 className="weather_date">{moment().format("MMM Do YYYY")}</h2>
                 <div className="weather_location">
                     <LocationOnIcon fontSize="xsmall"/>
                     <h2 className="weather_city">Minneapolis, MN</h2>
@@ -55,8 +56,8 @@ function Weather (){
             </div>
             <div className="weather_details">
                 <div className="weather_image">
-                    <img src={weatherIcon(22)} className="weather_icon"/>
-                    <h2 className="weather_type">Sunny</h2>
+                    <img src={weatherIcon(5)} className="weather_icon"/>
+                    <h2 className="weather_type">Partly Cloudy</h2>
                 </div>
             <h2 className="weather_temp">53°</h2>
             </div>

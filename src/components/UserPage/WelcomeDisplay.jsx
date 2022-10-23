@@ -10,7 +10,7 @@ function WelcomeDisplay(){
  
     return(
         <div className="user_welcome">
-            <div className="user_header">
+            <div className="welcome_header">
                 <h3 className="user_title">Welcome, {user.username}!</h3>
             </div>
             <div className="user_welcome_body">

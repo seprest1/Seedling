@@ -39,7 +39,7 @@
 .left_header{
   grid-area: title;
   width: 100%;
-  background-color: rgba(204, 195, 195, 0.6);
+  background-color: rgba(204, 204, 204, 0.6);
   border-radius: 0.2rem 0.2rem 0 0;
   display: flex;
   align-items: center;
@@ -108,9 +108,10 @@
   border-radius: 0.2rem;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 15% 1fr 0.1fr;
+  grid-template-rows: 15% 30% 1fr 0.1fr;
   grid-template-areas: 
     "header"
+    "info"
     "list"
     "buttons";
 } 
@@ -119,7 +120,7 @@
   grid-area: header;
   margin: 0;
   padding: 0 0.5rem 0 0.5rem;
-  background-color: rgba(204, 195, 195, 0.6);
+  background-color: rgba(206, 206, 206, 0.6);
   border-radius: 0.2rem 0.2rem 0 0;
   display: flex;
   flex-direction: row;
@@ -130,6 +131,31 @@
 .right_title{
   font-size: 4vh;
 } 
+
+.shade_info{
+  grid-area: info;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-size: small;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-gap: 1rem;
+}
+
+.shade_directions{
+  color: rgba(26, 9, 9, 0.9);
+  padding: 0 !important;
+  margin: 0;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+}
 
 /*--------------SAME----------------*/
 .plant_list{
@@ -236,15 +262,18 @@
 /* --------- COLORS --------- */
 
 .green1{
-  background-color: #a3b18a;
+  background-color:  rgb(88, 68, 66);
+  /* background-color: #a3b18a; */
 }
 
 .green2{
-  background-color: #578162;
+  background-color:  rgb(53, 39, 39);
+  /* background-color: #578162; */
 } 
 
 .green3{
-  background-color: #344e41;
+ background-color: rgb(35, 29, 27);
+  /* background-color: #344e41; */
 }
 
 .light_green{

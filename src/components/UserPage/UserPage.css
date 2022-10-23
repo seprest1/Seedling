@@ -22,47 +22,6 @@
     align-items: center;
   }
   
-  /* --------- LEFT SECTION --------- */
-  
-  .user_welcome{
-    height: 85vh;
-    width: 60%;
-    margin: 2rem;
-    background-color: rgb(221, 218, 218, 0.3);
-    border-radius: 0.5rem;
-    justify-self: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .user_welcome_body{
-    height: 85%;
-    width: 90%;
-    margin: 1rem;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    grid-gap: 2rem;
-  }
-
-  .widget_container{
-    background-color: rgb(221, 218, 218, 0.9);
-    border-radius: 0.5rem;
-    width: 45%;
-    height: 45%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .gardening_tip{
-    padding: 3rem;
-    text-align: center;
-  }
-
   /* --------- RIGHT SECTION --------- */
   
   .user_plot_display{
@@ -76,6 +35,18 @@
     flex-direction: column;
   }
 
+  .user_header, .welcome_header{
+    margin: 0;
+    padding-left: 2rem;
+    height: 10vh;
+    background-color:  rgba(220, 220, 220, 0.6);
+    border-radius: 0.5rem 0.5rem 0 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
 .display_bed{
     height: 75%;
     text-align: center;
@@ -123,7 +94,7 @@
     height: 85%;
     width: 85%;
     border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 0.3rem;
+    border-radius: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -134,20 +105,55 @@
     width: 40px;
   }
 
-  /* -------------- BOTH ------------ */
-
-.user_header{
-    margin: 0;
-    height: 10vh;
-    width: 100%;
-    background-color:  rgb(219, 211, 211, 0.60);
-    border-radius: 0.5rem 0.5rem 0 0;
+  /* --------- LEFT SECTION --------- */
+  
+  .user_welcome{
+    height: 85vh;
+    width: 60%;
+    margin: 2rem;
+    background-color: rgb(221, 218, 218, 0.3);
+    border-radius: 0.5rem;
+    justify-self: center;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
     align-items: center;
   }
-  
+
+  .welcome_header{
+    width: 100%;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .user_welcome_body{
+    height: 85%;
+    width: 90%;
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    grid-gap: 2rem;
+  }
+
+  .widget_container{
+    background-color: rgb(221, 218, 218, 0.9);
+    border-radius: 0.5rem;
+    width: 45%;
+    height: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gardening_tip{
+    padding: 3rem;
+    text-align: center;
+  }
+
+  /* -------------- BOTH ------------ */
+
   .user_title{
     font-size: 4vh;
     font-weight: 300;

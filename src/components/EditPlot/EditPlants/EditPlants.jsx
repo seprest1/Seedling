@@ -1,4 +1,4 @@
-import AvailablePlants from "../../AddPlot/PlantForm/AvailablePlants/AvailablePlants";
+import AvailablePlants from "../../AddPlot/AddShade/PlantForm/AvailablePlants/AvailablePlants";
 import EditList from "./EditList";
 
 function EditPlants(){

@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 //components
-import PlantName from '../../AddPlot/PlantForm/PlantList/PlantName';
+import PlantName from '../../AddPlot/AddShade/PlantForm/PlantList/PlantName';
 
 function EditList(){
     const history = useHistory();
