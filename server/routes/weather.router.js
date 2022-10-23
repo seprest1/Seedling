@@ -13,14 +13,14 @@ router.get('/location', rejectUnauthenticated, async (req, res) => {
     try{
       const zipcode = req.query.zip;
       console.log(zipcode);
-      // const location = await axios.get(
-      //     `http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=${api_key}&q=${zipcode}&language=en-us`);
-      // const location_key = location.data[0].Key;
+      const response = await axios.get(
+          `http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=${api_key}&q=${zipcode}&language=en-us`);
+      const location_key = response.data[0].Key;
+      console.log(location_key);
 
-      // console.log(location_key);
       // const weather = await axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${location_key}?apikey=${api_key}`);
       // console.log(weather.data);
-      // res.send(weather.data);
+      // res.send(weather.data); 
     }
     catch(error){
           console.log('ERROR in GET API location:', error);

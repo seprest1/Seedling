@@ -7,10 +7,12 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 function Weather (){
     const dispatch = useDispatch();
     const zipcode = useSelector(store => store.user.zipcode);
-    // useEffect(() => {
-    //     dispatch({ type: 'FETCH_WEATHER', payload: zipcode });
-    //   }, []);
-
+    useEffect(() => {
+        dispatch({ type: 'FETCH_WEATHER', payload: zipcode });
+      }, []);
+    
+    const weather = useSelector(store => store.weather);
+    
     //assigns weather with image
     const weatherIcon = (iconNumber) => {
         switch(iconNumber){
