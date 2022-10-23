@@ -1,0 +1,76 @@
+.weather_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.weather_time{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather_day{
+    font-size: 2rem;
+    margin: 0;
+    letter-spacing: 0.1rem;
+    text-align: center;
+}
+
+.weather_date{
+    font-size: 1rem;
+    font-weight: 300;
+    margin: 0;
+    text-align: center;
+}
+
+.weather_location{
+    display: flex;
+    flex-direction: row;
+}
+
+.weather_city{
+    font-size: 0.8rem;
+    font-weight: 400;
+    font-style: italic;
+    margin: 0;
+}
+
+.weather_details{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 0.5rem;
+}
+
+.weather_image{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 0.3rem;
+}
+
+.weather_icon{
+    height: 4rem;
+    width: 50%;
+    padding: 0 10%;
+    align-self: flex-end;
+}
+
+.weather_type{
+    font-size: 1rem;
+    margin: 0;
+    align-self: center;
+    width: 60%;
+    text-align: end;
+}
+
+.weather_temp{
+    font-size: 4.5rem;
+    width: 100%;
+    margin: 0;
+}

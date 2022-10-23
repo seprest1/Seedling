@@ -13,7 +13,8 @@ function* tasksSaga() {
     try{
         const response = yield axios.get(`/tasks/${action.payload}`);
         const taskList = response.data;
-        yield put({ type: 'SET_TASKS', payload: taskList });
+        console.log('taskList:', taskList);
+        // yield put({ type: 'SET_TASKS', payload: taskList });
     }
     catch(error){
       console.log('Error in fetchTasks Saga function,', error);

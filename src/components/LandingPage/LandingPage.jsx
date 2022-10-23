@@ -11,8 +11,6 @@ import LoginForm from './LoginForm';
 function LandingPage({routeProp}) {
   const history = useHistory();
 
-  const [dialog, setDialog] = useState('');
-
   return (
     <div className="landing_body"> 
       <ParalaxBanner/>
