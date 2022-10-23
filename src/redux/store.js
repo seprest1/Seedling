@@ -8,8 +8,7 @@ import rootSaga from './sagas/_root.saga'; // imports ./redux/sagas/index.js
 const sagaMiddleware = createSagaMiddleware();
 
 const logger = createLogger({
-  predicate: (getState, action) => action.type !== 'SET_PLANT',
-  predicate: (getState, action) => action.type !== 'SET_DIV_SHADE',
+  predicate: (getState, action) => action.type !== 'SET_PLANT' || action.type !== 'SET_DIV_SHADE',
   collapsed: true,
 });
 

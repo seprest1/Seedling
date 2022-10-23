@@ -32,22 +32,13 @@ function PlantKey (){
     };
 
     const userPlots = useSelector(store => store.garden.userPlots);
-    console.log(userPlots);
 
     return(
         <div className="right_body">
-             <div className="right_header">
-                <h3 className="right_title"></h3>
-            </div>
-            <div className="shade_info">
-                <p className="shade_directions">
-                   
-                </p>
-            </div>
             <ul className="shade_list"> 
                 <li>
                         <div 
-                            className="green1 icon"
+                            className="shade1 icon"
                             onClick={() => dispatch({type: 'SET_SHADE', payload: 'Full Sun'})}>
                         </div> 
                     <span>Full Sun</span>
@@ -55,14 +46,14 @@ function PlantKey (){
              
                 <li>
                         <div 
-                            className="green2 icon" 
+                            className="shade2 icon" 
                             onClick={() => dispatch({type: 'SET_SHADE', payload: 'Partial Sun'})}>
                         </div> 
                     <span>Partial Sun</span>
                 </li>
                 <li>
                         <div 
-                            className="green3 icon" 
+                            className="shade3 icon" 
                             onClick={() => dispatch({type: 'SET_SHADE', payload: 'Full Shade'})}>
                         </div> 
                     <span>Full Shade</span> 
@@ -72,7 +63,7 @@ function PlantKey (){
                 <button onClick={goBackToUser} className="button">Back</button>
                 <button onClick={sendToNext} className="button">Next</button>
             </div>
-            {userPlots.length === 0 && <ShadeDialog/>}
+            {userPlots.length === 0 && <ShadeDialog/>} {/*opens a dialogue for new users to explain the process*/}
         </div>
     )
 }

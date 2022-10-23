@@ -10,7 +10,7 @@ function Rain (){
     return(
         <div className="widget_container tip_container">
             <div className="tips_header">
-                <h3 className="tip_title">Gardening Tip:</h3>
+                <h3 className="tip_title">Gardening Tips:</h3>
             </div>
             <div className="tip_stuff">
                 <p className="tip_text">{tip}</p>

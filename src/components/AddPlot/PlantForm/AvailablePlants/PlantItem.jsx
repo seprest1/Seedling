@@ -17,6 +17,15 @@ function PlantItem({plant}){
         });
     };
 
+    const shadeIcon = (plant) => {
+        switch (plant.shade){
+            case 'Full Sun': return "/Images/weather/sun.png";
+            case 'Partial Sun': return "/Images/weather/cloudy.png";
+            case 'Full Shade': return "/Images/weather/cloudy-night.png";
+            default: return "/Images/weather/sun.png";
+        }
+    }
+
     return(
         <li className="available_plant">
             <div className="a_plant_header">
@@ -31,10 +40,13 @@ function PlantItem({plant}){
                 </div>
                 <div className="a_plant_info">
                     <div className="a_plant_details">
-                        <p className="a_plant_subname">{plant.scientific_name} - {plant.shade}</p>
+                        <div className="a_plant_subname">
+                            <p className="scientific_name">{plant.scientific_name}</p>
+                            <img src={shadeIcon(plant)} className="shade_icon"/>
+                        </div>
                         <p className="a_plant_fact">{plant.description}</p>
-                        <p className="a_plant_fact">{plant.sowing}</p>
-                        <p className="a_plant_fact">{plant.row_spacing}</p>
+                        <p className="a_plant_fact"><span className="a_plant_span">Sowing:</span>{plant.sowing}</p>
+                        <p className="a_plant_fact"><span className="a_plant_span">Row Spacing:</span>{plant.row_spacing}</p>
                     </div>
                     <MonthChart plant={plant}/>
                 </div>

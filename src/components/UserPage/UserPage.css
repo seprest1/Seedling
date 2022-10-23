@@ -105,6 +105,15 @@
     width: 40px;
   }
 
+  .display_bed_empty{
+    height: 70%;
+    background-color: rgba(65,40,40,0.87);
+    border-radius: 0.5rem;
+    margin: 1.5rem 2rem;
+    padding: 2rem;
+    color: rgba(245, 245, 245, 0.733);
+  }
+
   /* --------- LEFT SECTION --------- */
   
   .user_welcome{
@@ -166,11 +175,3 @@
     text-align: justify;
   }
 
-  .display_bed_empty{
-    height: 70%;
-    background-color: rgba(245, 245, 245, 0.73);
-    border: 2px solid #dc343a9a;
-    border-radius: 0.5rem;
-    margin: 1.5rem 2rem;
-    padding: 2rem;
-  }

@@ -31,8 +31,6 @@ function PlantKey (){
 
     return(
         <div className="right_body">
-            <div className="right_header">
-            </div>
             <ul className="plant_list"> 
                 {plants.map((plant, i) => <KeyItem plant={plant} key={i}/>)}  
             </ul>
