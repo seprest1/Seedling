@@ -226,8 +226,7 @@
   justify-self: flex-end;
 }
 
-
-.plant_icon{
+.bed_icon{
   grid-area: icon;
   height: 85%;
   width: 85%;
@@ -244,21 +243,26 @@
   height: 50px;
 }
 
-/* --------- COLORS --------- */
-
-.green1{
-  background-color:  rgb(88, 68, 66);
-  /* background-color: #a3b18a; */
+.selected_shade_icon{
+  width: 2rem;
+  height: 2rem;
+  margin: 0;
+  padding: 0;
+  opacity: 0.3;
 }
 
-.green2{
+/* --------- COLORS --------- */
+
+.shade1{
+  background-color:  rgb(88, 68, 66);
+}
+
+.shade2{
   background-color:  rgb(53, 39, 39);
-  /* background-color: #578162; */
 } 
 
-.green3{
+.shade3{
  background-color: rgb(35, 29, 27);
-  /* background-color: #344e41; */
 }
 
 .light_green{

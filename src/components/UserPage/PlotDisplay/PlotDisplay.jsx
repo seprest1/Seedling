@@ -88,7 +88,7 @@ function PlotDisplay(){
                 <div className="user_header">
                     <h3 className="user_title">Your Plots:</h3> 
                     <Tooltip title="Add Plot" placement="bottom-end">
-                      <button onClick={sendToNext} className="display_button add_plot_button">+</button>
+                      <IconButton onClick={sendToNext}><AddIcon/></IconButton>
                     </Tooltip>
                 </div>
                 <div className="display_bed_empty">

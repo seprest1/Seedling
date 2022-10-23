@@ -34,11 +34,11 @@ function PlantBed(){
     const changeBackground = (div) => {
       switch(div.shade){
         case 'Full Sun':
-          return 'green1';
+          return 'shade1';
         case 'Partial Sun':
-          return 'green2';
+          return 'shade2';
         case 'Full Shade':
-          return 'green3';
+          return 'shade3';
         default: 
           return null;
       }
@@ -56,7 +56,7 @@ function PlantBed(){
                 <div key={i}   
                     className={`plot_div ${changeBackground(div)}`}                    
                     onMouseOver={() => setDiv(div)}> 
-                        {div.name && <div className={`plant_icon ${div.color}`}>
+                        {div.name && <div className={`bed_icon ${div.color}`}>
                             <img src={`${div.icon}`} className="plant_vector"/>
                           </div>}
                 </div>))} 
