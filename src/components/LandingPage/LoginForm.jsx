@@ -20,11 +20,6 @@ function LoginForm() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [open, setOpen] = useState(true);
-  const toggleDialog = () => {
-    setOpen(!open);
-  };
-
   const login = (event) => {
     event.preventDefault();
     if (username && password) {
@@ -37,7 +32,7 @@ function LoginForm() {
   }; // end login
 
   return (
-      <Dialog open={open} onClose={() => history.push('/home')}>
+      <Dialog open={true} onClose={() => history.push('/home')}>
         <LockOpenIcon color="primary" className="lock_icon"/>
 
         {errors.loginMessage ?  //if there's an error, show here

@@ -14,7 +14,6 @@ function Weather (){
     //     dispatch({ type: 'FETCH_WEATHER', payload: weather_key });
     //   }, []);
     
-   
     //assigns weather with image
     const weatherIcon = (iconNumber) => {
         switch(iconNumber){

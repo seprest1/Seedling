@@ -19,11 +19,6 @@ function RegisterForm() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const [open, setOpen] = useState(true);
-  const toggleDialog = () => {
-    setOpen(!open);
-  };
-
   const registerUser = (e) => {
     e.preventDefault();
     dispatch({ type: 'REGISTER', payload: {username, password, zipcode} });
