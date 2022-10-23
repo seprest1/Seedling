@@ -10,9 +10,9 @@ function Weather (){
     const weather_key = useSelector(store => store.user.weather_key);
     const weather = useSelector(store => store.weather);
 
-    // useEffect(() => {
-    //     dispatch({ type: 'FETCH_WEATHER', payload: weather_key });
-    //   }, []);
+    useEffect(() => {
+        // dispatch({ type: 'FETCH_WEATHER', payload: weather_key });
+      }, []);
     
     //assigns weather with image
     const weatherIcon = (iconNumber) => {
@@ -56,10 +56,10 @@ function Weather (){
             </div>
             <div className="weather_details">
                 <div className="weather_image">
-                    <img src={weatherIcon(5)} className="weather_icon"/>
-                    <h2 className="weather_type">Partly Cloudy</h2>
+                    <img src={weatherIcon(weather.icon)} className="weather_icon"/>
+                    <h2 className="weather_type">{weather.text}</h2>
                 </div>
-            <h2 className="weather_temp">53°</h2>
+            <h2 className="weather_temp">{weather.temp}°</h2>
             </div>
         </div>
     )

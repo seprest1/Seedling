@@ -7,7 +7,6 @@ import IconButton from '@mui/material/IconButton';
 
 function MonthHeader(){
     const dispatch = useDispatch();
-    const month = useSelector(store => store.garden.date.month);
     const [showMonth, setShowMonth] = useState(true); //toggle for month input
     const displayMonth = useSelector(store => store.garden.date.display);
 
@@ -17,7 +16,7 @@ function MonthHeader(){
     const handleChange = (e) => {
         setYearValue(Number(e.target.value));
         dispatch({ type: 'SET_MONTH', payload: monthValue });
-        dispatch ({ type: 'SET_DISPLAY', payload: moment().month(month-1).format('MMMM') });
+        dispatch ({ type: 'SET_DISPLAY', payload: moment().month(monthValue-1).format('MMMM') });
         dispatch({ type: 'SET_YEAR', payload: yearValue });
         setShowMonth(!showMonth);
     }

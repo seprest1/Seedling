@@ -13,9 +13,9 @@ router.get('/location', rejectUnauthenticated, async (req, res) => {
       const location_key = req.query.key;
       console.log(location_key);
 
-      // const weather = await axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${key}?apikey=${api_key}`);
-      // console.log(weather.data);
-      // res.send(weather.data); 
+      const weather = await axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${location_key}?apikey=${api_key}`);
+      console.log(weather.data);
+      res.send(weather.data); 
     }
     catch(error){
           console.log('ERROR in GET API location:', error);

@@ -7,13 +7,18 @@ function* weatherSaga() {
 
 function* fetchWeather(action){
     try{
-        const key = action.payload.weather_key;
+        const key = action.payload;
         const response = yield axios({
             method: 'GET',
             url: `/weather/location?key=${key}`});
         const weatherData = response.data[0];
-        console.log(weatherData);
-        // yield put({ type: 'SET_WEATHER', payload: weatherData });
+
+        yield put({ type: 'SET_WEATHER', 
+            payload: {
+                text: weatherData.WeatherText,
+                temp: weatherData.Temperature.Imperial.Value,
+                icon: weatherData.WeatherIcon } 
+        });
     }
     catch(error){
         console.log('fetchWeather failed:', error);

@@ -7,11 +7,11 @@ function Div ({div, i}) {
     const changeBackground = (div) => {
         switch(div.shade){
           case 'Full Sun':
-            return 'green1';
+            return 'shade1';
           case 'Partial Sun':
-            return 'green2';
+            return 'shade2';
           case 'Full Shade':
-            return 'green3';
+            return 'shade3';
           default: 
             return null;
         };

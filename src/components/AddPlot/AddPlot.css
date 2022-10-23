@@ -111,31 +111,19 @@
 }
 
 .right_body{
-  height: 85vh;
+  height: 80vh;
   width: 100%;
   margin: 2rem;
+  padding-top: 2.5rem;
   background-color: rgb(221, 218, 218, 0.5);;
   border-radius: 0.2rem;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 15% 1fr 0.1fr;
+  grid-template-rows: 1fr 0.1fr;
   grid-template-areas: 
-    "header"
     "list"
     "buttons";
 } 
-
-.right_header {
-  grid-area: header;
-  margin: 0;
-  padding: 0 0.5rem 0 0.5rem;
-  background-color: rgba(206, 206, 206, 0.6);
-  border-radius: 0.2rem 0.2rem 0 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
 
 .right_title{
   font-size: 4vh;
