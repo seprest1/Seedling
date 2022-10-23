@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { ParallaxProvider } from 'react-scroll-parallax';
@@ -11,13 +11,11 @@ import AboutPage from '../AboutPage/AboutPage';
 import InfoPage from '../InfoPage/InfoPage';
 import UserPage from '../UserPage/UserPage';
 import LandingPage from '../LandingPage/LandingPage';
-import PlantForm from '../AddPlot/AddShade/PlantForm/PlantForm';
+import PlantForm from '../AddPlot/PlantForm/PlantForm';
 import AddShade from '../AddPlot/AddShade/AddShade';
 import AddPlants from '../AddPlot/AddPlants/AddPlants';
 import EditPlot from '../EditPlot/EditPlot/EditPlot';
 import EditPlants from '../EditPlot/EditPlants/EditPlants';
-import LoginForm from '../LandingPage/LoginForm';
-import RegisterForm from '../LandingPage/RegisterForm';
 
 //MUI
 import { ThemeProvider } from '@mui/material';
