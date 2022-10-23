@@ -42,10 +42,9 @@ function* addPlot(action){
 //fetch user's plot from DB
 function* fetchPlot(action){
     try{
-        const plot_id = action.payload.plot_id;
+        const plot_id = action.payload;
         const userPlot = yield axios.get(`/garden/plot/${plot_id}`);
         const response = userPlot.data;
-        console.log('Response from fetchPlot is:', response);
 
         //Pulls only needed values from DB to set plot
         const plot = response.map(obj => ({ 
@@ -135,21 +134,19 @@ function* fetchUserPlots(action){
         const match = userPlots.find(plot => plot.year === currentYear && plot.month === currentMonth);
         const plotBefore = userPlots.find(plot => plot.year === currentYear && plot.month < currentMonth);
         const plotAfter = userPlots.find(plot => plot.year === currentYear && plot.month > currentMonth);
-        console.log(userId, match, plotBefore, plotAfter);
-
-
+   
         // dispatch 'get plot' route for initial plot
         if (match){
-            console.log('Match', match.id);
-            yield put({ type: 'GET_PLOT', payload: { plot_id: match.id } }); //if there's a plot from current month
+            console.log('Match', match);
+            yield put({ type: 'GET_PLOT', payload: match.id  }); //if there's a plot from current month
         } 
         else if (plotAfter){
-            console.log('Getting future plot', plotAfter.id);
-            yield put({ type: 'GET_PLOT', payload: { plot_id: plotAfter.id } }); //if there's a future plot
+            console.log('Initial plot is in the future:', plotAfter);
+            yield put({ type: 'GET_PLOT', payload: plotAfter.id }); //if there's a future plot
         }
         else{
-            console.log('Getting past plot', plotBefore.id);
-            yield put({ type: 'GET_PLOT', payload: { plot_id: plotBefore.id } }); //get the closest previous month's plot
+            console.log('Initial plot is in the past:', plotBefore);
+            yield put({ type: 'GET_PLOT', payload: plotBefore.id }); //get the closest previous month's plot
         }
     }
     catch(error){
@@ -165,7 +162,7 @@ function* addNotes(action){
             url: `/garden/notes/${action.payload.plot_id}`, 
             data: {notes: action.payload.notes}
         });
-        yield put({ type: 'GET_PLOT', payload: {plot_id: action.payload.plot_id} });
+        yield put({ type: 'GET_PLOT', payload: action.payload.plot_id });
         
     }
     catch(error){

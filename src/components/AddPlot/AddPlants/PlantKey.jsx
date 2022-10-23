@@ -32,7 +32,6 @@ function PlantKey (){
     return(
         <div className="right_body">
             <div className="right_header">
-                <h3 className="right_title">Add Plants</h3>
             </div>
             <ul className="plant_list"> 
                 {plants.map((plant, i) => <KeyItem plant={plant} key={i}/>)}  

@@ -3,6 +3,9 @@ import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 import '../AddPlot.css';
 
+//components
+import ShadeDialog from './ShadeDialog';
+
 
 function PlantKey (){
     const dispatch = useDispatch();
@@ -28,6 +31,9 @@ function PlantKey (){
         history.push('/user');
     };
 
+    const userPlots = useSelector(store => store.garden.userPlots);
+    console.log(userPlots);
+
     return(
         <div className="right_body">
              <div className="right_header">
@@ -35,12 +41,7 @@ function PlantKey (){
             </div>
             <div className="shade_info">
                 <p className="shade_directions">
-                    Each plant prefers a different kind of sunlight.
-                    Map out the sunny and shady spots of your plot by clicking on the key below 
-                    and dragging to each 1ft x 1ft section. 
-                </p>
-                <p className="shade_directions">
-                    Set a month for this garden bed, so you can keep track of your harvest for every season.
+                   
                 </p>
             </div>
             <ul className="shade_list"> 
@@ -71,6 +72,7 @@ function PlantKey (){
                 <button onClick={goBackToUser} className="button">Back</button>
                 <button onClick={sendToNext} className="button">Next</button>
             </div>
+            {userPlots.length === 0 && <ShadeDialog/>}
         </div>
     )
 }

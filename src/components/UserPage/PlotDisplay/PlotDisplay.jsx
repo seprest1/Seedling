@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
@@ -12,34 +13,54 @@ import AddIcon from '@mui/icons-material/Add';
 //components
 import Div from './Div';
 
+
 function PlotDisplay(){
   const plot = useSelector(store => store.garden.divs);
   const plotId = useSelector(store => store.garden.selectedPlot.id);
   const displayMonth = useSelector(store => store.garden.date.display);
   const year = useSelector(store => store.garden.date.year);
+  
   const dispatch = useDispatch();
   const history = useHistory();
-  const sendToNext = () => {
-    dispatch({ type: 'CLEAR_EVERYTHING' });
-    history.push('/newplot/shade');
-  }  
+
+  const userPlots = useSelector(store => store.garden.userPlots);
+  const initialPlotIndex = userPlots.findIndex(plot => plot.id === plotId);
+  useEffect(() => {
+    setNextPlotIndex(initialPlotIndex);
+  }, []);
+
+ 
 
   //toggles between plots when button is clicked
-  const userPlots = useSelector(store => store.garden.userPlots);
-  const changePlotDisplay = (value) => {
-    const currentPlotIndex = userPlots.findIndex(plot => plot.id === plotId);
-    const newPlotIndex = currentPlotIndex + value;
+                                                                        
+  const [nextPlotIndex, setNextPlotIndex] = useState();
+  const addIndex = () => {
+    console.log(`Current plot is indexed at ${nextPlotIndex}`);
+    if(nextPlotIndex <= userPlots.length-1){ //keeps requests within the confines of array length
+      console.log('adding 1');
+      setNextPlotIndex(nextPlotIndex + 1); 
+      changePlotDisplay();
+    };
+  }
+
+  const subtractIndex = () => {
+    console.log(`Current plot is indexed at ${nextPlotIndex}`);
+    if(nextPlotIndex >= 1){
+      console.log('current index', nextPlotIndex);
+      console.log('subtracting 1');
+      const pleaseWork = (nextPlotIndex - 1);
+      setNextPlotIndex(pleaseWork);
+      changePlotDisplay();
+    }
+  }
+
+  const changePlotDisplay = () => {
+      const [newPlot] = userPlots.filter((plot, i) => i === nextPlotIndex);
+      console.log(newPlot);
+      console.log(`Next plot is indexed at ${nextPlotIndex}`);
   
-    if (!newPlotIndex){ //if there's no further plot, don't send request
-      const newPlot = userPlots[newPlotIndex];
-      const newPlotId = newPlot.id;
-
-      console.log('Current plot is:', userPlots[currentPlotIndex]);
-      console.log('Next plot is:', newPlot);
-
       dispatch({ type: 'CLEAR_EVERYTHING' });
-      dispatch({ type: 'GET_PLOT', payload: {plot_id: newPlotId} });
-      }
+      dispatch({ type: 'GET_PLOT', payload: newPlot.id });
   }
 
   const deletePlot = () => {
@@ -55,6 +76,10 @@ function PlotDisplay(){
     }});
   }
 
+  const sendToNext = () => {
+    dispatch({ type: 'CLEAR_EVERYTHING' });
+    history.push('/newplot/shade');
+  }  
   
     return(
         <div className="user_plot_display">   
@@ -87,8 +112,8 @@ function PlotDisplay(){
                     <Div key={i} i={i} div={div}/>)} 
                   </div>
                   <div className="change_plot_buttons">     {/* opposite because array comes in sorted with future plots first */}
-                    <IconButton className="display_button" onClick={() => changePlotDisplay(1)}><ArrowBackIosIcon/></IconButton>
-                    <IconButton className="display_button" onClick={() => changePlotDisplay(-1)}><ArrowForwardIosIcon/></IconButton>
+                    <IconButton className="display_button" onClick={addIndex}><ArrowBackIosIcon/></IconButton>
+                    <IconButton className="display_button" onClick={subtractIndex}><ArrowForwardIosIcon/></IconButton>
                   </div>
                 </>} 
         </div>

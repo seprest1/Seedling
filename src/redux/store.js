@@ -9,7 +9,8 @@ const sagaMiddleware = createSagaMiddleware();
 
 const logger = createLogger({
   predicate: (getState, action) => action.type !== 'SET_PLANT',
-  predicate: (getState, action) => action.type !== 'SET_DIV_SHADE'
+  predicate: (getState, action) => action.type !== 'SET_DIV_SHADE',
+  collapsed: true,
 });
 
 // this line creates an array of all of redux middleware you want to use
