@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
 const axios = require('axios');
-const {rejectUnauthenticated,
-} = require('../modules/authentication-middleware');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 router.get('/:user', rejectUnauthenticated, (req, res) => {
     console.log('in GET tasks route');

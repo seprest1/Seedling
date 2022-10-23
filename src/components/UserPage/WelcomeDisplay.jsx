@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import ToDo from './Widgets/ToDo/ToDo';
 import Notes from './Widgets/Notes/Notes';
 import Weather from './Widgets/Weather/Weather';
-import Rain from './Widgets/GardeningTip';
+import Tips from './Widgets/Tips/GardeningTip';
 
 function WelcomeDisplay(){
     const user = useSelector (store => store.user);
@@ -16,7 +16,7 @@ function WelcomeDisplay(){
             <div className="user_welcome_body">
                 <Weather/>
                 <ToDo/>
-                <Rain/>
+                <Tips/>
                 <Notes/>
             </div>
         </div>

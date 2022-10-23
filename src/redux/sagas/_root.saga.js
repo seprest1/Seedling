@@ -5,6 +5,7 @@ import userSaga from './user.saga';
 import gardenSaga from './garden.saga';
 import weatherSaga from './weather.saga';
 import tasksSaga from './tasks.saga';
+import tipsSaga from './tips.saga';
 
 export default function* rootSaga() {
   yield all([
@@ -14,5 +15,6 @@ export default function* rootSaga() {
     gardenSaga(),
     weatherSaga(),
     tasksSaga(),
+    tipsSaga(),
   ]);
 }
