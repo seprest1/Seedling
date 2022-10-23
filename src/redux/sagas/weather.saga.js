@@ -2,19 +2,21 @@ import axios from 'axios';
 import { put, takeEvery } from 'redux-saga/effects';
 
 function* weatherSaga() {
-    yield takeEvery('FETCH_WEATHER', fetchLocation);
+    yield takeEvery('FETCH_WEATHER', fetchWeather);
   }
 
-function* fetchLocation(action){
+function* fetchWeather(action){
     try{
-        console.log(action.payload);
         const zipcode = action.payload;
-        yield axios({
+        const response = yield axios({
             method: 'GET',
             url: `/weather/location?zip=${zipcode}`});
+        const weatherData = response.data[0];
+        console.log(weatherData);
+        // yield put({ type: 'SET_WEATHER', payload: weatherData });
     }
     catch(error){
-        console.log('fetchLocation failed:', error);
+        console.log('fetchWeather failed:', error);
     }
 }
   
