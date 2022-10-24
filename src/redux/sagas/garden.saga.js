@@ -32,7 +32,7 @@ function* addPlot(action){
             url: '/garden/add_plot', 
             data: action.payload
         });
-        yield put ({ type: 'GET_USER_PLOTS', payload: action.payload.user });
+        dispatch({ type: 'CLEAR_EVERYTHING' });
     }
     catch(error){
         console.log('addPlot failed,', error);
