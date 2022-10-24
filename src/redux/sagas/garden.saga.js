@@ -95,11 +95,13 @@ function* ammendPlot(action){
    try{
         const plot_id = action.payload.plot_id;
         const plot = action.payload.plot;
+        console.log(plot_id);
         yield axios({ 
             method: 'PUT',
             url: `/garden/${plot_id}`, 
             data: plot 
         });
+        yield put({ type: 'CLEAR_EVERTYHING' });
    }
    catch(error){
         console.log('ammendPlot failed:', error);
@@ -110,7 +112,8 @@ function* ammendPlot(action){
 function* deletePlot(action){
     try{
         const plotId = action.payload;
-        yield axios.delete(`/garden/${plotId}`);      
+        yield axios.delete(`/garden/${plotId}`);
+        yield put({ type: 'FETCH_PLOT '});         
     }
     catch(error){
         console.log('deletePlot failed:', error);

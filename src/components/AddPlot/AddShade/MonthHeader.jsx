@@ -10,14 +10,11 @@ function MonthHeader(){
     const [showMonth, setShowMonth] = useState(true); //toggle for month input
     const displayMonth = useSelector(store => store.garden.date.display);
 
-
     const [monthValue, setMonthValue] = useState(1);
-    const [yearValue, setYearValue] = useState(2020);
     const handleChange = (e) => {
-        setYearValue(Number(e.target.value));
         dispatch({ type: 'SET_MONTH', payload: monthValue });
         dispatch ({ type: 'SET_DISPLAY', payload: moment().month(monthValue-1).format('MMMM') });
-        dispatch({ type: 'SET_YEAR', payload: yearValue });
+        dispatch({ type: 'SET_YEAR', payload: Number(e.target.value) });
         setShowMonth(!showMonth);
     }
 
@@ -52,7 +49,7 @@ function MonthHeader(){
                 <select 
                     required
                     className="month_select"
-                    value={yearValue}
+                    value={2020}
                     onChange={(e) => handleChange(e)}>
                     <option value={2020} className="month_option">2020</option>
                     <option value={2021} className="month_option">2021</option>

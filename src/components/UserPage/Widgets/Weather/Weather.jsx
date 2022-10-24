@@ -52,7 +52,7 @@ function Weather (){
                     <img src={weatherIcon(4)} className="weather_icon"/>
                     <h2 className="weather_type">Cloudy</h2>
                 </div>
-            <h2 className="weather_temp">59°</h2> 
+            <h2 className="weather_temp">55°</h2> 
             </div>
         </div>
     )

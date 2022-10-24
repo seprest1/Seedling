@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import moment from 'moment';
 import './UserPage.css';
 //components
 import WelcomeDisplay from './WelcomeDisplay';
@@ -14,8 +13,8 @@ function UserPage() {
     dispatch({ type: 'CLEAR_EVERYTHING' });
     dispatch({ type: "GET_USER_PLOTS", payload: user });
     dispatch({ type: "FETCH_TASKS", payload: user });
-    dispatch({ type: 'FETCH_TIPS' });
-      // dispatch({ type: 'FETCH_WEATHER', payload: weather_key });
+    dispatch({ type: 'FETCH_TIPS', payload: user });
+    //dispatch({ type: 'FETCH_WEATHER', payload: weather_key });
   }, []);
 
   return (
