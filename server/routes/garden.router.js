@@ -10,7 +10,8 @@ const {rejectUnauthenticated,
 router.get('/plants', rejectUnauthenticated, (req, res) => {
   const queryText = `
     SELECT * FROM plant
-	    JOIN growing_season ON growing_season.plant_id = plant.id;`;
+	    JOIN growing_season ON growing_season.plant_id = plant.id
+        ORDER BY plant.shade;`;
   pool.query(queryText)
       .then(result => {
         res.send(result.rows);

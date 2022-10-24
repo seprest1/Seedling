@@ -29,8 +29,8 @@ function LandingPage({routeProp}) {
                     when creating a new project. What to plant, where to plant it, when to plant, what to place it next to, those are just the very basics 
                     when creating a garden bed. Even seasoned gardeners learn throughout the years, what works and what doesn’t, collecting this information 
                     to use for the next growing season. Seedling is a desktop application that allows users to plan their garden, collect notes and learn 
-                    general gardening information. It will be interactive and intuitive, simple and complete, to make the process of getting started easier, 
-                    and allow the user to get in the dirt sooner. 
+                    general gardening information. It is interactive and intuitive, simple and complete, to make the process of getting started easier, 
+                    and allow you to get in the dirt sooner. 
                   </p>
                 </Parallax>
             </div>

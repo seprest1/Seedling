@@ -20,7 +20,6 @@ function Nav() {
 
         {user.id && <>             {/* user logged in */}
             <Link to="/user" className="nav_link"> home </Link>
-            <Link to="/info" className="nav_link"> info </Link>
             <button className="nav_button" onClick={() => dispatch({ type: 'LOGOUT'})}> log out </button></>}
         </div>     
     </div>

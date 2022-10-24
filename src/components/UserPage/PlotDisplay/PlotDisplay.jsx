@@ -25,22 +25,24 @@ function PlotDisplay(){
 
   const userPlots = useSelector(store => store.garden.userPlots);
   const initialPlotIndex = userPlots.findIndex(plot => plot.id === plotId);
-  useEffect(() => {
-    setNextPlotIndex(initialPlotIndex);
-  }, []);
+  // useEffect(() => {
+  //   setNextPlotIndex(initialPlotIndex);
+  // }, []);
 
  
 
-  //toggles between plots when button is clicked
-                                                                        
-  const [nextPlotIndex, setNextPlotIndex] = useState();
+  //toggles between plots when button is clicked                                            
+  const [nextPlotIndex, setNextPlotIndex] = useState(0);
   const addIndex = () => {
     console.log(`Current plot is indexed at ${nextPlotIndex}`);
     if(nextPlotIndex <= userPlots.length-1){ //keeps requests within the confines of array length
       console.log('adding 1');
       setNextPlotIndex(nextPlotIndex + 1); 
       changePlotDisplay();
-    };
+    }
+    else{
+      console.log(nextPlotIndex);
+    }
   }
 
   const subtractIndex = () => {
@@ -52,16 +54,21 @@ function PlotDisplay(){
       setNextPlotIndex(pleaseWork);
       changePlotDisplay();
     }
+    else{
+      console.log(nextPlotIndex);
+    }
   }
 
   const changePlotDisplay = () => {
       const [newPlot] = userPlots.filter((plot, i) => i === nextPlotIndex);
       console.log(newPlot);
       console.log(`Next plot is indexed at ${nextPlotIndex}`);
-  
-      dispatch({ type: 'CLEAR_EVERYTHING' });
-      dispatch({ type: 'GET_PLOT', payload: newPlot.id });
-  }
+
+      if (newPlot){
+        dispatch({ type: 'CLEAR_EVERYTHING' });
+        dispatch({ type: 'GET_PLOT', payload: newPlot.id });
+      };
+  };
 
   const deletePlot = () => {
     swal({

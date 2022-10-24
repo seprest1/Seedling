@@ -19,10 +19,10 @@ function PlantItem({plant}){
 
     const shadeIcon = (plant) => {
         switch (plant.shade){
-            case 'Full Sun': return "/Images/weather/sun.png";
-            case 'Partial Sun': return "/Images/weather/cloudy.png";
-            case 'Full Shade': return "/Images/weather/cloudy-night.png";
-            default: return "/Images/weather/sun.png";
+            case 'Full Sun': return "/Images/Weather_Icons/sun.png";
+            case 'Partial Sun': return "/Images/Weather_Icons/cloudy.png";
+            case 'Full Shade': return "/Images/Weather_Icons/cloudy-night.png";
+            default: return "/Images/Weather_Icons/sun.png";
         }
     }
 

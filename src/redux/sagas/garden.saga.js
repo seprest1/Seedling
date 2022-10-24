@@ -42,7 +42,9 @@ function* addPlot(action){
 //fetch user's plot from DB
 function* fetchPlot(action){
     try{
+       
         const plot_id = action.payload;
+        console.log(plot_id);
         const userPlot = yield axios.get(`/garden/plot/${plot_id}`);
         const response = userPlot.data;
 

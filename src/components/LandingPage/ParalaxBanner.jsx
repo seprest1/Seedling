@@ -4,15 +4,15 @@ import { ParallaxBanner } from 'react-scroll-parallax';
 function ParalaxBanner(){
     const background = {
         image:
-          'Images/Background.jpeg',
-        speed: -40,
+          'Images/Paralax/Background.jpeg',
+        speed: -50,
         translateY: [0, 50],
         shouldAlwaysCompleteAnimation: true,
       };
     
       const middleground = {
         image:
-          'Images/middleground.png',
+          'Images/Paralax/middleground.png',
         speed: -20,
         scale: [1, 1.1, 'easeOutCubic'],
         shouldAlwaysCompleteAnimation: true,
@@ -20,8 +20,8 @@ function ParalaxBanner(){
     
       const foreground = {
         image:
-          'Images/foreground.png',
-        speed: 20,
+          'Images/Paralax/foreground.png',
+        speed: 30,
         translateY: [0, 15],
         scale: [1, 1.1, 'easeOutCubic'],
         shouldAlwaysCompleteAnimation: true,

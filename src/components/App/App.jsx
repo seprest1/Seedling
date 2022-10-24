@@ -8,7 +8,6 @@ import './App.css';
 //components
 import Nav from './AllPages/Nav';
 import AboutPage from '../AboutPage/AboutPage';
-import InfoPage from '../InfoPage/InfoPage';
 import UserPage from '../UserPage/UserPage';
 import LandingPage from '../LandingPage/LandingPage';
 import PlantForm from '../AddPlot/PlantForm/PlantForm';
@@ -115,10 +114,6 @@ function App() {
 
           <Route exact path="/about">
             <AboutPage/>
-          </Route>
-
-          <Route exact path="/info">
-            <InfoPage/>
           </Route>
 
           <Route exact path="/register">
