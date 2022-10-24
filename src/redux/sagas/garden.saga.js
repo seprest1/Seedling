@@ -32,7 +32,7 @@ function* addPlot(action){
             url: '/garden/add_plot', 
             data: action.payload
         });
-        dispatch({ type: 'CLEAR_EVERYTHING' });
+        put({ type: 'CLEAR_EVERYTHING' });
     }
     catch(error){
         console.log('addPlot failed,', error);
@@ -44,7 +44,6 @@ function* fetchPlot(action){
     try{
        
         const plot_id = action.payload;
-        console.log(plot_id);
         const userPlot = yield axios.get(`/garden/plot/${plot_id}`);
         const response = userPlot.data;
 
@@ -137,7 +136,7 @@ function* fetchUserPlots(action){
         const plotBefore = userPlots.find(plot => plot.year === currentYear && plot.month < currentMonth);
         const plotAfter = userPlots.find(plot => plot.year === currentYear && plot.month > currentMonth);
    
-        // dispatch 'get plot' route for initial plot
+        //'get plot' route for initial plot
         if (match){
             console.log('Match', match);
             yield put({ type: 'GET_PLOT', payload: match.id  }); //if there's a plot from current month
@@ -156,6 +155,7 @@ function* fetchUserPlots(action){
     };
 };
 
+//adds notes to specific plot
 function* addNotes(action){
     try{
         console.log(action.payload);

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
@@ -25,45 +24,27 @@ function PlotDisplay(){
 
   const userPlots = useSelector(store => store.garden.userPlots);
   const initialPlotIndex = userPlots.findIndex(plot => plot.id === plotId);
- 
+
   //toggles between plots when button is clicked                                            
-  const [nextPlotIndex, setNextPlotIndex] = useState(0);
   const addIndex = () => {
-    console.log(`Current plot is indexed at ${nextPlotIndex}`);
+    console.log(`Current plot index:`, initialPlotIndex);
+    const nextPlotIndex = initialPlotIndex + 1;
     if(nextPlotIndex <= userPlots.length-1){ //keeps requests within the confines of array length
-      console.log('adding 1');
-      setNextPlotIndex(nextPlotIndex + 1); 
-      changePlotDisplay();
-    }
-    else{
-      console.log(nextPlotIndex);
-    }
-  }
-
-  const subtractIndex = () => {
-    console.log(`Current plot is indexed at ${nextPlotIndex}`);
-    if(nextPlotIndex >= 1){
-      console.log('current index', nextPlotIndex);
-      console.log('subtracting 1');
-      const pleaseWork = (nextPlotIndex - 1);
-      setNextPlotIndex(pleaseWork);
-      changePlotDisplay();
-    }
-    else{
-      console.log(nextPlotIndex);
-    }
-  }
-
-  const changePlotDisplay = () => {
-      const [newPlot] = userPlots.filter((plot, i) => i === nextPlotIndex);
-      console.log(newPlot);
-      console.log(`Next plot is indexed at ${nextPlotIndex}`);
-
-      if (newPlot){
-        dispatch({ type: 'CLEAR_EVERYTHING' });
-        dispatch({ type: 'GET_PLOT', payload: newPlot.id });
-      };
+        const nextPlotID = userPlots[nextPlotIndex].id;
+        dispatch({ type: 'GET_PLOT', payload: nextPlotID });
+    };
   };
+
+  //toggles between plots when button is clicked      
+  const subtractIndex = () => {
+    console.log(`Current plot index:`, initialPlotIndex);
+    const nextPlotIndex = initialPlotIndex - 1;
+    if(nextPlotIndex >= 1){ //keeps requests within the confines of array length
+      const nextPlotID = userPlots[nextPlotIndex].id;
+      dispatch({ type: 'GET_PLOT', payload: nextPlotID });
+    };
+  };
+
 
   const deletePlot = () => {
     swal({
@@ -76,12 +57,12 @@ function PlotDisplay(){
       if (willDelete) { //if user presses okay after warning, then delete plot
         dispatch({ type: 'DELETE_PLOT', payload: plotId });
     }});
-  }
+  };
 
   const sendToNext = () => {
     dispatch({ type: 'CLEAR_EVERYTHING' });
     history.push('/newplot/shade');
-  }  
+  };
   
     return(
         <div className="user_plot_display">   
@@ -119,7 +100,7 @@ function PlotDisplay(){
                   </div>
                 </>} 
         </div>
-    )
-}
+    );
+};
 
 export default PlotDisplay;
