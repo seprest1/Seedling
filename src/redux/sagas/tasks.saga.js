@@ -1,6 +1,5 @@
-import { TaskSharp } from '@mui/icons-material';
 import axios from 'axios';
-import { actionChannel, put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 
 function* tasksSaga() {
     yield takeEvery('FETCH_TASKS', fetchTasks);
@@ -13,7 +12,6 @@ function* tasksSaga() {
     try{
         const response = yield axios.get(`/tasks/${action.payload}`);
         const taskList = response.data;
-        console.log('taskList:', taskList);
         yield put({ type: 'SET_TASKS', payload: taskList });
     }
     catch(error){

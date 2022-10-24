@@ -85,6 +85,7 @@ const divs = (state = initialPlot, action) => {
     };
 };
 
+//get list of all of the user's plots
 const userPlots = (state = [], action) => {
     switch(action.type) {
         case 'SET_USER_PLOTS':

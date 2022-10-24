@@ -71,7 +71,7 @@ router.get('/plot/:plot_id', rejectUnauthenticated, (req, res) => {
   const queryText = `
     SELECT div.*, plot.month, plot.year, plot.notes FROM div
       JOIN plot on plot.id = div.plot_id
-        WHERE plot.id = $1;`;
+        WHERE plot.id = $1 ORDER BY div.location;`;
 
   pool.query(queryText, [plotId])
       .then(result => {
