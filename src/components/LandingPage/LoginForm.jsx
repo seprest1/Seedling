@@ -31,6 +31,14 @@ function LoginForm() {
     }
   }; // end login
 
+  const onEnterSubmit = (e) => {
+    if(e.keyCode == 13 && e.shiftKey == false) {
+      e.preventDefault();
+      login(e);
+    };
+  };
+
+
   return (
       <Dialog open={true} onClose={() => history.push('/home')}>
         <LockOpenIcon color="primary" className="lock_icon"/>
@@ -45,7 +53,8 @@ function LoginForm() {
                      required  value={username} onChange={(event) => setUsername(event.target.value)}/>
 
           <TextField autoFocus margin="dense" label="Password" type="password" fullWidth variant="outlined" 
-                     required value={password}  onChange={(event) => setPassword(event.target.value)}/>
+                     required value={password}  onChange={(event) => setPassword(event.target.value)}
+                     onKeyDown={(e) => onEnterSubmit(e)}/>
 
           <Link to={'/register'} className="dialog_link">Don't have an account? Register Here</Link>
         </DialogContent>

@@ -43,7 +43,7 @@ function Notes () {
                 <div className="edit_notes">
                     <textarea type="text" 
                         className="notes_input"
-                        value={noteInput} 
+                        value={noteInput ? noteInput : ''} 
                         onChange={(e) => setNoteInput(e.target.value)}
                         onKeyDown={(e) => onEnterSubmit(e)}/>
                 </div>
