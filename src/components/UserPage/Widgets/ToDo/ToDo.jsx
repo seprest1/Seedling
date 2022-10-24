@@ -1,5 +1,5 @@
 import './ToDo.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 //MUI
 import List from '@mui/material/List';
@@ -10,9 +10,6 @@ import ToDoItem from "./ToDoItem";
 function ToDo () {
     const dispatch = useDispatch();
     const user_id = useSelector(store => store.user.id);
-    useEffect(() => {
-        dispatch({ type: "FETCH_TASKS", payload: user_id });
-      }, []);
     
     //hides or shows input
     const [toggleInput, setToggleInput] = useState(false);

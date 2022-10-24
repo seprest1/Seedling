@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Parallax } from 'react-scroll-parallax';
 import './LandingPage.css';

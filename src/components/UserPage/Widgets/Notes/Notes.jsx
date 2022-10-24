@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './Notes.css';
 //MUI
@@ -10,8 +10,14 @@ function Notes () {
     const month = useSelector(store => store.garden.date.display);
     const plot = useSelector(store => store.garden.selectedPlot);
     const [toggleNotes, setToggleNotes] = useState(false);
-    const [noteInput, setNoteInput] = useState(`${plot.notes}`);
+    const [noteInput, setNoteInput] = useState('');
 
+    const setToEdit = () => {
+        if (noteInput){
+            setNoteInput(plot.notes);
+        }
+        setToggleNotes(!toggleNotes)
+    }
 
     //sends notes to DB via 'Enter'
     const onEnterSubmit = (e) => {
@@ -43,7 +49,7 @@ function Notes () {
                 <div className="edit_notes">
                     <textarea type="text" 
                         className="notes_input"
-                        value={noteInput ? noteInput : ''} 
+                        value={noteInput} 
                         onChange={(e) => setNoteInput(e.target.value)}
                         onKeyDown={(e) => onEnterSubmit(e)}/>
                 </div>
@@ -53,7 +59,7 @@ function Notes () {
                 <div className="notes_header">
                         <h4 className="notes_text">{month} Notes:</h4>
                         <Tooltip title="Add Notes" placement="bottom-end">
-                            <button className="widget_button" onClick={() => setToggleNotes(!toggleNotes)}>
+                            <button className="widget_button" onClick={setToEdit}>
                                 <EditIcon fontSize="small"/>
                             </button>
                         </Tooltip>
