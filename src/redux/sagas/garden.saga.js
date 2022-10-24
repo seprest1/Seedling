@@ -161,6 +161,7 @@ function* addNotes(action){
             url: `/garden/notes/${action.payload.plot_id}`, 
             data: {notes: action.payload.notes}
         });
+        yield put({ type: 'GET_PLOT', payload: action.payload.plot_id });
         
     }
     catch(error){

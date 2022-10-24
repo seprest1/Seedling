@@ -13,7 +13,7 @@ function Notes () {
     const [noteInput, setNoteInput] = useState('');
 
     const setToEdit = () => {
-        if (noteInput){
+        if (plot.notes){
             setNoteInput(plot.notes);
         }
         setToggleNotes(!toggleNotes)

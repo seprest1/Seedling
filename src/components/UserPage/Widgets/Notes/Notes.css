@@ -38,12 +38,12 @@
 }
 
 .notes_input{
-    height: 10rem;
-    width: 10rem;
+    height: 8rem;
+    width: 18rem;
     word-break: break-all;
     word-break: break-word;
     background-color: transparent;
-    border: 1px solid rgb(101, 96, 96);
+    border: 1px solid rgb(101, 96, 96, 0.2);
     border-radius: 0.3rem;
     padding: 1rem;
     margin: 1rem;

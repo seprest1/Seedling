@@ -14,6 +14,7 @@ function UserPage() {
     dispatch({ type: 'CLEAR_EVERYTHING' });
     dispatch({ type: "GET_USER_PLOTS", payload: user });
     dispatch({ type: "FETCH_TASKS", payload: user });
+    dispatch({ type: 'FETCH_TIPS' });
       // dispatch({ type: 'FETCH_WEATHER', payload: weather_key });
   }, []);
 
