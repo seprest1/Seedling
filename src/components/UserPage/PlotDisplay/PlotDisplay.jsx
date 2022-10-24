@@ -60,7 +60,6 @@ function PlotDisplay(){
   };
 
   const sendToNext = () => {
-    dispatch({ type: 'CLEAR_EVERYTHING' });
     history.push('/newplot/shade');
   };
   
