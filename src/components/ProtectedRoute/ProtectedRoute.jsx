@@ -8,16 +8,11 @@ function ProtectedRoute({ component, children, ...props }) {
   const ProtectedComponent = component || (() => children);
 
   return (
-    <Route
-      {...props}
-    >
+    <Route {...props}>
       {user.id ?
-        // If the user is logged in, show the protected component
         <ProtectedComponent />
         :
-        // Otherwise, redirect to the Landing Page
-        <LandingPage />
-      }
+        <LandingPage />}
     </Route>
   );
 }

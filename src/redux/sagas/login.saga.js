@@ -16,7 +16,6 @@ function* loginUser(action) {
 
     // after the user has logged in get the user information 
     yield put({ type: 'FETCH_USER' });
-    yield put({ type: 'FETCH_TIPS' });
   } 
   catch (error) {
     console.log('Error with user login:', error);

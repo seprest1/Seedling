@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './GardeningTip.css';
 
 function Rain (){
     const tips = useSelector(store => store.tips);
+
+    //gets random tip on each load
     const tip = tips[Math.floor(Math.random()*tips.length)];
     
 

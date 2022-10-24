@@ -25,12 +25,7 @@ function PlotDisplay(){
 
   const userPlots = useSelector(store => store.garden.userPlots);
   const initialPlotIndex = userPlots.findIndex(plot => plot.id === plotId);
-  // useEffect(() => {
-  //   setNextPlotIndex(initialPlotIndex);
-  // }, []);
-
  
-
   //toggles between plots when button is clicked                                            
   const [nextPlotIndex, setNextPlotIndex] = useState(0);
   const addIndex = () => {

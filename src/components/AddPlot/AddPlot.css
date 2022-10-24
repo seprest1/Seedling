@@ -250,31 +250,48 @@
 } 
 
 .shade3{
- background-color: rgb(35, 29, 27);
+ background-color: rgb(38, 31, 29);
 }
 
-.light_green{
-  background-color: #88ac80;
+.green1{
+  background-color: #9b9b16;
 }
 
-.dark_green{
+.green2{
+  background-color: #4E7D5C;
+}
+
+.green3{
   background-color: #14452d;
 }
 
+.green4{
+  background-color: #345E4A;
+}
+
+
 .purple{
-  background-color: #493150;
+  background-color: #37324F;
 }
 
-.orange{
-  background-color: #cf814a;
+.orange1{ 
+  background-color: #e18421;
 }
 
-.red{
+.orange2{
+  background-color: #c95b17;
+}
+
+.red1{
   background-color: #be433c;
 }
 
+.red2{
+  background-color: #7b1930;
+}
+
 .white{
-  background-color: rgb(228, 220, 209);
+  background-color: #e4dcd1;
 }
 
 

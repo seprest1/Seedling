@@ -2,7 +2,6 @@
 import Tooltip from '@mui/material/Tooltip';
 import Zoom from '@mui/material/Zoom';
 
-
 function Div ({div, i}) {
     const changeBackground = (div) => {
         switch(div.shade){

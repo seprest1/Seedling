@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useLocation, Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import './LandingPage.css';
 //MUI
 import Button from '@mui/material/Button';
@@ -25,6 +25,13 @@ function RegisterForm() {
     history.push('/user');
   }; // end registerUser
 
+  const onEnterSubmit = (e) => {
+    if(e.keyCode == 13 && e.shiftKey == false) {
+      e.preventDefault();
+      registerUser(e);
+    };
+  };
+
   return (
       <>
         <Dialog open={true} onClose={() => history.push('/home')}>
@@ -43,7 +50,8 @@ function RegisterForm() {
                       required value={password}  onChange={(event) => setPassword(event.target.value)}/>
 
             <TextField autoFocus margin="dense" label="Zipcode" type="number" fullWidth variant="outlined" 
-                      required value={zipcode}  onChange={(event) => setZipcode(event.target.value)}/>
+                      required value={zipcode}  onChange={(event) => setZipcode(event.target.value)}
+                      onKeyDown={(e) => onEnterSubmit(e)}/>
 
             <Link to={'/login'} className="dialog_link">Already a user? Login here</Link>
           </DialogContent>
