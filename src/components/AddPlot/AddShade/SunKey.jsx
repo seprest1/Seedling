@@ -3,14 +3,10 @@ import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 import '../AddPlot.css';
 
-//components
-import ShadeDialog from './ShadeDialog';
-
-
 function PlantKey (){
     const dispatch = useDispatch();
-    
     const history = useHistory();
+    
     const plot = useSelector(store => store.garden.divs);
     const month = useSelector(store => store.garden.date.month);
     const displayMonth = useSelector(store => store.garden.date.display);
@@ -30,8 +26,6 @@ function PlantKey (){
     const goBackToUser = () => {
         history.push('/user');
     };
-
-    const userPlots = useSelector(store => store.garden.userPlots);
 
     return(
         <div className="right_body">
@@ -63,7 +57,6 @@ function PlantKey (){
                 <button onClick={goBackToUser} className="button">Back</button>
                 <button onClick={sendToNext} className="button">Next</button>
             </div>
-            {userPlots.length === 0 && <ShadeDialog/>} {/*opens a dialogue for new users to explain the process*/}
         </div>
     )
 }

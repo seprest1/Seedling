@@ -1,4 +1,4 @@
-import { put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery, select } from 'redux-saga/effects';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -25,14 +25,18 @@ function* fetchPlants(){
 
 //add plot with all the divs to DB
 function* addPlot(action){
+    const user = yield select(store => store.user.id);
+
     try{
         console.log('Plot being added', action.payload);
-        const plot = yield axios({
+        yield axios({
             method: 'POST',
             url: '/garden/add_plot', 
             data: action.payload
         });
-        put({ type: 'CLEAR_EVERYTHING' });
+        yield put({ type: 'CLEAR_EVERYTHING' });
+        yield put({ type: 'GET_USER_PLOTS', payload: user });
+
     }
     catch(error){
         console.log('addPlot failed,', error);
@@ -109,15 +113,18 @@ function* ammendPlot(action){
 
 //delete user's plot
 function* deletePlot(action){
+    const user = yield select(store => store.user.id);
+
     try{
         const plotId = action.payload;
-        yield axios.delete(`/garden/${plotId}`);
-        yield put({ type: 'FETCH_PLOT '});         
+        yield axios.delete(`/garden/plot/${plotId}`);
+        yield put({ type: 'GET_USER_PLOTS', payload: user });      
     }
     catch(error){
         console.log('deletePlot failed:', error);
     };
 };
+
 
 //get ids and dates of all user's plots
 function* fetchUserPlots(action){
@@ -128,27 +135,46 @@ function* fetchUserPlots(action){
         const userPlots = response.data;
         yield put({ type: `SET_USER_PLOTS`, payload: userPlots}); 
         console.log(userPlots);
-     
-        //logic to determine which plot is shown initially 
+    
+
         const currentYear = Number(moment().format('YYYY'));
         const currentMonth = Number(moment().format('MM')); 
-        const match = userPlots.find(plot => plot.year === currentYear && plot.month === currentMonth);
-        const plotBefore = userPlots.find(plot => plot.year === currentYear && plot.month < currentMonth);
-        const plotAfter = userPlots.find(plot => plot.year === currentYear && plot.month > currentMonth);
-   
-        //'get plot' route for initial plot
-        if (match){
-            console.log('Match', match);
-            yield put({ type: 'GET_PLOT', payload: match.id  }); //if there's a plot from current month
-        } 
-        else if (plotAfter){
-            console.log('Initial plot is in the future:', plotAfter);
-            yield put({ type: 'GET_PLOT', payload: plotAfter.id }); //if there's a future plot
-        }
-        else{
-            console.log('Initial plot is in the past:', plotBefore);
-            yield put({ type: 'GET_PLOT', payload: plotBefore.id }); //get the closest previous month's plot
-        }
+
+        const initialPlotID = yield () => { 
+            var plotID = 0;
+            if (userPlots.length === 1){
+                plotID = userPlots[0].id                                              //if there's only one plot
+            }
+            else{
+                
+                userPlots.find(plot =>
+                    { 
+                    if (plot.year === currentYear){                                 //START WITH CURRENT YEAR
+                        if (plot.month === currentMonth){                           //then current month
+                            plotID = plot.id;
+                            }
+                        else if (plot.month > currentMonth){                        //if no match, go to next future plot
+                            plotID = plot.id;
+                            }
+                            else{
+                            plotID = plot.id;                                          //if no future plots, go to last past plot
+                            }; 
+                        }
+                        else if (plot.year === (currentYear + 1)){                  //IF NO MATCH, GO TO NEXT FUTURE YEAR
+                            console.log('in next year', plot);                      //get earliest plot from that year
+                            const nextClosestPlot = userPlots.filter(plot => plot.year === currentYear + 1).findLast(plot => plot);
+                            console.log(`nextclosestPlot`, nextClosestPlot.id);
+                            plotID = nextClosestPlot.id;  
+                        }
+                        else{
+                            console.log('no match');                                //if no conditions above are true, get last plot from the past
+                        };
+                    }); //end loop
+                };
+            return plotID;
+        };
+            
+        yield put({ type: 'GET_PLOT', payload: initialPlotID() });                    //get plot using initialPlotID function as payload 
     }
     catch(error){
         console.log('fetchUserPlots failed:', error);

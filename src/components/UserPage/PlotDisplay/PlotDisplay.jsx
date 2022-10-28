@@ -45,7 +45,6 @@ function PlotDisplay(){
     };
   };
 
-
   const deletePlot = () => {
     swal({
       title: "Are you sure?",
@@ -60,6 +59,7 @@ function PlotDisplay(){
   };
 
   const sendToNext = () => {
+    dispatch({ type: 'CLEAR_EVERYTHING' });
     history.push('/newplot/shade');
   };
   

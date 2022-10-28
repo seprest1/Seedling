@@ -117,7 +117,10 @@ router.put('/:id', rejectUnauthenticated, async (req, res) => {
 });
 
 //deletes specified plot from DB
-router.delete('/:id', rejectUnauthenticated, (req, res) => {
+router.delete('/plot/:id', rejectUnauthenticated, (req, res) => {
+  
+  console.log(`In DELETE /plot/${req.params.id} route`);
+
   const plotToDelete = req.params.id;
   const queryText = 
     `DELETE FROM plot
