@@ -1,6 +1,8 @@
 import { useDispatch } from 'react-redux';
 //components
 import MonthChart from "./MonthChart";
+//MUI
+import Tooltip from '@mui/material/Tooltip';
 
 function PlantItem({plant}){
     const dispatch = useDispatch();
@@ -42,7 +44,9 @@ function PlantItem({plant}){
                     <div className="a_plant_details">
                         <div className="a_plant_subname">
                             <p className="scientific_name">{plant.scientific_name}</p>
-                            <img src={shadeIcon(plant)} className="shade_icon"/>
+                            <Tooltip title={plant.shade} placement="bottom-end">
+                                <img src={shadeIcon(plant)} className="shade_icon"/>
+                            </Tooltip>
                         </div>
                         <p className="a_plant_fact">{plant.description}</p>
                         <p className="a_plant_fact"><span className="a_plant_span">Sowing:</span>{plant.sowing}</p>

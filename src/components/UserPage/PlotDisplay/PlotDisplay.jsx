@@ -86,9 +86,15 @@ function PlotDisplay(){
                   <div className="user_header">
                     <h3 className="user_title">{displayMonth}, {year}</h3> 
                     <div className="user_header_buttons">
-                      <IconButton onClick={() => history.push(`/editplot/${plotId}`)}><EditIcon/></IconButton>
-                      <IconButton onClick={deletePlot}><ClearIcon/></IconButton>
-                      <IconButton onClick={sendToNext}><AddIcon/></IconButton>
+                      <Tooltip title="Edit" placement="bottom-end">
+                          <IconButton onClick={() => history.push(`/editplot/${plotId}`)}><EditIcon/></IconButton>
+                      </Tooltip>
+                      <Tooltip title="Delete" placement="bottom-end">
+                          <IconButton onClick={deletePlot}><ClearIcon/></IconButton>
+                      </Tooltip>
+                      <Tooltip title="Add New Plot" placement="bottom-end">
+                          <IconButton onClick={sendToNext}><AddIcon/></IconButton>
+                      </Tooltip>
                     </div>
                   </div>
                   <div className="display_bed">  {/* creates 24 divs, index = 0 */}

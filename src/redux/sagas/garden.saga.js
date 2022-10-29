@@ -104,7 +104,8 @@ function* ammendPlot(action){
             url: `/garden/${plot_id}`, 
             data: plot 
         });
-        yield put({ type: 'CLEAR_EVERTYHING' });
+        yield put({ type: 'CLEAR_EVERYTHING' });
+        yield put({ type: 'GET_PLOT', payload: plot_id });      
    }
    catch(error){
         console.log('ammendPlot failed:', error);
