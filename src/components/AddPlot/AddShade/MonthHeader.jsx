@@ -30,18 +30,10 @@ function MonthHeader(){
     const yearOptions = [{ value: 2020 }, { value: 2021 }, { value: 2022 }, { value: 2023 }, { value: 2024 }, { value: 2025 }];
 
     const [month, setMonth] = useState(1);
-    const [year, setYear] = useState(2020);
-    const handleMonth = (e) => {
-        const month = e.target.value
-        setMonth(month);
-        dispatch({ type: 'SET_MONTH', payload: {month, display: moment().month(month - 1).format('MMMM')}  })
-    }
-
     const handleYear = (e) => {
         const year = e.target.value;
-        setYear(year)
-        dispatch({ type: 'SET_YEAR', payload: year });
-        // setShowMonth(!showMonth);
+        dispatch({ type: 'SET_DATE', payload: {month, year, display: moment().month(month - 1).format('MMMM')} });
+        setShowMonth(!showMonth);
     }
 
     return(
@@ -55,7 +47,7 @@ function MonthHeader(){
             <div className="select_header">
                 <select 
                     className="month_select"
-                    onChange={(e) =>  handleMonth(e)}>
+                    onChange={(e) =>   setMonth(e.target.value)}>
                     <option value={0} hidden>January</option>
                     {monthOptions.map((option, i) => 
                         <option value={option.value} key ={i}>{option.text}</option>
@@ -63,7 +55,6 @@ function MonthHeader(){
                 </select>
                 <select 
                     className="month_select"
-                    defaultValue={{ value: 1, label: "January" }}
                     onChange={(e) => handleYear(e)}>
                     <option value={0} hidden>2020</option>
                     {yearOptions.map((option, i) => 

@@ -128,7 +128,7 @@ router.delete('/plot/:id', rejectUnauthenticated, (req, res) => {
   
   pool.query(queryText, [plotToDelete])
       .then(result => {
-        res.sendStatus(401);
+        res.sendStatus(201);
       })
       .catch(error => {
         console.log('ERROR in DELETE plot:', error);
@@ -139,7 +139,7 @@ router.delete('/plot/:id', rejectUnauthenticated, (req, res) => {
 //gets user plot ids and dates
 router.get('/:id/plots', rejectUnauthenticated, async (req, res) => {
   const connection = await pool.connect();
-  console.log('In GET userplots, plot is:', req.params.id);
+  console.log('In GET userplots, user ID is:', req.params.id);
 
   try{  
     await connection.query('BEGIN')

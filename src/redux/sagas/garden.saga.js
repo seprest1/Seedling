@@ -117,7 +117,8 @@ function* deletePlot(action){
         console.log(action.payload);
         const plot = action.payload.plot;
         const user = action.payload.user;
-        // yield axios.delete(`/garden/plot/${plot}`);
+        yield axios.delete(`/garden/plot/${plot}`);
+        yield put({ type: 'CLEAR_EVERYTHING' });
         yield put({ type: 'GET_USER_PLOTS', payload: user });      
     }
     catch(error){
