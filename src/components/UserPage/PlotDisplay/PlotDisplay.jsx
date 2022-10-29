@@ -27,6 +27,7 @@ function PlotDisplay(){
 
   //toggles between plots when button is clicked                                            
   const addIndex = () => {
+    console.log(userPlots);
     console.log(`Current plot index:`, initialPlotIndex);
     const nextPlotIndex = initialPlotIndex + 1;
     if(nextPlotIndex <= userPlots.length-1){ //keeps requests within the confines of array length
@@ -37,9 +38,10 @@ function PlotDisplay(){
 
   //toggles between plots when button is clicked      
   const subtractIndex = () => {
+    console.log(userPlots);
     console.log(`Current plot index:`, initialPlotIndex);
     const nextPlotIndex = initialPlotIndex - 1;
-    if(nextPlotIndex >= 1){ //keeps requests within the confines of array length
+    if(nextPlotIndex >= 0){ //keeps requests within the confines of array length
       const nextPlotID = userPlots[nextPlotIndex].id;
       dispatch({ type: 'GET_PLOT', payload: nextPlotID });
     };

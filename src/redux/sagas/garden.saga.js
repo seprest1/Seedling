@@ -149,6 +149,7 @@ function* fetchUserPlots(action){
                 
                 userPlots.find(plot =>
                     { 
+                    console.log(plot.year);
                     if (plot.year === currentYear){                                 //START WITH CURRENT YEAR
                         if (plot.month === currentMonth){                           //then current month
                             plotID = plot.id;
@@ -159,7 +160,8 @@ function* fetchUserPlots(action){
                             else{
                             plotID = plot.id;                                          //if no future plots, go to last past plot
                             }; 
-                        }
+                        return plotID;
+                        } //end loop
                         else if (plot.year === (currentYear + 1)){                  //IF NO MATCH, GO TO NEXT FUTURE YEAR
                             console.log('in next year', plot);                      //get earliest plot from that year
                             const nextClosestPlot = userPlots.filter(plot => plot.year === currentYear + 1).findLast(plot => plot);
@@ -168,6 +170,7 @@ function* fetchUserPlots(action){
                         }
                         else{
                             console.log('no match');                                //if no conditions above are true, get last plot from the past
+                            plotID = plot.id;
                         };
                     }); //end loop
                 };
