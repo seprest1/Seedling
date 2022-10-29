@@ -10,7 +10,6 @@ function UserPage() {
   const user = useSelector (store => store.user.id);
   const weather_key = useSelector(store => store.user.weather_key);
   useEffect(() => {
-    
     //dispatch({ type: 'FETCH_WEATHER', payload: weather_key });
   }, []);
 

@@ -45,11 +45,11 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  grid-gap: 5rem;
 }
 
 .select_header{
-  justify-content: center !important;
+  justify-content: center;
+  grid-gap: 2
 }
 
 .left_title{
@@ -81,19 +81,28 @@
 }
 
 .month_select{
-  background-color: transparent;
-  border: 0.1rem solid rgb(211, 205, 205, 0.7);
-  font-family: 'Inter Tight', sans-serif;
-  font-size: 4vh;
-  font-weight: bold;
+  background-color: transparent !important;
+  border: 0.1rem solid rgb(211, 205, 205, 0.7) !important;
+  font-family: 'Inter Tight', sans-serif !important;
+  font-size: 4vh !important;
+  font-weight: bold !important;
   height: 90%;
-  width: 10rem;
+  width: 40% !important;
   margin-left: 1rem;
   border: none;
+  display: flex;
+  flex-direction: row !important;
 }
+
 
 .month_select:active{
   border: none !important;
+}
+
+.month_option{
+  font-size: 3vh !important;
+  font-weight: bold !important;
+  margin-left: 2rem;
 }
 
 .month_button{

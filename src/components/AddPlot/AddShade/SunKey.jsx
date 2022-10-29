@@ -9,13 +9,12 @@ function PlantKey (){
     
     const plot = useSelector(store => store.garden.divs);
     const month = useSelector(store => store.garden.date.month);
-    const displayMonth = useSelector(store => store.garden.date.display);
    
     const sendToNext = () => {
         const shadedDivTotal = plot.filter(div => div.shade);  
-        console.log('Display Month:', displayMonth);
+        console.log('month:', month);
         if(!month){
-            swal("Set month for your plot!");  //makes sure that month is set before moving on
+            swal("Set a month and year for your plot!");  //makes sure that month is set before moving on
         }
         else if (shadedDivTotal.length === 48){    //determines if all plots have been assigned shade values               
             console.log('Sending plot to adding plants section:', plot);  

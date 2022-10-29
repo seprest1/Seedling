@@ -113,11 +113,11 @@ function* ammendPlot(action){
 
 //delete user's plot
 function* deletePlot(action){
-    const user = yield select(store => store.user.id);
-
     try{
-        const plotId = action.payload;
-        yield axios.delete(`/garden/plot/${plotId}`);
+        console.log(action.payload);
+        const plot = action.payload.plot;
+        const user = action.payload.user;
+        // yield axios.delete(`/garden/plot/${plot}`);
         yield put({ type: 'GET_USER_PLOTS', payload: user });      
     }
     catch(error){

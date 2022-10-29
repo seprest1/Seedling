@@ -18,13 +18,13 @@ function PlotDisplay(){
   const plotId = useSelector(store => store.garden.selectedPlot.id);
   const displayMonth = useSelector(store => store.garden.date.display);
   const year = useSelector(store => store.garden.date.year);
+  const userPlots = useSelector(store => store.garden.userPlots);
+  const userId = useSelector(store => store.user.id);
   
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const userPlots = useSelector(store => store.garden.userPlots);
   const initialPlotIndex = userPlots.findIndex(plot => plot.id === plotId);
-
   //toggles between plots when button is clicked                                            
   const addIndex = () => {
     console.log(userPlots);
@@ -56,7 +56,7 @@ function PlotDisplay(){
     })
     .then((willDelete) => { 
       if (willDelete) { //if user presses okay after warning, then delete plot
-        dispatch({ type: 'DELETE_PLOT', payload: plotId });
+        dispatch({ type: 'DELETE_PLOT', payload: {plot: plotId, user: userId} });
     }});
   };
 
