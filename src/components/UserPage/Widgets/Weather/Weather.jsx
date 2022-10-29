@@ -6,7 +6,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 function Weather (){
     const weather = useSelector(store => store.weather);
-
+    const city = useSelector(store => store.user.city)
     //assigns weather with image
     const weatherIcon = (iconNumber) => {
         switch(iconNumber){
@@ -44,15 +44,15 @@ function Weather (){
                 <h2 className="weather_date">{moment().format("MMM Do YYYY")}</h2>
                 <div className="weather_location">
                     <LocationOnIcon fontSize="xsmall"/>
-                    <h2 className="weather_city">Minneapolis, MN</h2>
+                    <h2 className="weather_city">{city}</h2>
                 </div>
             </div>
             <div className="weather_details">
                 <div className="weather_image">
-                    <img src={weatherIcon(4)} className="weather_icon"/>
-                    <h2 className="weather_type">Cloudy</h2>
+                    <img src={weatherIcon(weather.icon)} className="weather_icon"/>
+                    <h2 className="weather_type">{weather.text}</h2>
                 </div>
-            <h2 className="weather_temp">55°</h2> 
+            <h2 className="weather_temp">{weather.temp}°</h2> 
             </div>
         </div>
     )
