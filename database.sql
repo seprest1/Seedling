@@ -1,7 +1,7 @@
 -----------------------------USER TABLE-----------------------------
 
 
-DROP TABLE "user";
+--DROP TABLE "user";
 CREATE TABLE "user" (
 	"id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
@@ -15,10 +15,10 @@ CREATE TABLE "user" (
 -----------------------------PLOT TABLE-----------------------------	
 
 
-DROP TABLE "plot";
+--DROP TABLE "plot";
 CREATE TABLE "plot" (
 	"id" SERIAL PRIMARY KEY,
-	"user_id" FOREIGN KEY REFERENCES "user" ON DELETE CASCADE,
+	"user_id" INT REFERENCES "user" (id) ON DELETE CASCADE,
 	"month" INT,
 	"year" INT, 
 	"notes" VARCHAR (1000),
@@ -26,55 +26,10 @@ CREATE TABLE "plot" (
 	"time updated" DATE DEFAULT CURRENT_DATE
 );
 
---------------------------VEGGIE TABLE-----------------------------
-
-
-DROP TABLE "plant";
-CREATE TABLE "plant" (
-	"id" SERIAL PRIMARY KEY,
-	"name" VARCHAR (150) NOT NULL,
-	"scientific_name" VARCHAR (250),
-	"description" VARCHAR (1000),
-	"shade" VARCHAR (150) NOT NULL,
-	"sowing" VARCHAR (600),
-	"row_spacing" VARCHAR(150),
-	"color" VARCHAR (150),
-	"image" VARCHAR (600),
-	"icon" VARCHAR (500),
-	"growing" FOREIGN KEY REFERENCES "growing_season"
-);
-
-------------------TABLE FOR EACH DIV EVER CREATED------------------
-
-
-DROP TABLE "div";
-CREATE TABLE "div" (
-	"id" SERIAL PRIMARY KEY,
-	"plot_id" FOREIGN KEY REFERENCES plot ON DELETE CASCADE,
-	"plant_id" FOREIGN KEY REFERENCES plant,
-	"location" INT, --refers to placement on a 4x6 grid
-	"shade" VARCHAR (150) DEFAULT 'Full Sun', --refers to user-set shade
-	"name" VARCHAR (150),
-	"subvariety" VARCHAR (150),
-	"color" VARCHAR (150),
-	"icon" VARCHAR (150)
-);
-
-------------------------COMPANION TABLE-----------------------------
-
-
-DROP TABLE "companion";
-CREATE TABLE "companion" (
-	"id" SERIAL PRIMARY KEY,
-	"main_plant" FOREIGN KEY REFERENCES plant,
-	"helper_plant" VARCHAR (200),
-	"relationship" VARCHAR (600)
-);
-	
 ------------------------GROWING SEASON-----------------------------
 
 
-DROP TABLE "growing_season";
+--DROP TABLE "growing_season";
 CREATE TABLE "growing_season" (
 	"id" SERIAL PRIMARY KEY,
 	"hardiness" VARCHAR (80),
@@ -89,13 +44,59 @@ CREATE TABLE "growing_season" (
 );
 
 
+--------------------------VEGGIE TABLE-----------------------------
+
+
+--DROP TABLE "plant";
+CREATE TABLE "plant" (
+	"id" SERIAL PRIMARY KEY,
+	"name" VARCHAR (150) NOT NULL,
+	"scientific_name" VARCHAR (250),
+	"description" VARCHAR (1000),
+	"shade" VARCHAR (150) NOT NULL,
+	"sowing" VARCHAR (600),
+	"row_spacing" VARCHAR(150),
+	"color" VARCHAR (150),
+	"image" VARCHAR (600),
+	"icon" VARCHAR (500),
+	"growing" INT REFERENCES "growing_season" (id)
+);
+
+------------------TABLE FOR EACH DIV EVER CREATED------------------
+
+
+--DROP TABLE "div";
+CREATE TABLE "div" (
+	"id" SERIAL PRIMARY KEY,
+	"plot_id" INT REFERENCES plot(id) ON DELETE CASCADE,
+	"plant_id" INT REFERENCES plant(id),
+	"location" INT, --refers to placement on a 4x6 grid
+	"shade" VARCHAR (150) DEFAULT 'Full Sun', --refers to user-set shade
+	"name" VARCHAR (150),
+	"subvariety" VARCHAR (150),
+	"color" VARCHAR (150),
+	"icon" VARCHAR (150)
+);
+
+------------------------COMPANION TABLE-----------------------------
+
+
+--DROP TABLE "companion";
+CREATE TABLE "companion" (
+	"id" SERIAL PRIMARY KEY,
+	"main_plant" INT REFERENCES plant(id),
+	"helper_plant" VARCHAR (200),
+	"relationship" VARCHAR (600)
+);
+	
+
 ------------------------------TASKS---------------------------------
 			
 			
-DROP TABLE "tasks";
+--DROP TABLE "tasks";
 CREATE TABLE "tasks" (
 	"id" SERIAL PRIMARY KEY,
-	"user_id" FOREIGN KEY REFERENCES "user" ON DELETE CASCADE,
+	"user_id" INT REFERENCES "user"(id) ON DELETE CASCADE,
 	"task" VARCHAR (500),
 	"completed" BOOLEAN DEFAULT false
 );
@@ -104,7 +105,7 @@ CREATE TABLE "tasks" (
 ------------------------------TIPS----------------------------------
 
 
-DROP TABLE "tips";
+--DROP TABLE "tips";
 CREATE TABLE "tips" (
 	"id" SERIAL PRIMARY KEY,
 	"tip" VARCHAR (1000)
@@ -112,6 +113,24 @@ CREATE TABLE "tips" (
 
 
 ---------------------------DUMMY DATA-------------------------------
+
+INSERT INTO "growing_season" ("march", "april", "may", "june", "july", "august", "september", "october")
+	VALUES 
+	
+	(0, 0, 0, 50, 70, 90, 100, 80), -- 1: EGGPLANT
+	(0, 0, 60, 80, 90, 100, 90, 80), -- 2: SQUASH
+	(0, 0, 60, 80, 100, 70, 0, 0), -- 3: CUCUMBER
+	(0, 50, 70, 100, 60, 0, 0, 0), -- 4: CABBAGE
+	(0, 50, 70, 90, 80, 60, 0, 0), -- 5: ARTICHOKE,
+	(0, 50, 70, 90, 100, 100, 90, 80), -- 6: BEANS
+	(50, 60, 70, 90, 80, 70, 60, 0), -- 7: TOMATO, PEPPER
+	(70, 90, 70, 0, 0, 70, 90, 70), -- 8: BEET, LETTUCE, KALE, CAULIFLOWER, CARROT
+	(70, 90, 70, 0, 0, 0, 0, 0); --9: APARAGAUS, 
+
+
+
+----------------------------------------------------------------------
+
 INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing", "row_spacing", "color", "image", "icon", "growing")
 	VALUES 
 	
@@ -208,12 +227,12 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'Partial Sun', 
 'Direct seed outdoors, thin to 20cm when seedlings are 3cm tall.', 
 '40 centimeters', 
-'green1', 
+'green5', 
 'https://images.pexels.com/photos/116728/pexels-photo-116728.jpeg?auto=compress&cs=tinysrgb&w=800', 
 'Images/Plant_Icons/lettuce.png', 
 7), 
 
-('Beans', 
+('Green Beans', 
 'Phaseolus Vulgaris', 
 'Green beans are the unripe, young fruit and protective pods of various cultivars of the common bean (Phaseolus vulgaris). Immature or young pods of the runner bean (Phaseolus coccineus), yardlong bean (Vigna unguiculata subsp. sesquipedalis), and hyacinth bean (Lablab purpureus) are used in a similar way.', 
 'Partial Sun', 
@@ -255,7 +274,7 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'green2', 
 'https://images.pexels.com/photos/3912846/pexels-photo-3912846.jpeg?auto=compress&cs=tinysrgb&w=800', 
 'Images/Plant_Icons/artichoke.png', 
-5),
+7),
 
 ('Asparagus', 
 'Cynara Cardunculus', 
@@ -266,9 +285,9 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'green1', 
 'https://images.pexels.com/photos/2069280/pexels-photo-2069280.jpeg?auto=compress&cs=tinysrgb&w=800', 
 'Images/Plant_Icons/asparagus.png', 
-7),
+8),
 
-('Bean', 
+('Butter Bean', 
 'Phaseolus Coccineus', 
 'The Runner, or Multiflora, Bean is a vining plant in the Fabaceae (legume) family that is native to Central America. It is sometimes called the Butter Bean, which can also refer to the Lima Bean, a separate species. The Runner Bean differs from other beans in that it can be grown as a perennial where the ground does not freeze. Runner Beans are grown for their edible beans and as an ornamental: plants produce brilliant red flowers that attract hummingbirds and multicolored seeds. Some varieties have white flowers. The seed pods have a knife-like shape and are usually green, but some purple cultivars exist. Pods are 15-30cm long and contain 6-10 2.5cm seeds. Different varieties have different colored seeds. Seeds can eaten fresh or as dried beans, but must be cooked to remove toxins. Blooms can be added to salads. Young pods can be cooked like green beans. Roots are eaten by indigenous peoples in Central America. Runner Beans benefit from trellising.', 
 'Full Sun', 
@@ -277,7 +296,7 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'green2', 
 'https://www.gardeningknowhow.com/wp-content/uploads/2009/03/lima-beans-400x600.jpg', 
 'Images/Plant_Icons/beans.png', 
-5), --squash
+9), 
 
 ('Bell Pepper', 
 'Capsicum Annuum', 
@@ -288,7 +307,7 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'orange1', 
 'https://images.pexels.com/photos/5529601/pexels-photo-5529601.jpeg?auto=compress&cs=tinysrgb&w=800', 
 'Images/Plant_Icons/bell.png', 
-2), --lettuce, eggplant, onion
+1), 
 
 ('Broccoli', 
 'Brassica Oleracea', 
@@ -299,7 +318,7 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'green3', 
 'https://images.pexels.com/photos/12333180/pexels-photo-12333180.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 
 'Images/Plant_Icons/broccoli.png', 
-1), --carrot
+2), 
 
 ('Brussel Sprouts', 
 'Brassica Oleracea cv. Gemmifera', 
@@ -310,7 +329,7 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'green3', 
 'https://cdn.britannica.com/76/183476-050-C5EDE163/Brussels-sprouts-stem.jpg', 
 'Images/Plant_Icons/brussel.png', 
-5),
+3),
 
 ('Celery', 
 'Apium Graveolens', 
@@ -318,10 +337,10 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'Full Shade', 
 'Sow seeds indoors 10-12 weeks before transplanting outdoors.',
 '15 centimeters', 
-'green1', 
+'green5', 
 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqFWMqpgnX8sTyb7VOkymb_5MQMFENN_Ae5w&usqp=CAU', 
 'Images/Plant_Icons/celery.png', 
-2), --cabbage
+4),
 
 ('Corn', 
 'Zea Mays', 
@@ -329,10 +348,10 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'Full Sun', 
 'Direct seed outdoors.',
 '75 centimeters', 
-'yellow', 
+'yellow2', 
 'https://images.pexels.com/photos/872483/pexels-photo-872483.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 
 'Images/Plant_Icons/corn.png', 
-4), --mushroom
+5),
 
 ('Daikon', 
 'Raphanus Sativus var. Longipinnatus', 
@@ -343,7 +362,7 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'white', 
 'https://cdn.shopify.com/s/files/1/0972/6282/products/minowase-daikon-radish-heirloom-55-days-vegetables-pinetree-garden-seeds_456.jpg?v=1542824834', 
 'Images/Plant_Icons/daikon.png', 
-5), 
+6), 
 
 ('Fennel', 
 'Foeniculum Vulgare', 
@@ -351,10 +370,10 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'Partial Sun', 
 'Direct seed outdoors, or sow indoors and harden off before transplanting outside.',
 '15 centimeters', 
-'green1', 
+'green5', 
 'https://cdn.loveandlemons.com/wp-content/uploads/2020/03/fennel-bulb.jpg', 
 'Images/Plant_Icons/fennel.png', 
-4),
+7),
 
 ('Garlic', 
 'Allium Sativum', 
@@ -365,7 +384,7 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'white', 
 'https://gardenerspath.com/wp-content/uploads/2019/12/Hand-Holding-Up-Bunch-of-Fresh-Garlic.jpg', 
 'Images/Plant_Icons/garlic.png', 
-5), 
+8), 
 
 ('Ginger', 
 'Zingiber Officinale', 
@@ -373,10 +392,10 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'Partial Sun', 
 'Direct seed roots outdoors.',
 '20 centimeters', 
-'yellow', 
+'yellow1', 
 'https://balconygardenweb-lhnfx0beomqvnhspx.netdna-ssl.com/wp-content/uploads/2019/11/Common-Ginger_2.jpg', 
 'Images/Plant_Icons/ginger.png', 
-6),
+9),
 
 ('Leek', 
 'Allium Porrum', 
@@ -387,7 +406,7 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'green4', 
 'https://gardenerspath.com/wp-content/uploads/2019/11/Large-Mature-Leek-Plant.jpg', 
 'Images/Plant_Icons/leek.png', 
-7), --spinach, carrot, onion
+1),
 
 ('Mushroom', 
 'Dikarya', 
@@ -406,10 +425,10 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'Full Sun', 
 'Start indoors.',
 '15 centimeters', 
-'white', 
+'purple', 
 'https://images.pexels.com/photos/12306358/pexels-photo-12306358.jpeg?auto=compress&cs=tinysrgb&w=800', 
 'Images/Plant_Icons/onion.png', 
-1), 
+3), 
 
 ('Pea', 
 'Pisum Sativum var. Macrocarpon', 
@@ -417,10 +436,10 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'Full Sun', 
 'Direct seed outdoors, thin to 12cm apart when seedlings are 3cm high.',
 '12 centimeters', 
-'green1', 
+'green5', 
 'https://images.pexels.com/photos/4750262/pexels-photo-4750262.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 
-'Images/Plant_Icons/onion.png', 
-4), --turnip
+'Images/Plant_Icons/peas.png', 
+4), 
 
 ('Potato', 
 'Solanum Tuberosum', 
@@ -431,7 +450,7 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'brown', 
 'https://hips.hearstapps.com/hmg-prod/images/potatoe-1628714182.jpg', 
 'Images/Plant_Icons/potato.png', 
-1),
+5),
 
 ('Radish', 
 'Raphanus Sativus', 
@@ -442,7 +461,7 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'red2', 
 'https://images.pexels.com/photos/12612096/pexels-photo-12612096.jpeg?auto=compress&cs=tinysrgb&w=800', 
 'Images/Plant_Icons/radish.png', 
-2),
+6),
 
 ('Spinach', 
 'Spinacia Oleracea', 
@@ -453,7 +472,7 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'green2', 
 'https://www.cravethegood.com/wp-content/uploads/2022/02/spinach-plant-1.jpg', 
 'Images/Plant_Icons/spinach.png', 
-3), --leek
+7), 
 
 ('Sweet Potato', 
 'Ipomoea Batata', 
@@ -463,8 +482,8 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 '35 centimeters', 
 'orange2', 
 'https://images.pexels.com/photos/2889344/pexels-photo-2889344.jpeg?auto=compress&cs=tinysrgb&w=800', 
-'Images/Plant_Icons/spinach.png', 
-4), --Beet, parsnip
+'Images/Plant_Icons/sweetpotato.png', 
+8), 
 
 ('Zuchini', 
 'Cucurbita Pepo', 
@@ -475,32 +494,66 @@ INSERT INTO "plant" ("name", "scientific_name", "description", "shade", "sowing"
 'green2', 
 'https://images.pexels.com/photos/4750288/pexels-photo-4750288.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2', 
 'Images/Plant_Icons/zuchini.png', 
-4); --Beet, parsnip
+9); 
 
+
+
+----------------------------------------------------------------------
 
 
 INSERT INTO "companion" ("main_plant", "helper_plant", "relationship")
 	VALUES 
-		(1, 'Bell Pepper', 'Calendula, tomatoes, and petunias are thought to deter asparagus beetles.'), 
-		(2, 'Carrot', 'Purslane is used to shade the soil around basil plants, helping them to remain fresh in hot weather.'), 
-		(8, 'Cabbage', 'Basil improves the growth and flavor of tomatoes and peppers.'), 
-		(3, 'Lettuce', 'Nasturtiums can be used as a trap plant to entice aphids away from beans.'); 
-
-
-INSERT INTO "growing_season" ("march", "april", "may", "june", "july", "august", "september", "october")
-	VALUES 
 	
-	(0, 0, 0, 50, 70, 90, 100, 80), -- 1: EGGPLANT
-	(0, 0, 60, 80, 90, 100, 90, 80), -- 2: SQUASH
-	(0, 0, 60, 80, 100, 70, 0, 0), -- 3: CUCUMBER
-	(0, 50, 70, 100, 60, 0, 0, 0), -- 4: CABBAGE
-	(0, 50, 70, 90, 80, 60, 0, 0), -- 5: ARTICHOKE,
-	(0, 50, 70, 90, 100, 100, 90, 80), -- 6: BEANS
-	(50, 60, 70, 90, 80, 70, 60, 0), -- 7: TOMATO, PEPPER
-	(70, 90, 70, 0, 0, 70, 90, 70), -- 8: BEET, LETTUCE, KALE, CAULIFLOWER, CARROT
-	(70, 90, 70, 0, 0, 0, 0, 0); --9: APARAGAUS, 
+(1, 'Asparagus', 'Asparagus repels nematodes.'), 
+(1, 'Radish', 'Flea beetles much prefer radish foliage to tomatoes and will chew ragged holes in the radish leaves instead of destroying young tomato plants.'),
+(2, 'Peas', 'Eggplants need to absorb a significant amount of nitrogen and peas leach additional nitrogen into the surrounding soil.'), 
+(2, 'Beans', 'Bush beans also repel the Colorado potato beetle, a great connoisseur of eggplant.'),
+(3, 'Garlic', 'Garlic planted alongside cabbage repels insects with its odor.'),
+(4, 'Corn', 'Squash is traditionally planted with corn and beans (“three sisters”) to disorient the adult vine borer.'),
+(5, 'Leek', 'Leeks are thought to repel many flying pests - including carrot rust fly.'),
+(6, 'Radish', 'Radish repels cucumber beetles and flea beetles.'),
+(7, 'Onion', 'Onions protect against borers and cutworms.'),
+(8, 'Onion', 'Alliums are great companion plants for hot peppers because they deter aphids and beetles.'),
+(9, 'Garlic', 'Chives, onions, and garlic deter aphids and other pests by masking the scent of the lettuce with their aroma.'),
+(9, 'Radish', 'Radishes can be used as a trap crop for flea beetles.'),
+(10, 'Corn', 'Corn will benefit from the beans’ nitrogen-fixing capabilities.'),
+(11, 'Leek', 'Leeks are strong-smelling crop that will deter butterflies, flea beetles and aphids.'),
+(11, 'Radish', 'Radish will act as a trap, drawing flea beetles away from your kale early on in the season.'),
+(12, 'Celery', 'Celery also attracts beneficial insects and is a water hog, which means while it may utilize plenty of water, it leaves more nutrients in the soil for the cauliflower.'),
+(12, 'Beans', 'Beans and cauliflower are an ideal combo. Both plants deter pests and attract beneficial insects.'),
+(13, 'Peas', 'Peas, in particular, are good artichoke plant companions because they exude nitrogen that artichokes will gladly leech up from the soil.'),
+(14, 'Tomato', 'Tomatoes are thought to deter asparagus beetles.'),
+(15, 'Corn', 'Corn will benefit from the beans’ nitrogen-fixing capabilities. Pole beans provide structural support.'),
+(16, 'Eggplant', 'Eggplant, a member of the nightshade family along with peppers, thrives alongside peppers.'),
+(16, 'Peas', 'Peas fix nitrogen into the soil, a necessary nutrient for peppers, and also help block wind and sun.'),
+(17, 'Beets', 'Beets aren’t bothered by broccoli hogging all the calcium in the soil, and add magnesium to the ground.'),
+(17, 'Onion', 'Onions give broccoli better flavor when they are grown near each other.'),
+(18, 'Garlic', 'Garlic and other alliums like leeks, shallots, and onions also enhance the sweetness of mature Brussels sprouts. Alliums have anti-fungal properties that work as a natural insect repellent within the soil.'),
+(18, 'Beets', 'Beets add a boost of fertilization to the soil, namely magnesium, which is a crucial component of growing successful Brussels sprouts.'),
+(19, 'Leek', 'Alliums like garlic, leeks, shallots, and onions enhance the sweetness of a celery crop, and their anti-fungal properties also work as a natural insect repellent within the soil.'),
+(20, 'Beans', 'Pole beans are sometimes interplanted with corn, adding nitrogen and providing structural support.'),
+(20, 'Spinach', 'Spinach grows well in the shade of corn, keeping corn roots cool.'),
+(21, 'Beans', 'One of the “Three Sisters,” pole beans are a great plant to grow with radishes because they provide much-needed nitrogen in the soil.'),
+(22, 'Note', 'Not a companion for any garden food plant, fennel will actually inhibit growth in bush beans, kohlrabi, tomatoes, and others. Plant it, but keep it out of the veggie garden.'),
+(24, 'Beans', 'Legumes attract beneficial bacteria with their roots, which feed on nitrogen in the air and store it as nitrates in the soil for other plants to use'),
+(25, 'Carrot', 'Can enhance the flavor of your leeks.'),
+(25, 'Spinach', 'Keep the soil moist.'),
+(27, 'Garlic', 'Onions and garlic planted in the same bed means you can rotate your crops more easily. But it should also be remembered that they do tend to enjoy the same growing conditions.'),
+(28, 'Corn', 'Cornstalks make a perfect natural trellis for pea tendrils.'),
+(28, 'Radish', 'The slow growth rate of peas allows radishes—a fast-growing root vegetable—to develop without being disturbed.'),
+(29, 'Beans', 'Beans can improve the size of potato tubers.'),
+(29, 'Cabbage', 'Potatoes are a great choice for planting near plants in the cabbage (brassicas) family—including broccoli, cabbage, cauliflower, collard greens, kale, and kohlrabi—because these plants have shallow root systems that won’t compete for the space or nutrients that potatoes need.'),
+(30, 'Peas', 'Peas give nitrogen to the soil which benefits radishes.'),
+(30, 'Eggplant', 'Large eggplants provide shade for radishes as they grow. Conversely, radishes help eggplants by repelling pests.'),
+(31, 'Peas', 'Peas and beans provide natural shade for spinach.'),
+(31, 'Radish', 'Radishes make good companions to Spinach. They can serve as a trap crop for leaf-mining insects.'),
+(32, 'Spinach', 'Spinach acts as an effective cover plant, making for one of the best companion plants.'),
+(32, 'Garlic', 'Garlic wards off pests with its potent aroma.'),
+(33, 'Beans', 'Beans fix nitrogen levels in soil to balance the pH level.'),
+(33, 'Garlic', 'Garlic possesses strong sulfur compounds, which repels pests like aphids.');
 
 
+----------------------------------------------------------------------		
 
 INSERT INTO "tips" (tip)
 VALUES 
