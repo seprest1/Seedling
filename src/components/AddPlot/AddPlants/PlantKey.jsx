@@ -29,10 +29,14 @@ function PlantKey (){
         };
     };
 
+    //sorts through plants to show full sun first
+    const order = { "Full Sun": 1, "Partial Sun": 2, "Full Shade": 3 };
+    const plantsSorted = plants.sort((a, b) => (order[a.shade] || Number.MAX_VALUE) - (order[b.shade] || Number.MAX_VALUE));
+
     return(
         <div className="right_body">
             <ul className="plant_list"> 
-                {plants.map((plant, i) => <KeyItem plant={plant} key={i}/>)}  
+                {plantsSorted.map((plant, i) => <KeyItem plant={plant} key={i}/>)}  
             </ul>
             <div className="buttons">
                 <button onClick={sendBack} className="button">Back</button>

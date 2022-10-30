@@ -17,7 +17,8 @@ function PlantItem({plant}){
                 name: plant.name,
                 shade: plant.shade,
                 color: plant.color,
-                icon: plant.icon
+                icon: plant.icon,
+                companions: plant.companion
             }
         });
     };
@@ -35,7 +36,6 @@ function PlantItem({plant}){
         <li className="available_plant">
             <div className="a_plant_header">
                 <span className="a_plant_name">{plant.name}</span>
-                <span className="subvariety"></span>
                 <button className="icon_button edit a_edit" onClick={addPlant}>+</button>
             </div>
             <div className="a_plant_body">
@@ -54,12 +54,12 @@ function PlantItem({plant}){
                                     <Chip
                                         label={plant.helper_plant}
                                         size="small"
-                                        color="secondary"/>
+                                        color="primary"/>
                                 </Tooltip>
                                 )}
                                 </Stack>
                             </div>
-                            <Tooltip title={plant.shade} placement="bottom-end">
+                            <Tooltip title={plant.shade} placement="top">
                                 <img src={shadeIcon(plant)} className="shade_icon"/>
                             </Tooltip>
                         </div>

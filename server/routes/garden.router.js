@@ -29,7 +29,7 @@ router.get('/plants', rejectUnauthenticated, async(req, res) => {
     const companions = companionResponse.rows;
 
     const updatedPlants = plants.map(plant => ({...plant,   //creates plant object with companions and growing chart data
-      growing: growing.find(chart => chart.plant_id === plant.id),
+      growing: growing.find(chart => chart.id === plant.growing),
       companion: companions.filter(companion => companion.main_plant === plant.id)
     }));
     
