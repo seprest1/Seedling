@@ -3,9 +3,12 @@ import { useDispatch } from 'react-redux';
 import MonthChart from "./MonthChart";
 //MUI
 import Tooltip from '@mui/material/Tooltip';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 function PlantItem({plant}){
     const dispatch = useDispatch();
+    const companions = plant.companion;
     const addPlant = () => {
         dispatch({
             type: 'ADD_PLANT',
@@ -43,7 +46,19 @@ function PlantItem({plant}){
                 <div className="a_plant_info">
                     <div className="a_plant_details">
                         <div className="a_plant_subname">
-                            <p className="scientific_name">{plant.scientific_name}</p>
+                            <div className="a_plant_name_companions">
+                                <p className="scientific_name">{plant.scientific_name}</p>
+                                <Stack direction="row" spacing={1}>
+                                {companions.map(plant => 
+                                <Tooltip title={plant.relationship} placement="top">
+                                    <Chip
+                                        label={plant.helper_plant}
+                                        size="small"
+                                        color="secondary"/>
+                                </Tooltip>
+                                )}
+                                </Stack>
+                            </div>
                             <Tooltip title={plant.shade} placement="bottom-end">
                                 <img src={shadeIcon(plant)} className="shade_icon"/>
                             </Tooltip>
@@ -52,7 +67,7 @@ function PlantItem({plant}){
                         <p className="a_plant_fact"><span className="a_plant_span">Sowing:</span>{plant.sowing}</p>
                         <p className="a_plant_fact"><span className="a_plant_span">Row Spacing:</span>{plant.row_spacing}</p>
                     </div>
-                    <MonthChart plant={plant}/>
+                    <MonthChart plant={plant.growing}/>
                 </div>
             </div>
         </li>
