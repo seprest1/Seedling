@@ -7,19 +7,38 @@ const {rejectUnauthenticated,
 
 
 //gets plants from DB
-router.get('/plants', rejectUnauthenticated, (req, res) => {
-  const queryText = `
-    SELECT * FROM plant
-	    JOIN growing_season ON growing_season.plant_id = plant.id
-        ORDER BY plant.shade;`;
-  pool.query(queryText)
-      .then(result => {
-        res.send(result.rows);
-      })
-      .catch(error => {
-        console.log('ERROR in GET plants:', error);
-        res.sendStatus(500);
-      });
+router.get('/plants', rejectUnauthenticated, async(req, res) => {
+  const connection = await pool.connect();
+  try{
+    const plantQuery = `
+      SELECT * FROM plant
+      ORDER BY CASE 
+        WHEN shade = 'Full Sun' THEN 1
+          WHEN shade = 'Partial Sun' THEN 2
+          ELSE 3 END;`;
+    const plantResponse = await connection.query(plantQuery)
+
+    const growingQuery = `SELECT * FROM growing_season;`;
+    const growingResponse = await connection.query(growingQuery)
+
+    const companionQuery = `SELECT * FROM companion;`;
+    const companionResponse = await connection.query(companionQuery)
+
+    const plants = plantResponse.rows;
+    const growing = growingResponse.rows;
+    const companions = companionResponse.rows;
+
+    const updatedPlants = plants.map(plant => ({...plant,   //creates plant object with companions and growing chart data
+      growing: growing.find(chart => chart.plant_id === plant.id),
+      companion: companions.filter(companion => companion.main_plant === plant.id)
+    }));
+    
+    res.send(updatedPlants);
+  }
+  catch(error){
+    console.log('ERROR in GET plants:', error);
+    res.sendStatus(500);
+  };
 });
 
 //posts plot to DB

@@ -20,6 +20,7 @@ function* fetchUser() {
     yield put({ type: "GET_USER_PLOTS", payload: user.id });
     yield put({ type: "FETCH_TASKS", payload: user.id });
     yield put({ type: 'FETCH_TIPS', payload: user.id });
+    yield put({type: 'FETCH_PLANTS'});
     //yield put({ type: 'FETCH_WEATHER', payload: user.weather_key });
 
   } catch (error) {
