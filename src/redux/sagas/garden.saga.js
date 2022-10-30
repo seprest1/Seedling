@@ -135,51 +135,54 @@ function* fetchUserPlots(action){
         const userId = action.payload;
         const response = yield axios.get(`/garden/${userId}/plots`);
         const userPlots = response.data;
-        yield put({ type: `SET_USER_PLOTS`, payload: userPlots}); 
-        console.log(userPlots);
-    
 
-        const currentYear = Number(moment().format('YYYY'));
-        const currentMonth = Number(moment().format('MM')); 
+        if (userPlots.length > 0){ //if user has plots set them
+            yield put({ type: `SET_USER_PLOTS`, payload: userPlots}); 
+            console.log(userPlots);
+        
+            //LOGIC TO DETERMINE INITIAL PLOT SHOWN
+            const currentYear = Number(moment().format('YYYY'));
+            const currentMonth = Number(moment().format('MM')); 
 
-        const initialPlotID = yield () => { 
-            var plotID = 0;
-            if (userPlots.length === 1){
-                plotID = userPlots[0].id                                              //if there's only one plot
-            }
-            else{
-                
-                userPlots.find(plot =>
-                    { 
-                    console.log(plot.year);
-                    if (plot.year === currentYear){                                 //START WITH CURRENT YEAR
-                        if (plot.month === currentMonth){                           //then current month
-                            plotID = plot.id;
-                            }
-                        else if (plot.month > currentMonth){                        //if no match, go to next future plot
-                            plotID = plot.id;
+            const initialPlotID = yield () => { 
+                var plotID = 0;
+                if (userPlots.length === 1){
+                    plotID = userPlots[0].id                                              //if there's only one plot
+                }
+                else{
+                    
+                    userPlots.find(plot =>
+                        { 
+                        console.log(plot.year);
+                        if (plot.year === currentYear){                                 //START WITH CURRENT YEAR
+                            if (plot.month === currentMonth){                           //then current month
+                                plotID = plot.id;
+                                }
+                            else if (plot.month > currentMonth){                        //if no match, go to next future plot
+                                plotID = plot.id;
+                                }
+                                else{
+                                plotID = plot.id;                                          //if no future plots, go to last past plot
+                                }; 
+                            return plotID;
+                            } //end loop
+                            else if (plot.year === (currentYear + 1)){                  //IF NO MATCH, GO TO NEXT FUTURE YEAR
+                                console.log('in next year', plot);                      //get earliest plot from that year
+                                const nextClosestPlot = userPlots.filter(plot => plot.year === currentYear + 1).findLast(plot => plot);
+                                console.log(`nextclosestPlot`, nextClosestPlot.id);
+                                plotID = nextClosestPlot.id;  
                             }
                             else{
-                            plotID = plot.id;                                          //if no future plots, go to last past plot
-                            }; 
-                        return plotID;
-                        } //end loop
-                        else if (plot.year === (currentYear + 1)){                  //IF NO MATCH, GO TO NEXT FUTURE YEAR
-                            console.log('in next year', plot);                      //get earliest plot from that year
-                            const nextClosestPlot = userPlots.filter(plot => plot.year === currentYear + 1).findLast(plot => plot);
-                            console.log(`nextclosestPlot`, nextClosestPlot.id);
-                            plotID = nextClosestPlot.id;  
-                        }
-                        else{
-                            console.log('no match');                                //if no conditions above are true, get last plot from the past
-                            plotID = plot.id;
-                        };
-                    }); //end loop
-                };
-            return plotID;
+                                console.log('no match');                                //if no conditions above are true, get last plot from the past
+                                plotID = plot.id;
+                            };
+                        }); //end loop
+                    };
+                return plotID;
+            };
+                
+            yield put({ type: 'GET_PLOT', payload: initialPlotID() });                    //get plot using initialPlotID function as payload 
         };
-            
-        yield put({ type: 'GET_PLOT', payload: initialPlotID() });                    //get plot using initialPlotID function as payload 
     }
     catch(error){
         console.log('fetchUserPlots failed:', error);

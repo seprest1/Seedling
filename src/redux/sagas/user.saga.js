@@ -14,12 +14,13 @@ function* fetchUser() {
 
     //waits for user to be set
     yield delay(1000); 
-    const user = yield select(store => store.user.id);
+    const user = yield select(store => store.user);
 
     //get initial values for user and set them to local state
-    yield put({ type: "GET_USER_PLOTS", payload: user });
-    yield put({ type: "FETCH_TASKS", payload: user });
-    yield put({ type: 'FETCH_TIPS', payload: user });
+    yield put({ type: "GET_USER_PLOTS", payload: user.id });
+    yield put({ type: "FETCH_TASKS", payload: user.id });
+    yield put({ type: 'FETCH_TIPS', payload: user.id });
+    //yield put({ type: 'FETCH_WEATHER', payload: user.weather_key });
 
   } catch (error) {
     console.log('User get request failed', error);

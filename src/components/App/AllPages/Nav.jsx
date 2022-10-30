@@ -15,6 +15,11 @@ function Nav() {
     history.push('/home');
   }
 
+  const logout = () => {
+    dispatch({ type: 'CLEAR_EVERYTHING' });
+    dispatch({ type: 'LOGOUT'});
+  }
+
   return (
     <div className="nav"> 
       <div className="nav_header">
@@ -22,9 +27,9 @@ function Nav() {
       </div>
       {user.id ?   
         <div className="nav_links">            {/* user logged in */}
-          <button className="nav_button" onClick={goHome}> home </button>
+          <button className="nav_button" onClick={goHome}>home</button>
           <Link to="/about" className="nav_link">about</Link>
-          <button className="nav_button" onClick={() => dispatch({ type: 'LOGOUT'})}> log out </button>
+          <button className="nav_button" onClick={() => logout()}>log out</button>
         </div>  
         :
         <div className="nav_links">           {/* user not logged in */}  
