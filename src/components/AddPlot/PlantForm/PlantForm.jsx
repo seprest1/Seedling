@@ -7,6 +7,7 @@ import PlantFormDialog from './PlantFormDialog';
 
 function SelectPlants () {
     const userPlots = useSelector(store => store.garden.userPlots);
+    const selectedPlants = useSelector(store => store.garden.selectedPlants);
 
     return(
         <div className="app_body">
@@ -16,7 +17,8 @@ function SelectPlants () {
             <div className="right_display">
                 <PlantList/>
             </div>
-            {userPlots.length === 0 && <PlantFormDialog/>} {/*new user dialogue*/}
+            {/*opens a dialogue for new users to explain the process -- will re-rend until user picks a plant, so not perfect*/} 
+            {(userPlots.length === 0 && selectedPlants.length === 0) && <PlantFormDialog/>}
         </div>
     )
 }

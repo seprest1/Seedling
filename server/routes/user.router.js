@@ -25,15 +25,15 @@ router.post('/register', async (req, res, next) => {
     //gets weather key from accuweather API
     const response = await axios.get(`http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=${api_key}&q=${zipcode}&language=en-us`);
     const weather_key = response.data[0].Key;
-    console.log(weather_key);
+    const city = response.data[0].LocalizedName;
 
-    const queryText = `INSERT INTO "user" (username, password, zipcode, weather_key)
-      VALUES ($1, $2, $3, $4) RETURNING id`;
-    await pool.query(queryText, [username, password, zipcode, weather_key])
+    const queryText = `INSERT INTO "user" (username, password, zipcode, city, weather_key)
+      VALUES ($1, $2, $3, $4, $5) RETURNING id`;
+    await pool.query(queryText, [username, password, zipcode, city, weather_key])
     res.sendStatus(201)
   }
   catch(error){
-    console.log('User registration failed: ', err);
+    console.log('User registration failed: ', error);
     res.sendStatus(500);
   };
 });

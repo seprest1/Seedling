@@ -17,6 +17,7 @@ function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
+  const user = useSelector(store => store.user.id);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -24,7 +25,9 @@ function LoginForm() {
     event.preventDefault();
     if (username && password) {
       dispatch({ type: 'LOGIN', payload: {username: username, password: password} });
-      history.push('/user');
+      if (user){
+        history.push('/user');  //only goes if user is logged in
+      }
     } 
     else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });

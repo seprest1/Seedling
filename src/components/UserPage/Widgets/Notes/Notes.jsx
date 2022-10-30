@@ -24,6 +24,7 @@ function Notes () {
         if(e.keyCode == 13 && e.shiftKey == false) {
           e.preventDefault();
           dispatch({ type: 'SET_NOTES', payload: {plot_id: plot.id, notes: noteInput} });
+          setNoteInput('');
           setToggleNotes(!toggleNotes);
         };
       };

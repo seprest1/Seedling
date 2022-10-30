@@ -36,6 +36,7 @@ body{
   font-weight: 300;
   text-decoration: none;
   width: 100%;
+  cursor: pointer;
 }
 
 .nav_links{

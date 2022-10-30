@@ -100,12 +100,6 @@ const date = (state = {}, action) => {
     switch(action.type){
         case 'SET_DATE':
             return action.payload;
-        case 'SET_MONTH':
-            return {...state, month: action.payload};
-        case 'SET_YEAR':
-            return {...state, year: action.payload};
-        case 'SET_DISPLAY':
-            return {...state, display: action.payload};
         case 'CLEAR_EVERYTHING':
             return {};
         default:

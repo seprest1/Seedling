@@ -18,15 +18,16 @@ function PlotDisplay(){
   const plotId = useSelector(store => store.garden.selectedPlot.id);
   const displayMonth = useSelector(store => store.garden.date.display);
   const year = useSelector(store => store.garden.date.year);
+  const userPlots = useSelector(store => store.garden.userPlots);
+  const userId = useSelector(store => store.user.id);
   
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const userPlots = useSelector(store => store.garden.userPlots);
   const initialPlotIndex = userPlots.findIndex(plot => plot.id === plotId);
-
   //toggles between plots when button is clicked                                            
   const addIndex = () => {
+    console.log(userPlots);
     console.log(`Current plot index:`, initialPlotIndex);
     const nextPlotIndex = initialPlotIndex + 1;
     if(nextPlotIndex <= userPlots.length-1){ //keeps requests within the confines of array length
@@ -37,14 +38,14 @@ function PlotDisplay(){
 
   //toggles between plots when button is clicked      
   const subtractIndex = () => {
+    console.log(userPlots);
     console.log(`Current plot index:`, initialPlotIndex);
     const nextPlotIndex = initialPlotIndex - 1;
-    if(nextPlotIndex >= 1){ //keeps requests within the confines of array length
+    if(nextPlotIndex >= 0){ //keeps requests within the confines of array length
       const nextPlotID = userPlots[nextPlotIndex].id;
       dispatch({ type: 'GET_PLOT', payload: nextPlotID });
     };
   };
-
 
   const deletePlot = () => {
     swal({
@@ -55,11 +56,12 @@ function PlotDisplay(){
     })
     .then((willDelete) => { 
       if (willDelete) { //if user presses okay after warning, then delete plot
-        dispatch({ type: 'DELETE_PLOT', payload: plotId });
+        dispatch({ type: 'DELETE_PLOT', payload: {plot: plotId, user: userId} });
     }});
   };
 
   const sendToNext = () => {
+    dispatch({ type: 'CLEAR_EVERYTHING' });
     history.push('/newplot/shade');
   };
   
@@ -84,9 +86,15 @@ function PlotDisplay(){
                   <div className="user_header">
                     <h3 className="user_title">{displayMonth}, {year}</h3> 
                     <div className="user_header_buttons">
-                      <IconButton onClick={() => history.push(`/editplot/${plotId}`)}><EditIcon/></IconButton>
-                      <IconButton onClick={deletePlot}><ClearIcon/></IconButton>
-                      <IconButton onClick={sendToNext}><AddIcon/></IconButton>
+                      <Tooltip title="Edit" placement="bottom-end">
+                          <IconButton onClick={() => history.push(`/editplot/${plotId}`)}><EditIcon/></IconButton>
+                      </Tooltip>
+                      <Tooltip title="Delete" placement="bottom-end">
+                          <IconButton onClick={deletePlot}><ClearIcon/></IconButton>
+                      </Tooltip>
+                      <Tooltip title="Add New Plot" placement="bottom-end">
+                          <IconButton onClick={sendToNext}><AddIcon/></IconButton>
+                      </Tooltip>
                     </div>
                   </div>
                   <div className="display_bed">  {/* creates 24 divs, index = 0 */}

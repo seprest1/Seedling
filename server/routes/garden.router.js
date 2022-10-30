@@ -117,7 +117,10 @@ router.put('/:id', rejectUnauthenticated, async (req, res) => {
 });
 
 //deletes specified plot from DB
-router.delete('/:id', rejectUnauthenticated, (req, res) => {
+router.delete('/plot/:id', rejectUnauthenticated, (req, res) => {
+  
+  console.log(`In DELETE /plot/${req.params.id} route`);
+
   const plotToDelete = req.params.id;
   const queryText = 
     `DELETE FROM plot
@@ -125,7 +128,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
   
   pool.query(queryText, [plotToDelete])
       .then(result => {
-        res.sendStatus(401);
+        res.sendStatus(201);
       })
       .catch(error => {
         console.log('ERROR in DELETE plot:', error);
@@ -136,7 +139,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 //gets user plot ids and dates
 router.get('/:id/plots', rejectUnauthenticated, async (req, res) => {
   const connection = await pool.connect();
-  console.log('In GET userplots, plot is:', req.params.id);
+  console.log('In GET userplots, user ID is:', req.params.id);
 
   try{  
     await connection.query('BEGIN')

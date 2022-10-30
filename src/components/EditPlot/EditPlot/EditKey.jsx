@@ -19,7 +19,6 @@ function EditKey (){
                 type: 'EDIT_PLOT', 
                 payload: {plot: plot, plot_id: plotID}
             }); 
-            dispatch({ type: 'CLEAR_PLANT_TYPE '}) //clears the plant selected to render on DOM 
             swal("Saved Plot!");
             history.push('/home');
         };
