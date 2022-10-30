@@ -12,7 +12,7 @@ function ParalaxBanner(){
     
       const middleground = {
         image:
-          'Images/Paralax/middleground.png',
+          'Images/Paralax/Middleground.png',
         speed: -20,
         scale: [1, 1.1, 'easeOutCubic'],
         shouldAlwaysCompleteAnimation: true,
@@ -20,7 +20,7 @@ function ParalaxBanner(){
     
       const foreground = {
         image:
-          'Images/Paralax/foreground.png',
+          'Images/Paralax/Foreground.png',
         speed: 30,
         translateY: [0, 15],
         scale: [1, 1.1, 'easeOutCubic'],
