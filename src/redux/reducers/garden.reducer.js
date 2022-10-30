@@ -14,7 +14,7 @@ const plants = (state = [], action) => {
 const selectedPlants = (state = [], action) => {
     switch(action.type){
         case 'ADD_PLANT':
-            return [{id: action.payload.id, name: action.payload.name, shade: action.payload.shade, color: action.payload.color, icon: action.payload.icon, subvariety: null}, ...state];
+            return [{id: action.payload.id, name: action.payload.name, shade: action.payload.shade, color: action.payload.color, icon: action.payload.icon, companions: action.payload.companions, subvariety: null}, ...state];
         case 'REMOVE_PLANT':
             return state.filter((plant, i) => i !== action.payload);
         case 'SET_SUBVARIETY':

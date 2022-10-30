@@ -98,7 +98,7 @@ function App() {
           },
           link:{
             fontFamily: 'Droid Sans',
-          },
+          }
       },
     },
   });

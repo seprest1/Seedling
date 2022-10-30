@@ -140,6 +140,16 @@
   font-size: 4vh;
 } 
 
+.key_icons{
+  grid-area: selected_buttons;
+  width: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  grid-gap: 0.5rem;
+}
+
 
 /*--------------SAME----------------*/
 .plant_list{
@@ -248,6 +258,7 @@
   margin: 0;
   padding: 0;
   opacity: 0.3;
+  justify-content: flex-start;
 }
 
 /* --------- COLORS --------- */
@@ -280,6 +291,9 @@
   background-color: #345E4A;
 }
 
+.green5{
+  background-color: #a5bf48;
+}
 
 .purple{
   background-color: #37324F;
@@ -303,6 +317,18 @@
 
 .white{
   background-color: #e4dcd1;
+}
+
+.yellow1{
+  background-color: rgb(234, 175, 56);
+}
+
+.yellow2{
+  background-color: rgb(242, 203, 9);
+}
+
+.brown{
+  background-color: rgb(103, 80, 59);
 }
 
 
