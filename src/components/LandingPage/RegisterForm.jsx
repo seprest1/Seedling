@@ -25,6 +25,7 @@ function RegisterForm() {
     history.push('/user');
   }; // end registerUser
 
+  //lets user submit with enter key
   const onEnterSubmit = (e) => {
     if(e.keyCode == 13 && e.shiftKey == false) {
       e.preventDefault();

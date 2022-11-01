@@ -16,7 +16,7 @@ function ToDoItem ({task, userID}){
     return(
         <ListItem 
             className="todo_item">
-            <ListItemButton dense
+            <ListItemButton dense               //lists item as completed
                onClick={ () =>  dispatch({ type: 'COMPLETED_TASK', payload: {id: task.id, user: userID} }) }>
               <ListItemIcon>
                 <Checkbox
@@ -28,7 +28,7 @@ function ToDoItem ({task, userID}){
                 />
                 </ListItemIcon>
                 <ListItemText primary={task.task}/>
-            </ListItemButton>
+            </ListItemButton>                                                       
             <button className="widget_button todo_delete" onClick={() => dispatch({ type: 'DELETE_TASK', payload: {id: task.id, user: userID} })}>⨉</button>
         </ListItem>
     )

@@ -4,6 +4,7 @@ const pool = require('../modules/pool');
 const axios = require('axios');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
+//get tasks
 router.get('/:user', rejectUnauthenticated, (req, res) => {
     console.log('in GET tasks route');
 
@@ -22,6 +23,7 @@ router.get('/:user', rejectUnauthenticated, (req, res) => {
         });
 });
 
+//add task
 router.post('/', rejectUnauthenticated, (req, res) => {
     const user = req.body.user;
     const task = req.body.task;
@@ -41,6 +43,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         });
 });
 
+//update task as completed
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   const task_id = req.params.id;
   console.log('In PUT tasks route');
@@ -60,6 +63,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
       });
 });
 
+//delete task
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
   const task_id = req.params.id;
   console.log('In PUT tasks route');

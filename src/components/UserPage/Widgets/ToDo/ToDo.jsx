@@ -43,7 +43,7 @@ function ToDo () {
                             onChange={(e) => setToDoInput(e.target.value)}>
                     </input>
                 </form>}
-                {taskList ? taskList.map((item, i) => 
+                {taskList ? taskList.map((item, i) =>  
                     <ToDoItem key={i} task={item} userID={user_id}/>) : ''}
             </List>
         </div>

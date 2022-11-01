@@ -15,7 +15,7 @@ function* fetchWeather(action){
 
         yield put({ type: 'SET_WEATHER', 
             payload: {
-                text: weatherData.WeatherText,
+                text: weatherData.WeatherText, //eg: 'Sunny' or 'Cloudy'
                 temp: weatherData.Temperature.Imperial.Value,
                 icon: weatherData.WeatherIcon } 
         });

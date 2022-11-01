@@ -18,6 +18,7 @@ function Div ({div, i}) {
  
     return(
         <div className={`display_div ${changeBackground(div)}`}> 
+              {/* shows subvariety on hover */}
           <Tooltip TransitionComponent={Zoom} 
                     enterDelay={300}
                     arrow

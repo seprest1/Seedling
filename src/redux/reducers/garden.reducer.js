@@ -13,9 +13,9 @@ const plants = (state = [], action) => {
 //array of plants that the user picks for their plot
 const selectedPlants = (state = [], action) => {
     switch(action.type){
-        case 'ADD_PLANT':
+        case 'ADD_PLANT': //adds all the fields from the plants array
             return [{id: action.payload.id, name: action.payload.name, shade: action.payload.shade, color: action.payload.color, icon: action.payload.icon, companions: action.payload.companions, subvariety: null}, ...state];
-        case 'REMOVE_PLANT':
+        case 'REMOVE_PLANT': 
             return state.filter((plant, i) => i !== action.payload);
         case 'SET_SUBVARIETY':
             return state.map((plant, i) => i === action.payload.index ? 

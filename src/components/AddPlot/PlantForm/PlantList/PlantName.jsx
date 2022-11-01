@@ -15,6 +15,7 @@ function PlantName({plant, i}){
         setShowSubvarietyInput(!showSubvarietyInput);
     }
 
+    //adds subvariety to plant item
     const addSubvariety = () => {
         console.log(subvarietyInput);
         console.log(plant);

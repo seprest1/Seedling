@@ -67,7 +67,7 @@ function PlotDisplay(){
   
     return(
         <div className="user_plot_display">   
-          {!plotId ?      /* if there isn't a plot to display */
+          {!plotId ?      ///NEW USER//
                 <>  
                 <div className="user_header">
                     <h3 className="user_title">Your Plots:</h3> 
@@ -81,7 +81,7 @@ function PlotDisplay(){
                     <p className="new_plot_info">Visit our design studio to select sunlight values for your garden plot, select plants, set subvarities and start planning out your dream garden!</p>
                 </div>
                 </>
-              :
+              :         ///SEASONED USER//
                 <>
                   <div className="user_header">
                     <h3 className="user_title">{displayMonth}, {year}</h3> 

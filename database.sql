@@ -127,7 +127,7 @@ INSERT INTO "growing_season" ("march", "april", "may", "june", "july", "august",
 	(70, 90, 70, 0, 0, 70, 90, 70), -- 8: BEET, LETTUCE, KALE, CAULIFLOWER, CARROT
 	(70, 90, 70, 0, 0, 0, 0, 0); --9: APARAGAUS, 
 
-
+---currently hard-coded, but could be tied to specific hardiness zone---
 
 ----------------------------------------------------------------------
 

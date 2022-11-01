@@ -1,11 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import moment from 'moment';
 
 function PlantBed(){
-  useEffect(() => {
-  }, []);
-    
     const plot = useSelector(store => store.garden.divs);
     const plant = useSelector(store => store.garden.pickedPlant);
     const month = useSelector(store => store.garden.date.display);
@@ -43,8 +38,6 @@ function PlantBed(){
           return null;
       }
     }
-
-  const vector_image = "Images/Plant_Icons/beet.png";
 
     return(
       <div className="left_body">

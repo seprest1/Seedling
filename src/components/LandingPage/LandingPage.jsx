@@ -48,6 +48,7 @@ function LandingPage({routeProp}) {
                 </div>
               </div>
           </div>
+          {/*if routed to login or user, use dialog*/}
           {routeProp === 'register' && <RegisterForm/>}
           {routeProp === 'login' && <LoginForm/>}
           <Footer/>

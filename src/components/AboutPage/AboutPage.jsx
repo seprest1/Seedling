@@ -36,13 +36,6 @@ function AboutPage() {
                     <li>SweetAlerts</li>
                     <li>Accuweather API</li>
                   </ul>
-                {/* <div className="technologies_icons">
-                  <img className="tech_icons" src="/Images/About_Page/Accuweather.png"/>
-                  <img className="tech_icons" src="/Images/About_page/node.png"/>
-                  <img className="tech_icons" src="/Images/About_Page/pgsql.png"/>
-                  <img className="tech_icons" src="/Images/About_Page/react.png"/>
-                  <img className="tech_icons" src="/Images/About_page/redux.png"/>
-                </div> */}
           </div>
       </div>
     </div>

@@ -12,6 +12,7 @@ function EditKey (){
     //submit edited plot to DB
     const plot = useSelector(store => store.garden.divs);
     const plotID = useSelector(store => store.garden.selectedPlot.id);
+    
     const submitEditedPlot = () => {
         const totalPlants = plot.filter(div => div.plant_id);
         if (totalPlants.length === 48){     //only if all plants have been assigned

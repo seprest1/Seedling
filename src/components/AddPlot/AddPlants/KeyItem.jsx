@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import Tooltip from '@mui/material/Tooltip';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import { grey } from '@mui/material/colors';
 
 function KeyItem({plant}){
     const dispatch = useDispatch();
 
+    //sets icon for shade designation
     const shadeIcon = (plant) => {
         switch (plant.shade){
             case 'Full Sun': return "/Images/Weather_Icons/sun.png";

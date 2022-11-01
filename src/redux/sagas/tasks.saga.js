@@ -37,6 +37,7 @@ function* tasksSaga() {
     };
   };
 
+  //updates task as completed
   function* updateTask(action){
     try{
       const task_id = action.payload.id;

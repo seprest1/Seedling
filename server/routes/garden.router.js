@@ -28,7 +28,8 @@ router.get('/plants', rejectUnauthenticated, async(req, res) => {
     const growing = growingResponse.rows;
     const companions = companionResponse.rows;
 
-    const updatedPlants = plants.map(plant => ({...plant,   //creates plant object with companions and growing chart data
+    //creates plant object with companions and growing chart data
+    const updatedPlants = plants.map(plant => ({...plant,   
       growing: growing.find(chart => chart.id === plant.growing),
       companion: companions.filter(companion => companion.main_plant === plant.id)
     }));
@@ -58,7 +59,7 @@ router.post('/add_plot', rejectUnauthenticated, async (req, res) => {
 
     const insertedPlotResults = await connection.query(plotQueryText, [user, month, year]);
     
-    
+    //inserts each div one by one
     const plotId = insertedPlotResults.rows[0].id; 
     const plot = req.body.plot;
     await Promise.all(plot.map(div => {
