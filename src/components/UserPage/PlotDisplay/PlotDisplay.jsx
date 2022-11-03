@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import swal from 'sweetalert';
@@ -24,6 +25,10 @@ function PlotDisplay(){
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // useEffect(() => {
+  //   dispatch({ type: 'FETCH_USER' });
+  // }, [dispatch]);
+
   const initialPlotIndex = userPlots.findIndex(plot => plot.id === plotId);
   //toggles between plots when button is clicked                                            
   const addIndex = () => {
@@ -32,6 +37,7 @@ function PlotDisplay(){
     const nextPlotIndex = initialPlotIndex + 1;
     if(nextPlotIndex <= userPlots.length-1){ //keeps requests within the confines of array length
         const nextPlotID = userPlots[nextPlotIndex].id;
+        dispatch({ type: 'CLEAR_EVERYTHING' }); //removes flicker
         dispatch({ type: 'GET_PLOT', payload: nextPlotID });
     };
   };
@@ -43,6 +49,7 @@ function PlotDisplay(){
     const nextPlotIndex = initialPlotIndex - 1;
     if(nextPlotIndex >= 0){ //keeps requests within the confines of array length
       const nextPlotID = userPlots[nextPlotIndex].id;
+      dispatch({ type: 'CLEAR_EVERYTHING' }); //removes flicker
       dispatch({ type: 'GET_PLOT', payload: nextPlotID });
     };
   };

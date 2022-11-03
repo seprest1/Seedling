@@ -43,9 +43,10 @@ body{
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  grid-gap: 0.5rem;
 }
 
-.nav_link, .nav_link:visited, .nav_button{
+.nav_button, .nav_button:visited, .nav_button:focus{
   display: flex;
   height: 3rem;
   width: 6rem;
@@ -57,20 +58,19 @@ body{
   text-align: center;
   letter-spacing: 0.1rem;
   text-decoration: none;
+  border: none !important;
+  background-color: transparent !important;
+  outline: none;
 }
 
-.nav_link:hover, .nav_button:hover{
+.nav_button:hover{
   background-color: #ff443381 !important;
 }
 
-.nav_link:active{
+.nav_button:active{
   background-color: #FF4433;
 }
 
-.nav_button{
-  background-color: transparent !important;
-  border: none;
-}
 
 .footer{
   height: 20vh;
