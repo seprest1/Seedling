@@ -1,8 +1,6 @@
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import '../App.css';
-//components
-import LoginForm from '../../LandingPage/LoginForm';
 
 function Nav() {
   const dispatch = useDispatch();
@@ -28,13 +26,13 @@ function Nav() {
       {user.id ?   
         <div className="nav_links">            {/* user logged in */}
           <button className="nav_button" onClick={goHome}>home</button>
-          <Link to="/about" className="nav_link">about</Link>
+          <button className="nav_button" onClick={() => history.push('/about')}>about</button>
           <button className="nav_button" onClick={() => logout()}>log out</button>
         </div>  
         :
         <div className="nav_links">           {/* user not logged in */}  
-          <Link to="/about" className="nav_link">about</Link>
-          <Link to='/login' className="nav_link">login</Link>
+          <button className="nav_button" onClick={() => history.push('/about')}>about</button>
+          <button className="nav_button" onClick={() => history.push('/login')}>sign in</button>
         </div>     
           }  
     </div>
