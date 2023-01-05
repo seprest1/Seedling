@@ -20,7 +20,7 @@ if (process.env.DB_PASS) {
     user: 'seprest',
     host: 'db.bit.io',
     database: 'seprest/seedling',
-    password: process.env.DATABASE_URL, // key from bit.io database page connect menu
+    password: process.env.DB_PASS, // key from bit.io database page connect menu
     port: 5432,
     ssl: true,
   };
