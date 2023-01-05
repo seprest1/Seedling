@@ -10,7 +10,7 @@ const plants = (state = [], action) => {
     };
 };
 
-//array of plants that the user picks for their plot
+//array of plants that the user picks for their plot 
 const selectedPlants = (state = [], action) => {
     switch(action.type){
         case 'ADD_PLANT': //adds all the fields from the plants array
